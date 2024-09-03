@@ -25,7 +25,7 @@ Desenvolvedores:
     </td>
      <td align="center">
       <a href="https://github.com/kulmixip">
-        <img src="https://avatars.githubusercontent.com/u/106926790?s=400&u=d51d91a8d447afbb4a9d0be21d664b82d7091fc5&v=4" width="100px;" alt="Foto Anders Brurok"/><br>
+        <img src="https://avatars.githubusercontent.com/u/114212092?v=4" width="100px;" alt="Foto Anders Brurok"/><br>
         <sub>
           <b>Anders Brurok</b>
         </sub>
