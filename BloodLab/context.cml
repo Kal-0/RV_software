@@ -1,0 +1,103 @@
+Domain LabManagement {
+	Subdomain Testing
+    Subdomain Results
+    Subdomain Administration
+
+}
+
+
+BoundedContext Testing implements Testing {
+	Aggregate Test {
+		Entity Test {
+			aggregateRoot
+			-TestId id
+			String name
+			String descriptionText
+		}
+		
+		ValueObject TestId {
+			int id
+		}
+	}
+}
+
+
+
+BoundedContext Results implements Results {
+Aggregate Result {
+	Entity Result {
+		aggregateRoot
+		-ResultId id
+		String contentOfResult
+		-TestId test
+	}
+	
+	ValueObject ResultId {
+		int id
+	}
+	
+}
+
+}
+
+BoundedContext Administration implements Administration {
+	Aggregate Person {
+		Entity Person {
+			aggregateRoot
+			-PersonId id
+			-Cpf cpf
+			String name
+			-Email contactEmail
+			Date dateOfBirth
+		}
+		
+		ValueObject PersonId{
+			int id
+		}
+		
+		ValueObject Cpf {
+			String cpf
+		}
+		
+		ValueObject Email{
+			String emailText
+		}
+	}
+	
+	Aggregate Patient {
+		Entity Patient extends Person{
+			aggregateRoot
+			-PatientId id
+			List<String> patientConditions
+			-List<ResultId> results // Referência aos IDs dos testes
+		}
+		ValueObject PatientId {
+			int id
+		}
+	}
+	
+	Aggregate Doctor {
+		Entity Doctor extends Person{
+			aggregateRoot
+			-DoctorId id
+		}
+		ValueObject DoctorId {
+			int id
+		}
+	}
+	
+	Aggregate Appointment {
+		Entity Appointment {
+			aggregateRoot
+			-AppointmentId id
+			Date dateOfAppointment
+			- PatientId patientId
+			- DoctorId doctorId
+		}
+		
+		ValueObject AppointmentId{
+			int id
+		}
+	}
+}
+

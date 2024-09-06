@@ -1,0 +1,19 @@
+@startuml
+
+skinparam componentStyle uml2
+
+package "'Appointment' Aggregate" <<Rectangle>> {
+	class Appointment <<(A,#fffab8) Aggregate Root>> {
+		Date dateOfAppointment
+		AppointmentId id
+		PatientId patientId
+		DoctorId doctorId
+	}
+	class AppointmentId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+}
+Appointment --> AppointmentId : id
+
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+
+skinparam componentStyle uml2
+
+package "'Doctor' Aggregate" <<Rectangle>> {
+	class Doctor <<(A,#fffab8) Aggregate Root>> {
+		DoctorId id
+	}
+	class DoctorId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+}
+Doctor --> DoctorId : id
+Doctor --|> Person
+
+
+@enduml

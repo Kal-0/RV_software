@@ -1,0 +1,67 @@
+@startuml
+
+skinparam componentStyle uml2
+
+package "'Person' Aggregate" <<Rectangle>> {
+	class Person <<(A,#fffab8) Aggregate Root>> {
+		String name
+		Date dateOfBirth
+		PersonId id
+		Cpf cpf
+		Email contactEmail
+	}
+	class PersonId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+	class Cpf <<(V,DarkSeaGreen) Value Object>> {
+		String cpf
+	}
+	class Email <<(V,DarkSeaGreen) Value Object>> {
+		String emailText
+	}
+}
+package "'Patient' Aggregate" <<Rectangle>> {
+	class Patient <<(A,#fffab8) Aggregate Root>> {
+		List<String> patientConditions
+		PatientId id
+		List<ResultId> results
+	}
+	class PatientId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+}
+package "'Doctor' Aggregate" <<Rectangle>> {
+	class Doctor <<(A,#fffab8) Aggregate Root>> {
+		DoctorId id
+	}
+	class DoctorId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+}
+package "'Appointment' Aggregate" <<Rectangle>> {
+	class Appointment <<(A,#fffab8) Aggregate Root>> {
+		Date dateOfAppointment
+		AppointmentId id
+		PatientId patientId
+		DoctorId doctorId
+	}
+	class AppointmentId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+}
+Person --> Email : contactEmail
+Appointment --> AppointmentId : id
+Appointment --> DoctorId : doctorId
+Person --> PersonId : id
+Appointment --> PatientId : patientId
+Person --> Cpf : cpf
+Patient --> PatientId : id
+Doctor --> DoctorId : id
+Patient --|> Person
+Doctor --|> Person
+legend left
+  This bounded context implements the subdomain 'Administration'.
+end legend
+
+
+@enduml

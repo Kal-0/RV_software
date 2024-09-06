@@ -1,0 +1,21 @@
+@startuml
+
+skinparam componentStyle uml2
+
+package "'Result' Aggregate" <<Rectangle>> {
+	class Result <<(A,#fffab8) Aggregate Root>> {
+		String contentOfResult
+		ResultId id
+		TestId test
+	}
+	class ResultId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+}
+Result --> ResultId : id
+legend left
+  This bounded context implements the subdomain 'Results'.
+end legend
+
+
+@enduml
