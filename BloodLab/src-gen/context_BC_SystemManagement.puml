@@ -38,6 +38,16 @@ package "'Doctor' Aggregate" <<Rectangle>> {
 		int id
 	}
 }
+package "'Test' Aggregate" <<Rectangle>> {
+	class Test <<(A,#fffab8) Aggregate Root>> {
+		String name
+		String descriptionText
+		TestId id
+	}
+	class TestId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+}
 package "'Appointment' Aggregate" <<Rectangle>> {
 	class Appointment <<(A,#fffab8) Aggregate Root>> {
 		Date dateOfAppointment
@@ -49,10 +59,24 @@ package "'Appointment' Aggregate" <<Rectangle>> {
 		int id
 	}
 }
+package "'Result' Aggregate" <<Rectangle>> {
+	class Result <<(A,#fffab8) Aggregate Root>> {
+		String contentOfResult
+		ResultId id
+		TestId test
+	}
+	class ResultId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+}
+Test --> TestId : id
 Person --> Email : contactEmail
+Result --> ResultId : id
 Appointment --> AppointmentId : id
 Appointment --> DoctorId : doctorId
 Person --> PersonId : id
+Patient "1" o--> "*" ResultId : results
+Result --> TestId : test
 Appointment --> PatientId : patientId
 Person --> Cpf : cpf
 Patient --> PatientId : id
@@ -61,6 +85,8 @@ Patient --|> Person
 Doctor --|> Person
 legend left
   This bounded context implements the subdomain 'Administration'.
+  This bounded context implements the subdomain 'Testing'.
+  This bounded context implements the subdomain 'Results'.
 end legend
 
 

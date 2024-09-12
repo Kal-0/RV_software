@@ -5,42 +5,7 @@ Domain LabManagement {
 
 }
 
-
-BoundedContext Testing implements Testing {
-	Aggregate Test {
-		Entity Test {
-			aggregateRoot
-			-TestId id
-			String name
-			String descriptionText
-		}
-		
-		ValueObject TestId {
-			int id
-		}
-	}
-}
-
-
-
-BoundedContext Results implements Results {
-Aggregate Result {
-	Entity Result {
-		aggregateRoot
-		-ResultId id
-		String contentOfResult
-		-TestId test
-	}
-	
-	ValueObject ResultId {
-		int id
-	}
-	
-}
-
-}
-
-BoundedContext Administration implements Administration {
+BoundedContext SystemManagement implements  Administration, Testing, Results {
 	Aggregate Person {
 		Entity Person {
 			aggregateRoot
@@ -64,6 +29,7 @@ BoundedContext Administration implements Administration {
 		}
 	}
 	
+	
 	Aggregate Patient {
 		Entity Patient extends Person{
 			aggregateRoot
@@ -76,6 +42,7 @@ BoundedContext Administration implements Administration {
 		}
 	}
 	
+	
 	Aggregate Doctor {
 		Entity Doctor extends Person{
 			aggregateRoot
@@ -85,6 +52,21 @@ BoundedContext Administration implements Administration {
 			int id
 		}
 	}
+	
+	
+	Aggregate Test {
+		Entity Test {
+			aggregateRoot
+			-TestId id
+			String name
+			String descriptionText
+		}
+		
+		ValueObject TestId {
+			int id
+		}
+	}
+	
 	
 	Aggregate Appointment {
 		Entity Appointment {
@@ -98,6 +80,21 @@ BoundedContext Administration implements Administration {
 		ValueObject AppointmentId{
 			int id
 		}
+	}
+	
+	
+	Aggregate Result {
+		Entity Result {
+			aggregateRoot
+			-ResultId id
+			String contentOfResult
+			-TestId test
+		}
+		
+		ValueObject ResultId {
+			int id
+		}
+	
 	}
 }
 
