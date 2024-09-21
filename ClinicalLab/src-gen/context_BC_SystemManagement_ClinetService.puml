@@ -1,0 +1,24 @@
+@startuml
+
+skinparam componentStyle uml2
+
+package "'ClinetService' Aggregate" <<Rectangle>> {
+	class ClientService <<(A,#fffab8) Aggregate Root>> {
+		boolean isPriority
+		String status
+		ClientServiceId id
+		ServiceNumber serviceNumber
+		ExamRequestId[0..1] examRequestId
+	}
+	class ClientServiceId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+	class ServiceNumber <<(V,DarkSeaGreen) Value Object>> {
+		String number
+	}
+}
+ClientService --> ServiceNumber : serviceNumber
+ClientService --> ClientServiceId : id
+
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+
+skinparam componentStyle uml2
+
+package "'Client' Aggregate" <<Rectangle>> {
+	class Client <<(A,#fffab8) Aggregate Root>> {
+		ClientId id
+	}
+	class ClientId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+}
+Client --> ClientId : id
+Client --|> Person
+
+
+@enduml

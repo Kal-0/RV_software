@@ -1,0 +1,20 @@
+@startuml
+
+skinparam componentStyle uml2
+
+package "'Exam' Aggregate" <<Rectangle>> {
+	class Exam <<(A,#fffab8) Aggregate Root>> {
+		String name
+		String requirements
+		Double price
+		int analysisTime
+		ExamId id
+	}
+	class ExamId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+}
+Exam --> ExamId : id
+
+
+@enduml
