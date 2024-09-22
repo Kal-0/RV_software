@@ -1,4 +1,4 @@
-Domain LabManagment {
+Domain LabManagement {
     Subdomain Administration
 	Subdomain Request
     Subdomain Result
