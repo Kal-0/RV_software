@@ -1,0 +1,27 @@
+# Eclipse specific files
+/.settings/
+/.project
+.classpath
+
+# Ignore all build directories
+**/target/
+**/bin/
+**/build/
+
+# Ignore Maven or Gradle local files
+/.mvn/
+/.gradle/
+
+# Ignore local launch configurations
+*.launch
+
+# Ignore generated sources
+/src-gen/
+
+# Ignore Mac OS specific files
+.DS_Store
+
+# Ignore unnecessary logs and temporary files
+*.log
+*.tmp
+*.swp
