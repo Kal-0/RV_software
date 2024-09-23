@@ -1,27 +1,72 @@
-# Eclipse specific files
-/.settings/
-/.project
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
 .classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
-# Ignore all build directories
-**/target/
-**/bin/
-**/build/
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
 
-# Ignore Maven or Gradle local files
-/.mvn/
-/.gradle/
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-# Ignore local launch configurations
-*.launch
+### VS Code ###
+.vscode/
 
-# Ignore generated sources
-/src-gen/
-
-# Ignore Mac OS specific files
+### MACOS ###
 .DS_Store
 
-# Ignore unnecessary logs and temporary files
+# Eclipse specific files
+.project
+.classpath
+.settings/
+
+# Binary directories
+bin/
+target/
+build/
+
+# Local configuration files
+*.launch
+.metadata/
+.recommenders/
+.org.eclipse.core.resources/
+
+# Ignore IDE-specific directories
+.idea/
+.vscode/
+
+# Compiled class files
+*.class
+
+# Log and temporary files
 *.log
-*.tmp
-*.swp
+tmp/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Maven and Gradle build directories
+/target/
+/.mvn/
+/.gradle/
