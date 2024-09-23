@@ -1,47 +1,44 @@
-Feature: Client Result
+Feature: Clients Register
 
-Scenario: Viewing the list of all clients who took exams at the laboratory
-  Given the attendant is on the "Clients" page
-  When the attendant views the client list
-  Then the system displays the list of all clients who have taken exams at the laboratory
+ Scenario: Registering a client with correct data
+    Given a "new" client with "correct" data
+    When an attendant registers the client
+    Then the system registers the client successfully
+    And the system notify the register of the client
 
-Scenario: Searching for a client by name or CPF that does not exist
-  Given the attendant is on the "Clients" page
-  And the attendant enters a "non-existent" client name or CPF in the search bar
-  When the attendant clicks the search button
-  Then the system displays a message stating that the client does not exist
-
-Scenario: Viewing all test records for a specific client
-  Given the attendant is on the "Clients" page
-  And the attendant searches for a "specific" client
-  When the attendant clicks on the client's name
-  Then the system displays all test records of the client
-  And the system shows whether the results were received by email or got the printed result in PDF at the laboratory
-
-Scenario: Exporting a specific test record for a client
-  Given the attendant is viewing a "specific" test record of a client
-  When the attendant clicks on the "Export" button
-  Then the system allows the attendant to download the test record as a PDF
-
-Scenario: Resending a specific test result to the client by email
-  Given the attendant is viewing a "specific" test record of a client
-  When the attendant clicks on the "Resend by Email" button
-  And confirms the action
-  Then the system sends the test result to the client's registered email address
-  And the system displays a confirmation message that the email has been sent successfully
-
-Scenario: Attempting to resend a test result when no email is on file
-  Given the attendant is viewing a "specific" test record of a client
-  And the client does not have an email address on file
-  When the attendant clicks on the "Resend by Email" button
-  Then the system displays a message stating that no email address is available for this client
-  And the system does not send the test result
-
-Scenario: Automatically sending test results by email when results are entered into the database
-  Given the test results for a client are entered into the database
-  When the system detects that the test results are complete
-  Then the system automatically sends an email to the client
-  And the email contains the "Exam Request Number Page"
-  And in the "Client Record" page the status from that "Exam Request Number" will change to "Sent Result"
-  
-
+  Scenario: Registering a client with incomplete data
+		Given a "new" client with "incorrect" data
+		When an attendant registers the client
+		Then the system returns an error message informing the incorrect data
+		
+	Scenario: Registering a client that already exists
+		Given a "old" client with "correct" data
+		When an attendant registers the client
+		Then the system returns an error message informing that the client is already registered
+  	
+ Scenario: Attempting to access the client registration page without exist attendance number
+  	Given the attendant has clicked on "call next number"
+  	When the attendant tries to access the client registration page
+  	Then the system does not allow access to the registration page
+  	And the system displays a message stating that an attendance number is required
+  	
+  Scenario: No available attendance numbers
+  	Given a "new" client trying to get an attendance number
+  	When there are no attendance numbers available
+  	Then the system informs that there are no available attendance numbers at the moment
+   
+Scenario: Calling numbers according to priority and order of arrival
+		Given two "priority" clients and one "standard" client in the queue
+  	When the staff clicks on "call next number"
+  	Then the system calls the first "priority" client by order of arrival
+ 		When the staff clicks on "call next number" again
+  	Then the system calls the second "priority" client by order of arrival
+  	When the staff clicks on "call next number" once more
+  	Then the system calls the "standard" client by order of arrival
+  	
+	Scenario: Canceling an attendance number when the client does not appear
+  	Given a client has been called for attendance
+  	When the client does not appear
+  	And the staff cancels the attendance number
+  	Then the system cancels the current number
+  	And the system calls the next available number
