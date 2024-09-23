@@ -44,4 +44,4 @@ Scenario: Automatically sending test results by email when results are entered i
   And the email contains the "Exam Request Number Page"
   And in the "Client Record" page the status from that "Exam Request Number" will change to "Sent Result"
   
-  teste
+
