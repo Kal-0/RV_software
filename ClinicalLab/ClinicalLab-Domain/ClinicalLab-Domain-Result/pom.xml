@@ -5,5 +5,5 @@
     <artifactId>ClinicalLab-Domain</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>ClinicalLab-Domain-ServiceManagement</artifactId>
+  <artifactId>ClinicalLab-Domain-Result</artifactId>
 </project>

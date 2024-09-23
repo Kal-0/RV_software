@@ -9,9 +9,9 @@
   <packaging>pom</packaging>
   <modules>
   	<module>ClinicalLab-Domain-Administration</module>
-  	<module>ClinicalLab-Domain-ServiceManagement</module>
-  	<module>ClinicalLab-Domain-Examination</module>
+  	<module>ClinicalLab-Domain-Request</module>
   	<module>ClinicalLab-Domain-Common</module>
   	<module>ClinicalLab-Domain-Administration-BDD</module>
+  	<module>ClinicalLab-Domain-Result</module>
   </modules>
 </project>
