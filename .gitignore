@@ -1,4 +1,5 @@
 HELP.md
+target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -8,7 +9,7 @@ HELP.md
 .classpath
 .factorypath
 .project
-
+.settings
 .springBeans
 .sts4-cache
 
@@ -37,11 +38,11 @@ build/
 # Eclipse specific files
 .project
 .classpath
-
+.settings/
 
 # Binary directories
 bin/
-
+target/
 build/
 
 # Local configuration files
