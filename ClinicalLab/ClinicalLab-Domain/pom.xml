@@ -13,5 +13,7 @@
   	<module>ClinicalLab-Domain-Common</module>
   	<module>ClinicalLab-Domain-Administration-BDD</module>
   	<module>ClinicalLab-Domain-Result</module>
+  	<module>ClinicalLab-Domain-Result-BDD</module>
+  	<module>ClinicalLab-Domain-Request-BDD</module>
   </modules>
 </project>
