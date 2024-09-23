@@ -34,3 +34,13 @@ build/
 
 ### MACOS ###
 .DS_Store
+
+
+### Ignore IDE specific files ###
+*.classpath
+*.project
+*.settings/
+
+### Ignore Maven build output ###
+/target/
+
