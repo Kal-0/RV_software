@@ -5,11 +5,16 @@
     <artifactId>ClinicalLab</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>ClinicalLab-Infrastructure</artifactId>
-  <dependencies>
+  <artifactId>ClinicalLab-BDD</artifactId>
+   <dependencies>
   	<dependency>
   	 <groupId>cesar.rv</groupId>
     <artifactId>ClinicalLab-Domain</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  		<dependency>
+  	 <groupId>cesar.rv</groupId>
+    <artifactId>ClinicalLab-Infrastructure</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>

@@ -6,14 +6,4 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>ClinicalLab-Domain</artifactId>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>ClinicalLab-Domain-Administration</module>
-  	<module>ClinicalLab-Domain-Request</module>
-  	<module>ClinicalLab-Domain-Common</module>
-  	<module>ClinicalLab-Domain-Administration-BDD</module>
-  	<module>ClinicalLab-Domain-Result</module>
-  	<module>ClinicalLab-Domain-Result-BDD</module>
-  	<module>ClinicalLab-Domain-Request-BDD</module>
-  </modules>
 </project>
