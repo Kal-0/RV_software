@@ -35,6 +35,8 @@ Scenario: Calling numbers according to priority and order of arrival
     Then the system calls the second "priority" client by order of arrival
     When the staff clicks on "call next number" once more
     Then the system calls the "standard" client by order of arrival
+    But if there are not two priority clients in the queue,
+		Then the system calls the "standard" client.
   	
 Scenario: Canceling an attendance number when the client does not appear
     Given a client has been called for attendance
