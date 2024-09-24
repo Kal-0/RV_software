@@ -46,8 +46,9 @@ O BLab é uma plataforma web para gereciamento de processos diarios de um labora
 			Pedro Coelho
 			<br/>
 	    </td>
+	   <td>
        Sivert Muren
-	    <td>
+   </td>
 			<br/>
 
   </tr>
