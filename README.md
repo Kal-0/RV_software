@@ -13,7 +13,7 @@ BLab is a web platform designed to manage the daily processes of a blood test la
 <p>You can view the domain description using the ubiquitous language <a href="#">here</a>.</p>
 
 ## Avion
-<p>You can see our user stories organization on Avion <a href="#">here</a>.</p>
+<p>You can see our user stories organization on Avion <a href="https://drive.google.com/file/d/1jFtwQ636goHWFS0G0uI7yfdzeR66v2rD/view?usp=drive_link">here</a>.</p>
 
 ## Figma
 <p>You can view the mid-fidelity prototype <a href="https://www.figma.com/file/jvqSMSIrjMxfqVUOSmbXqs/CarTradeo-(Copy)?node-id=0%3A1&t=hzanEqdFZqAIZIWk-1">here</a>.</p>
@@ -47,7 +47,7 @@ O BLab é uma plataforma web para gereciamento de processos diarios de um labora
 <p> Você pode ver a descrição do domínio fazendo uso da linguagem onipresente <a href= "#"> aqui </a>. </p>
 
 ## Avion
-<p>Você pode ver toda nossa organização de user stories no Avion <a href= "#" > aqui </a>. </p>
+<p>Você pode ver toda nossa organização de user stories no Avion <a href= "https://drive.google.com/file/d/1RmzUk0sHvt0uqqPipq2_6OxgFvxaGW89/view?usp=drive_link" > aqui </a>. </p>
 	
 ## Figma
 <p>Você pode ver o protótipo de média <a href="https://www.figma.com/file/jvqSMSIrjMxfqVUOSmbXqs/CarTradeo-(Copy)?node-id=0%3A1&t=hzanEqdFZqAIZIWk-1">aqui</a>.</p>
