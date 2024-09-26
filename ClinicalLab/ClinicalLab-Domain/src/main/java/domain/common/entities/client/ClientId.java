@@ -1,6 +1,6 @@
 package domain.common.entities.client;
 
-class ClientId {
+public class ClientId {
     private int id;
 
     public ClientId(int id) {
