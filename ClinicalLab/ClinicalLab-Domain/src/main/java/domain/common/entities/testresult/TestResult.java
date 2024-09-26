@@ -1,24 +1,24 @@
 package domain.common.entities.testresult;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class TestResult {
 	private TestResultId id;
-    private Date resultDate;
+    private LocalDate resultDate;
     private String resultContent;
     
-	public TestResult(TestResultId id, Date resultDate, String resultContent) {
+	public TestResult(TestResultId id, LocalDate resultDate, String resultContent) {
 		super();
 		this.id = id;
 		this.resultDate = resultDate;
 		this.resultContent = resultContent;
 	}
 
-	public Date getResultDate() {
+	public LocalDate getResultDate() {
 		return resultDate;
 	}
 
-	public void setResultDate(Date resultDate) {
+	public void setResultDate(LocalDate resultDate) {
 		this.resultDate = resultDate;
 	}
 

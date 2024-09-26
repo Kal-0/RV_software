@@ -1,6 +1,6 @@
 package domain.common.entities.examrequest;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import domain.common.entities.examtest.ExamTestId;
@@ -10,12 +10,12 @@ public class ExamRequest {
     private ExamRequestId id;
     private ClientId clientId;
     private List<ExamTestId> examTestList;
-    private Date requestDate;
+    private LocalDate requestDate;
     private Double totalPrice;
     private String paymentMethod;
     private String status;
     
-	public ExamRequest(ExamRequestId id, ClientId clientId, List<ExamTestId> examTestList, Date requestDate,
+	public ExamRequest(ExamRequestId id, ClientId clientId, List<ExamTestId> examTestList, LocalDate requestDate,
 			Double totalPrice, String paymentMethod, String status) {
 		super();
 		this.id = id;
@@ -35,11 +35,11 @@ public class ExamRequest {
 		this.examTestList = examTestList;
 	}
 
-	public Date getRequestDate() {
+	public LocalDate getRequestDate() {
 		return requestDate;
 	}
 
-	public void setRequestDate(Date requestDate) {
+	public void setRequestDate(LocalDate requestDate) {
 		this.requestDate = requestDate;
 	}
 
