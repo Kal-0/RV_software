@@ -8,6 +8,18 @@ public class Person {
     private Email contactEmail;
     private String name;
     private Date birthDate;
+    
+    
+    
+    
+	public Person(PersonId id, Cpf cpf, Email contactEmail, String name, Date birthDate) {
+		super();
+		this.id = id;
+		this.cpf = cpf;
+		this.contactEmail = contactEmail;
+		this.name = name;
+		this.birthDate = birthDate;
+	}
 	public Cpf getCpf() {
 		return cpf;
 	}
