@@ -1,6 +1,7 @@
 package domain.common.entities.person;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 
 public class Person {
@@ -58,6 +59,11 @@ public class Person {
 	}
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
+	}
+	
+	public int getAge() {
+		int age = Period.between(birthDate, LocalDate.now()).getYears();
+		return age;
 	}
 
     
