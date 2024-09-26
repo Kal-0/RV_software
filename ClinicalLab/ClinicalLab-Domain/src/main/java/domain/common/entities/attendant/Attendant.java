@@ -1,12 +1,33 @@
 package domain.common.entities.attendant;
 
+import java.time.LocalDate;
+
+import domain.common.entities.person.Cpf;
+import domain.common.entities.person.Email;
 import domain.common.entities.person.Person;
+import domain.common.entities.person.PersonId;
 
 public class Attendant extends Person {
-    private AttendantId attendantId;
+	private AttendantId attendantId;
     private String password;
     
-    
+	public Attendant(PersonId id, Cpf cpf, Email contactEmail, String name, LocalDate birthDate,
+			AttendantId attendantId, String password) {
+		super(id, cpf, contactEmail, name, birthDate);
+		this.attendantId = attendantId;
+		this.password = password;
+	}
+	
+	public Attendant(int id, String cpf, String contactEmail, String name, String birthDate, int attendantId,
+			String password) {
+		super(id, cpf, contactEmail, name, birthDate);
+		this.attendantId = new AttendantId(attendantId);
+		this.password = password;
+	}
+
+
+
+
 	public AttendantId getAttendantId() {
 		return attendantId;
 	}
