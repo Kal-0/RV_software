@@ -10,10 +10,7 @@ BLab is a web platform designed to manage the daily processes of a blood test la
 
 ## Domain
 
-<p>You can view the domain description using the ubiquitous language <a href="#">here</a>.</p>
-
-## Ubiquitous Language Document
-<p>You can view our Ubiquitous Language Document <a href="#">here</a>.</p> 
+<p>You can view the domain description using the domain ubiquitous language document  <a href="https://docs.google.com/document/d/1DZ_5M0e5dnlBABqFou3MBMePG59BQ2IYpBedNu41YqE/view?usp=sharing">here</a>.</p>
 
 ## Avion
 <p>You can see our user stories organization on Avion <a href="https://drive.google.com/file/d/1jFtwQ636goHWFS0G0uI7yfdzeR66v2rD/view?usp=drive_link">here</a>.</p>
@@ -46,11 +43,8 @@ O BLab é uma plataforma web para gereciamento de processos diarios de um labora
 ## Aplicação  
 <p>Você pode ver por enquanto o protótipo da nossa aplicação <a href= "https://www.figma.com/proto/UtY0PrtheYUmGJx37DKvXu/Laborat%C3%B3rio-de-Exame-de-Sangue?node-id=4-191&starting-point-node-id=4%3A191&t=wqQetzHHhzoKLYZB-1">aqui</a>.</p>
 
-## Domain
-<p> Você pode ver a descrição do domínio fazendo uso da linguagem onipresente <a href= "#"> aqui </a>. </p>
-
-## Dicionário de Linguagem Onipresente
-<p> Você pode ver o nosso Dicionário de Linguagem Onipresente <a href="#">here</a>.</p> 
+## Descrição do Domínio
+<p> Você pode ver a descrição do domínio fazendo uso do dicionário de linguagem onipresente do domínio <a href= "https://docs.google.com/document/d/1DZ_5M0e5dnlBABqFou3MBMePG59BQ2IYpBedNu41YqE/view?usp=sharing"> aqui </a>. </p>
 
 ## Avion
 <p>Você pode ver toda nossa organização de user stories no Avion <a href= "https://drive.google.com/file/d/1RmzUk0sHvt0uqqPipq2_6OxgFvxaGW89/view?usp=drive_link" > aqui </a>. </p>
