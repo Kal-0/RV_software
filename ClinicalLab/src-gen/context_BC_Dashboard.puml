@@ -1,0 +1,35 @@
+@startuml
+
+skinparam componentStyle uml2
+
+package "'ServiceOverview' Aggregate" <<Rectangle>> {
+	class ServiceStatus <<(A,#fffab8) Aggregate Root>> {
+		int waitingClients
+		int clientsInCollection
+		int completedServices
+		ServiceStatusId id
+	}
+	class FinancialOverview <<(E,DarkSeaGreen) Entity>> {
+		int privatePayments
+		int insurancePayments
+		FinancialOverviewId id
+	}
+	class ServiceStatusId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+	class FinancialOverviewId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+	class Period <<(V,DarkSeaGreen) Value Object>> {
+		Date periodStart
+		Date periodEnd
+	}
+}
+FinancialOverview --> FinancialOverviewId : id
+ServiceStatus --> ServiceStatusId : id
+legend left
+  This bounded context implements the subdomain 'Dashboard'.
+end legend
+
+
+@enduml

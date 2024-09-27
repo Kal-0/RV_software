@@ -1,0 +1,12 @@
+@startuml
+
+skinparam componentStyle uml2
+
+component [ClientServiceProcess]
+component [Dashboard]
+
+[Dashboard]<-->[ClientServiceProcess] : Shared Kernel
+
+
+
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+
+skinparam componentStyle uml2
+
+package "'ServiceNumber' Aggregate" <<Rectangle>> {
+	class ServiceNumber <<(A,#fffab8) Aggregate Root>> {
+		String number
+		boolean isPriority
+		String status
+		ServiceNumberId id
+	}
+	class ServiceNumberId <<(V,DarkSeaGreen) Value Object>> {
+		int id
+	}
+}
+ServiceNumber --> ServiceNumberId : id
+
+
+@enduml

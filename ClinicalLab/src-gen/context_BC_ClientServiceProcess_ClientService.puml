@@ -2,22 +2,23 @@
 
 skinparam componentStyle uml2
 
-package "'ClinetService' Aggregate" <<Rectangle>> {
+package "'ClientService' Aggregate" <<Rectangle>> {
 	class ClientService <<(A,#fffab8) Aggregate Root>> {
-		boolean isPriority
 		String status
 		ClientServiceId id
-		ServiceNumber serviceNumber
+		ServiceNumberId serviceNumberId
 		ExamRequestId[0..1] examRequestId
+		BloodDrawStatus bloodDrawStatus
 	}
 	class ClientServiceId <<(V,DarkSeaGreen) Value Object>> {
 		int id
 	}
-	class ServiceNumber <<(V,DarkSeaGreen) Value Object>> {
-		String number
+	class BloodDrawStatus <<(V,DarkSeaGreen) Value Object>> {
+		boolean isWaiting
+		int positionQueue
 	}
 }
-ClientService --> ServiceNumber : serviceNumber
+ClientService --> BloodDrawStatus : bloodDrawStatus
 ClientService --> ClientServiceId : id
 
 
