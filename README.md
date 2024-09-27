@@ -12,6 +12,9 @@ BLab is a web platform designed to manage the daily processes of a blood test la
 
 <p>You can view the domain description using the ubiquitous language <a href="#">here</a>.</p>
 
+## Ubiquitous Language Document
+<p>You can view our Ubiquitous Language Document <a href="#">here</a>.</p> 
+
 ## Avion
 <p>You can see our user stories organization on Avion <a href="https://drive.google.com/file/d/1jFtwQ636goHWFS0G0uI7yfdzeR66v2rD/view?usp=drive_link">here</a>.</p>
 
@@ -45,6 +48,9 @@ O BLab é uma plataforma web para gereciamento de processos diarios de um labora
 
 ## Domain
 <p> Você pode ver a descrição do domínio fazendo uso da linguagem onipresente <a href= "#"> aqui </a>. </p>
+
+## Dicionário de Linguagem Onipresente
+<p> Você pode ver o nosso Dicionário de Linguagem Onipresente <a href="#">here</a>.</p> 
 
 ## Avion
 <p>Você pode ver toda nossa organização de user stories no Avion <a href= "https://drive.google.com/file/d/1RmzUk0sHvt0uqqPipq2_6OxgFvxaGW89/view?usp=drive_link" > aqui </a>. </p>
