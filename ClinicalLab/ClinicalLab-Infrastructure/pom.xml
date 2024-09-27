@@ -20,11 +20,5 @@
 			<version>3.12.0</version> <!-- Você pode usar a versão mais recente -->
 		</dependency>
 
-
-		<dependency>
-			<groupId>next.school.cesar</groupId>
-			<artifactId>desafio-spring</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 </project>
