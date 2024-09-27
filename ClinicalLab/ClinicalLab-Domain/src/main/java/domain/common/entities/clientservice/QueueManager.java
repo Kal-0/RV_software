@@ -13,7 +13,7 @@ public class QueueManager {
         this.regularQueue = new LinkedList<>();
     }
 
-
+    /*
     public void addClientToQueue(ClientService clientService) {
         if (clientService.isPriority()) {
             priorityQueue.offer(clientService);
@@ -22,6 +22,7 @@ public class QueueManager {
         }
     }
 
+    */
 
     public ClientService getNextClient() {
         if (!priorityQueue.isEmpty() && priorityQueue.size() >= 2) {

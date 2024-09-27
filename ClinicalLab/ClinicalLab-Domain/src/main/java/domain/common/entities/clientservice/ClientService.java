@@ -4,36 +4,23 @@ import domain.common.entities.examrequest.ExamRequestId;
 
 public class ClientService {
 
-    private ClientServiceId id;
-    private ServiceNumber serviceNumber;
+	private ClientServiceId id;
+    private ServiceNumberId serviceNumberId;
     private ExamRequestId examRequestId;
-    private boolean isPriority;
+    private BloodDrawStatus bloodDrawStatus;
     private String status;
     
-	public ClientService(ClientServiceId id, ServiceNumber serviceNumber, ExamRequestId examRequestId,
-			boolean isPriority, String status) {
+	public ClientService(ClientServiceId id, ServiceNumberId serviceNumberId,
+			ExamRequestId examRequestId, String status) {
 		super();
 		this.id = id;
-		this.serviceNumber = serviceNumber;
+		this.serviceNumberId = serviceNumberId;
 		this.examRequestId = examRequestId;
-		this.isPriority = isPriority;
 		this.status = status;
 	}
 
-	public ServiceNumber getServiceNumber() {
-		return serviceNumber;
-	}
-
-	public void setServiceNumber(ServiceNumber serviceNumber) {
-		this.serviceNumber = serviceNumber;
-	}
-
-	public boolean isPriority() {
-		return isPriority;
-	}
-
-	public void setPriority(boolean isPriority) {
-		this.isPriority = isPriority;
+	public ServiceNumberId getServiceNumber() {
+		return serviceNumberId;
 	}
 
 	public String getStatus() {
@@ -50,6 +37,14 @@ public class ClientService {
 
 	public ExamRequestId getExamRequestId() {
 		return examRequestId;
+	}
+
+	public BloodDrawStatus getBloodDrawStatus() {
+		return bloodDrawStatus;
+	}
+
+	public void setBloodDrawStatus(BloodDrawStatus bloodDrawStatus) {
+		this.bloodDrawStatus = bloodDrawStatus;
 	}
     
     

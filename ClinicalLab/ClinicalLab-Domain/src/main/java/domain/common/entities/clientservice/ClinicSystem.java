@@ -8,9 +8,11 @@ public class ClinicSystem {
         this.queueManager = new QueueManager();
     }
 
+    /*
     public void handleClientArrival(ClientService clientService) {
         queueManager.addClientToQueue(clientService);
     }
+    */
 
     public ClientService callNextClient() {
         return queueManager.getNextClient();

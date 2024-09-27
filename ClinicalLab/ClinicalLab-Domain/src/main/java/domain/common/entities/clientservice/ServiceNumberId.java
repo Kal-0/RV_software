@@ -1,10 +1,10 @@
 package domain.common.entities.clientservice;
 
-public class ServiceNumber {
+public class ServiceNumberId {
 	
 	private String number;
 
-	public ServiceNumber(String number) {
+	public ServiceNumberId(String number) {
 		super();
 		this.number = number;
 	}

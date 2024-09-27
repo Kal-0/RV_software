@@ -7,6 +7,7 @@ import domain.common.entities.examtest.ExamTestId;
 import domain.common.entities.client.ClientId;
 
 public class ExamRequest {
+	
     private ExamRequestId id;
     private ClientId clientId;
     private List<ExamTestId> examTestList;
@@ -14,6 +15,8 @@ public class ExamRequest {
     private Double totalPrice;
     private String paymentMethod;
     private String status;
+    
+    
     
 	public ExamRequest(ExamRequestId id, ClientId clientId, List<ExamTestId> examTestList, LocalDate requestDate,
 			Double totalPrice, String paymentMethod, String status) {

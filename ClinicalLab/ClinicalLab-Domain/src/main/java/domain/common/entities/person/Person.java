@@ -12,8 +12,6 @@ public class Person {
     private LocalDate birthDate;
     
     
-    
-    
 	public Person(PersonId id, Cpf cpf, Email contactEmail, String name, LocalDate birthDate) {
 		super();
 		this.id = id;
