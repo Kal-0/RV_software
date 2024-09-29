@@ -153,7 +153,7 @@ BoundedContext ExamPerformingProcess implements ExamPerformingProcess {
 
 BoundedContext Dashboard implements Dashboard {
     Aggregate ServiceOverview {
-        Entity ServiceStatus {
+        ValueObject ServiceStatus {
             aggregateRoot
             -ServiceStatusId id
             int waitingClients
@@ -161,7 +161,7 @@ BoundedContext Dashboard implements Dashboard {
             int completedServices
         }
 
-        Entity FinancialOverview {
+        ValueObject FinancialOverview {
             -FinancialOverviewId id
             int privatePayments
             int insurancePayments
