@@ -70,3 +70,8 @@ Thumbs.db
 /target/
 /.mvn/
 /.gradle/
+
+
+
+# PlantUML
+src-gen/

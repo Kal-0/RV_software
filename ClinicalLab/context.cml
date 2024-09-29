@@ -136,7 +136,6 @@ BoundedContext ExamPerformingProcess implements ExamPerformingProcess {
             -ClientServiceId id
             -ServiceNumberId serviceNumberId
             -ExamRequestId examRequestId nullable
-            - BloodDrawStatus bloodDrawStatus
             String status
         }
 
@@ -144,10 +143,7 @@ BoundedContext ExamPerformingProcess implements ExamPerformingProcess {
             int id
         }
         
-        ValueObject BloodDrawStatus {
-        boolean isWaiting
-        int positionQueue
-    }
+        
   }
 }
 
