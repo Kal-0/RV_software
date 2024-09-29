@@ -2,10 +2,10 @@
 
 skinparam componentStyle uml2
 
-component [ClientServiceProcess]
+component [ExamPerformingProcess]
 component [Dashboard]
 
-[Dashboard]<-->[ClientServiceProcess] : Shared Kernel
+[Dashboard]<-->[ExamPerformingProcess] : Shared Kernel
 
 
 

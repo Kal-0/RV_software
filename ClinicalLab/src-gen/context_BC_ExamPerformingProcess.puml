@@ -131,7 +131,7 @@ TestResult --> TestResultId : id
 Client --|> Person
 Attendant --|> Person
 legend left
-  This bounded context implements the subdomain 'ClientServiceProcess'.
+  This bounded context implements the subdomain 'ExamPerformingProcess'.
 end legend
 
 
