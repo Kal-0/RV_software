@@ -1,4 +1,4 @@
-package bdd.steps.clientRegister;
+package bdd.steps;
 
 import java.time.LocalDate;
 

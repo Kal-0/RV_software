@@ -11,9 +11,8 @@ Feature: Clients Register
      When an attendant registers the client
      Then the system returns an error message informing the incorrect data
 
-  Scenario: Try client registration without an active service number
-    Given the attendant is registering a client without an active service number
-    When the attendant tries to complete the registration
-    Then the system returns an error message stating that there is no active service number
-    And the system shows a message stating that a service number is required
-     
+   Scenario: Registering a client that already exists
+     Given a "returning" client with "correct" data
+     When an attendant registers the client
+     Then the system returns an error message stating the client is already registered
+  
