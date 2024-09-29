@@ -1,17 +1,17 @@
-Domain ProcessServiceBLab {
-    Subdomain ClientServiceProcess
+Domain ExamPerformingProcessBLab {
+    Subdomain ExamPerformingProcess
     Subdomain Dashboard
 }
 
 ContextMap {
-    contains ClientServiceProcess
+    contains ExamPerformingProcess
     contains Dashboard
 
-    Dashboard Shared-Kernel ClientServiceProcess
+    Dashboard Shared-Kernel ExamPerformingProcess
 }
 
 
-BoundedContext ClientServiceProcess implements ClientServiceProcess {
+BoundedContext ExamPerformingProcess implements ExamPerformingProcess {
     Aggregate Person {
         Entity Person {
             aggregateRoot
