@@ -45,7 +45,7 @@ public class ClientRegisterSteps {
                     LocalDate.of(1990, 1, 1), 
                     new ClientId(1)
                 );
-            } else if (clientType.equals("old") && dataType.equals("correct")) {
+            } else if (clientType.equals("returning") && dataType.equals("correct")) {
                 memoryRepository.save(new Client(
                     new PersonId(1), 
                     new Cpf("12345678900"), 
@@ -82,7 +82,7 @@ public class ClientRegisterSteps {
         assertNull(exception);
     }
 
-    @Then("the system notify the register of the client")
+    @Then("the system notifies that the client is registered")
     public void the_system_notify_the_register_of_the_client() {
         assertNull(exception);
     }
@@ -92,7 +92,7 @@ public class ClientRegisterSteps {
         assertNotNull(exception);
     }
 
-    @Then("the system returns an error message informing that the client is already registered")
+    @Then("the system returns an error message stating the client is already registered")
     public void the_system_returns_an_error_message_informing_that_the_client_is_already_registered() {
         assertNotNull(exception);
     }
