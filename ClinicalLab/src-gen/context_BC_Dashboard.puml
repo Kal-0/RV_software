@@ -9,7 +9,7 @@ package "'ServiceOverview' Aggregate" <<Rectangle>> {
 		int completedServices
 		ServiceStatusId id
 	}
-	class FinancialOverview <<(E,DarkSeaGreen) Entity>> {
+	class FinancialOverview <<(V,DarkSeaGreen) Value Object>> {
 		int privatePayments
 		int insurancePayments
 		FinancialOverviewId id
