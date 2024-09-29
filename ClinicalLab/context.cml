@@ -155,26 +155,17 @@ BoundedContext Dashboard implements Dashboard {
     Aggregate ServiceOverview {
         ValueObject ServiceStatus {
             aggregateRoot
-            -ServiceStatusId id
             int waitingClients
             int clientsInCollection
             int completedServices
         }
 
         ValueObject FinancialOverview {
-            -FinancialOverviewId id
             int privatePayments
             int insurancePayments
         }
 
-        ValueObject ServiceStatusId {
-            int id
-        }
-
-        ValueObject FinancialOverviewId {
-            int id
-        }
-
+ 
         ValueObject Period {
             Date periodStart
             Date periodEnd
