@@ -133,7 +133,22 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         if (client == null) {
             throw new IllegalArgumentException("The client can not be null");
         }
-        clients.put(client.getClientId(), client);
+        
+        boolean found = false;
+        
+        for (Client cliente : clients.values()) {
+            if (cliente.getId().equals(client.getId())) {
+            	
+        		clients.put(client.getClientId(), client);
+                 
+                found = true;
+                 
+                break;
+            }
+        }
+        if(!found) {
+        	throw new IllegalArgumentException("Client cannot be updated");
+        }
     }
 
     /* Attendant Methods */

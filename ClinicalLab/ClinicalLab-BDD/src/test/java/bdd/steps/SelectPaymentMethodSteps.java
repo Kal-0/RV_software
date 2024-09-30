@@ -36,14 +36,7 @@ public class SelectPaymentMethodSteps {
         try {
             System.out.println("Select a payment method: Health Insurance = 1, Private Payment = 0");
 
-            if ("Health Insurance".equals(paymentMethod)) {
-                this.paymentMethod = "Health Insurance";
-            } else if ("Private Payment".equals(paymentMethod)) {
-                this.paymentMethod = "Private Payment";
-            } else {
-                throw new RuntimeException("Invalid payment method selected");
-            }
-
+            this.paymentMethod = paymentMethod;
             examRequestService.selectPaymentMethod(examRequest.getExamRequestId(), this.paymentMethod);
         } catch (RuntimeException e) {
             exception = e;
@@ -54,43 +47,6 @@ public class SelectPaymentMethodSteps {
     public void the_system_will_show_an_error_message_stating_that_the_total_price_must_be_calculated_before_choosing_a_payment_method() {
         assertNotNull(exception, "A RuntimeException should be thrown");
         assertEquals("Total price must be calculated before selecting a payment method", exception.getMessage());
-    }
-
-    @Given("the system has calculated the total price")
-    public void the_system_has_calculated_the_total_price() {
-        List<ExamTestId> examTestList = Arrays.asList(new ExamTestId(1), new ExamTestId(2));
-        examRequest = new ExamRequest(new ExamRequestId(), null, examTestList, null, 100.0, null, "new");
-        memoryRepository.save(examRequest);
-    }
-
-    @When("the attendant selects {string}")
-    public void the_attendant_selects(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-        examRequestService.selectPaymentMethod(examRequest.getExamRequestId(), this.paymentMethod);
-    }
-
-    @When("the attendant completes the payment and the payment is confirmed")
-    public void the_attendant_completes_the_payment_and_the_payment_is_confirmed() {
-        examRequestService.completePayment(examRequest.getExamRequestId());
-    }
-
-    @Then("the system assigns the exam request status {string}")
-    public void the_system_assigns_the_exam_request_status(String status) {
-        assertEquals(status, examRequest.getStatus(), "Status should be updated to " + status);
-        System.out.println("Exam request status: " + status);
-    }
-
-    @Then("the system will show a successfully message")
-    public void the_system_will_show_a_successfully_message() {
-        assertEquals(paymentMethod, examRequest.getPaymentMethod(), "Payment method should be set");
-        System.out.println("Payment method confirmed: " + paymentMethod);
-    }
-
-    @Given("the ExamRequest has a not empty list of ExamTest and a calculated totalprice")
-    public void the_exam_request_has_a_not_empty_list_of_exam_test_and_a_calculated_totalprice() {
-        List<ExamTestId> examTestList = Arrays.asList(new ExamTestId(1), new ExamTestId(2));
-        examRequest = new ExamRequest(new ExamRequestId(), null, examTestList, null, 100.0, null, "new");
-        memoryRepository.save(examRequest);
     }
 
     @Given("a client with a not empty list of ExamTest")
@@ -105,5 +61,27 @@ public class SelectPaymentMethodSteps {
         
         examRequest = new ExamRequest(examRequestId, clientId, examTestList, LocalDate.now(), 100.0, null, "new");
         memoryRepository.save(examRequest);
+    }
+
+    @Given("the system has calculated the total price")
+    public void the_system_has_calculated_the_total_price() {
+        examRequest.setTotalPrice(100.0);
+    }
+
+    @When("the attendant completes the payment and the payment is confirmed")
+    public void the_attendant_completes_the_payment_and_the_payment_is_confirmed() {
+        examRequestService.completePayment(examRequest.getExamRequestId());
+    }
+
+    @Then("the system assigns the exam request status {string}")
+    public void the_system_assigns_the_exam_request_status(String status) {
+        assertEquals(status, examRequest.getStatus(), "Status should be updated to " + status);
+        System.out.println("Exam request status: " + status);
+    }
+
+    @When("the attendant selects {string}")
+    public void the_attendant_selects(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+        examRequestService.selectPaymentMethod(examRequest.getExamRequestId(), this.paymentMethod);
     }
 }
