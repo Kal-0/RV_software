@@ -17,6 +17,6 @@ public class ClinicSystem {
     */
 
     public Client callNextClient() {
-        return queueManager.getNextClient();
+        return queueManager.getNextNumber();
     }
 }

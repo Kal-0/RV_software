@@ -14,12 +14,11 @@ public class ExamRequest {
     private LocalDate requestDate;
     private Double totalPrice;
     private String paymentMethod;
-    private String status;
     
     
     
 	public ExamRequest(ExamRequestId id, ClientId clientId, List<ExamTestId> examTestList, LocalDate requestDate,
-			Double totalPrice, String paymentMethod, String status) {
+			Double totalPrice, String paymentMethod) {
 		super();
 		this.id = id;
 		this.clientId = clientId;
@@ -27,7 +26,15 @@ public class ExamRequest {
 		this.requestDate = requestDate;
 		this.totalPrice = totalPrice;
 		this.paymentMethod = paymentMethod;
-		this.status = status;
+	}
+	
+	public ExamRequest(ExamRequestId id, ClientId clientId, LocalDate requestDate,
+			String paymentMethod, String status) {
+		super();
+		this.id = id;
+		this.clientId = clientId;
+		this.requestDate = requestDate;
+		this.paymentMethod = paymentMethod;
 	}
 
 	public List<ExamTestId> getExamTestList() {
@@ -60,14 +67,6 @@ public class ExamRequest {
 
 	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public ExamRequestId getId() {

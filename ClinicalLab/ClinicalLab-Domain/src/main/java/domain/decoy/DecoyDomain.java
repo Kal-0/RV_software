@@ -5,7 +5,9 @@ import domain.common.entities.client.Client;
 import domain.common.entities.clientservice.ClientService;
 import domain.common.entities.clientservice.ClientServiceId;
 import domain.common.entities.clientservice.ClinicSystem;
-import domain.common.entities.clientservice.ServiceNumberId;
+import domain.common.entities.clientservice.ServiceNumber;
+import domain.common.entities.examrequest.ExamRequest;
+import domain.common.entities.examrequest.ExamRequestId;
 import domain.common.entities.person.Cpf;
 import domain.common.entities.person.Email;
 import domain.common.entities.person.Person;
@@ -17,8 +19,6 @@ public class DecoyDomain {
 		
 		Email email1 = new Email("caio@gmail.com");
 		System.out.println(email1.getEmailText());
-		
-		
 		
 		Cpf cpf1 = new Cpf("123456789-00");
 		System.out.println(cpf1.getCpf());
@@ -32,6 +32,11 @@ public class DecoyDomain {
 		
 		Attendant a1 = new Attendant(3, "123456789-00", "attendant@tome.com", "attendant1", "2004-06-14", 1, "password");
 		System.out.println(a1.getName());
+		
+		
+		ClientService cs1 = new ClientService(1, new ServiceNumber("001", false));
+//		criando exame
+		ExamRequest er2 = new ExamRequest(new ExamRequestId(1), c1.getClientId(), null, null, null, null, null)
 		
         
 	}

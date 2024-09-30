@@ -2,19 +2,61 @@ package infrastructure.persistence.memory;
 
 import java.util.HashMap;
 import java.util.Map;
-import domain.common.entities.client.Client;
-import domain.common.entities.client.ClientId;
-import domain.common.entities.client.ClientRepository;
+
 import domain.common.entities.attendant.Attendant;
 import domain.common.entities.attendant.AttendantId;
 import domain.common.entities.attendant.AttendantRepository;
+import domain.common.entities.client.Client;
+import domain.common.entities.client.ClientId;
+import domain.common.entities.client.ClientRepository;
+import domain.common.entities.exam.Exam;
+import domain.common.entities.exam.ExamId;
+import domain.common.entities.exam.ExamRepository;
 
 
 /*implement the repositories here*/
-public class MemoryRepository implements ClientRepository, AttendantRepository {
-    private Map<ClientId, Client> clients = new HashMap<>();
+public class MemoryRepository implements ExamRepository, ClientRepository, AttendantRepository {
+	private Map<ExamId, Exam> exams = new HashMap<>();
+	private Map<ClientId, Client> clients = new HashMap<>();
     private Map<AttendantId, Attendant> attendants = new HashMap<>();
 
+//    EXAMINATION
+    /* Exam */
+    @Override
+    public void save(Exam exam) {
+        if (exam == null) {
+            throw new IllegalArgumentException("The exam can not be null");
+        }
+        exams.put(exam.getId(), exam);
+    }
+
+    @Override
+    public void delete(ExamId examId) {
+        if (examId == null) {
+            throw new IllegalArgumentException("The exam ID can not be null");
+        }
+        exams.remove(examId);
+    }
+
+    @Override
+    public Exam get(ExamId examId) {
+        if (examId == null) {
+            throw new IllegalArgumentException("The exam ID can not be null");
+        }
+        return exams.get(examId); // Retorna o exame ou null se não existir
+    }
+
+    @Override
+    public void update(Exam exam) {
+        if (exam == null) {
+            throw new IllegalArgumentException("The exam can not be null");
+        }
+        exams.put(exam.getId(), exam);
+    }
+    
+    
+    
+//    PERSON
     /* Client Methods */
     @Override
     public void save(Client client) {

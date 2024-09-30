@@ -8,6 +8,16 @@ public class Exam {
     private int analysisTime;
     
     
+	public Exam(ExamId id, String name, String requirements, Double price, int analysisTime) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.requirements = requirements;
+		this.price = price;
+		this.analysisTime = analysisTime;
+	}
+	
+	
 	public ExamId getId() {
 		return id;
 	}

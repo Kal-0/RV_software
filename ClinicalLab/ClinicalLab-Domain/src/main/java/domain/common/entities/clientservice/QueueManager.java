@@ -1,43 +1,54 @@
 package domain.common.entities.clientservice;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
-import domain.common.entities.client.Client;
-
 public class QueueManager {
-    private Queue<Client> priorityQueue = new LinkedList<>();
-    private Queue<Client> standardQueue = new LinkedList<>();
-    private int priorityCounter = 0; // Counts how many priority clients have been called
 
-    // Add a client to the appropriate queue
-    public void addClient(Client client, boolean isPriority) {
-        if (isPriority) {
-            priorityQueue.add(client);
+    private Queue<ClientService> priorityQueue;
+    private Queue<ClientService> standardQueue;
+    private int priorityCalls = 0;
+
+    public QueueManager() {
+        this.priorityQueue = new LinkedList<>();
+        this.standardQueue = new LinkedList<>();
+    }
+
+    // Adicionar cliente à fila, verificando prioridade
+    public void addToQueue(ClientService clientService) {
+        if (clientService.getServiceNumber().isPriority()) {
+            priorityQueue.offer(clientService);
         } else {
-            standardQueue.add(client);
+            standardQueue.offer(clientService);
         }
     }
 
-    // Get the next client based on the rule: 2 priority clients, then 1 standard
-    public Client getNextClient() {
-        if (!priorityQueue.isEmpty() && (priorityCounter < 2 || standardQueue.isEmpty())) {
-            priorityCounter++;
-            return priorityQueue.poll(); // Call priority client
+    // Chamar próximo número de acordo com as regras
+    public ClientService callNextNumber() {
+        if (!priorityQueue.isEmpty() && (priorityCalls < 2 || standardQueue.isEmpty())) {
+            priorityCalls++;
+            return priorityQueue.poll(); // Chama o próximo da fila prioritária
         } else if (!standardQueue.isEmpty()) {
-            priorityCounter = 0; // Reset after calling a standard client
-            return standardQueue.poll(); // Call standard client
+            priorityCalls = 0; // Reseta o contador de prioridade
+            return standardQueue.poll(); // Chama o próximo da fila padrão
         } else if (!priorityQueue.isEmpty()) {
-            priorityCounter = 0;
-            return priorityQueue.poll(); // Call priority if no standard left
+            return priorityQueue.poll(); // Chama o próximo da fila prioritária
         } else {
-            System.out.println("No clients in the queue");
-            return null; // No clients left
+            return null; // Fila vazia
         }
     }
 
-    // Method to check if the queues are empty
-    public boolean isQueueEmpty() {
-        return priorityQueue.isEmpty() && standardQueue.isEmpty();
+    // Verifica se há mais números na fila
+    public boolean hasNext() {
+        return !priorityQueue.isEmpty() || !standardQueue.isEmpty();
+    }
+
+    // Retorna mensagem quando a fila está vazia
+    public String getQueueStatus() {
+        if (priorityQueue.isEmpty() && standardQueue.isEmpty()) {
+            return "Nenhum número de atendimento disponível no momento.";
+        } else {
+            return "Há números aguardando atendimento.";
+        }
     }
 }
-
