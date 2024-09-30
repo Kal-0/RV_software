@@ -1,5 +1,7 @@
 package domain.common.entities.clientservice;
 
+import domain.common.entities.client.Client;
+
 public class ClinicSystem {
 
     private QueueManager queueManager;
@@ -14,7 +16,7 @@ public class ClinicSystem {
     }
     */
 
-    public ClientService callNextClient() {
+    public Client callNextClient() {
         return queueManager.getNextClient();
     }
 }

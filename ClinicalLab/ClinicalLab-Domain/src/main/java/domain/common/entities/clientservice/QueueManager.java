@@ -1,46 +1,43 @@
 package domain.common.entities.clientservice;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
+import domain.common.entities.client.Client;
+
 public class QueueManager {
+    private Queue<Client> priorityQueue = new LinkedList<>();
+    private Queue<Client> standardQueue = new LinkedList<>();
+    private int priorityCounter = 0; // Counts how many priority clients have been called
 
-    private Queue<ClientService> priorityQueue;
-    private Queue<ClientService> regularQueue;
-
-    public QueueManager() {
-        this.priorityQueue = new LinkedList<>();
-        this.regularQueue = new LinkedList<>();
-    }
-
-    /*
-    public void addClientToQueue(ClientService clientService) {
-        if (clientService.isPriority()) {
-            priorityQueue.offer(clientService);
+    // Add a client to the appropriate queue
+    public void addClient(Client client, boolean isPriority) {
+        if (isPriority) {
+            priorityQueue.add(client);
         } else {
-            regularQueue.offer(clientService);
+            standardQueue.add(client);
         }
     }
 
-    */
-
-    public ClientService getNextClient() {
-        if (!priorityQueue.isEmpty() && priorityQueue.size() >= 2) {
-            return priorityQueue.poll(); 
-        } else if (!regularQueue.isEmpty()) {
-            return regularQueue.poll();  
+    // Get the next client based on the rule: 2 priority clients, then 1 standard
+    public Client getNextClient() {
+        if (!priorityQueue.isEmpty() && (priorityCounter < 2 || standardQueue.isEmpty())) {
+            priorityCounter++;
+            return priorityQueue.poll(); // Call priority client
+        } else if (!standardQueue.isEmpty()) {
+            priorityCounter = 0; // Reset after calling a standard client
+            return standardQueue.poll(); // Call standard client
         } else if (!priorityQueue.isEmpty()) {
-            return priorityQueue.poll(); 
+            priorityCounter = 0;
+            return priorityQueue.poll(); // Call priority if no standard left
+        } else {
+            System.out.println("No clients in the queue");
+            return null; // No clients left
         }
-        return null;
     }
 
-    public int getPriorityQueueSize() {
-        return priorityQueue.size();
-    }
-
-    public int getRegularQueueSize() {
-        return regularQueue.size();
+    // Method to check if the queues are empty
+    public boolean isQueueEmpty() {
+        return priorityQueue.isEmpty() && standardQueue.isEmpty();
     }
 }
 

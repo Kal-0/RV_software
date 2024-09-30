@@ -18,6 +18,8 @@ public class DecoyDomain {
 		Email email1 = new Email("caio@gmail.com");
 		System.out.println(email1.getEmailText());
 		
+		
+		
 		Cpf cpf1 = new Cpf("123456789-00");
 		System.out.println(cpf1.getCpf());
 		
