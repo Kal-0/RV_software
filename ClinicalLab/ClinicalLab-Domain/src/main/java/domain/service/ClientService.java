@@ -82,4 +82,12 @@ public class ClientService {
     		
     }
     
+    public void updateClient(Client client) {
+        if (client != null) {
+        	clientRepository.update(client);
+        } else {
+            throw new NoSuchElementException("Client must not be null");
+        }
+    }
+    
 }
