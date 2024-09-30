@@ -28,6 +28,18 @@ public class Client extends Person {
 	public void setClientId(ClientId id) {
 		this.clientId = id;
 	}
+	
+	@Override
+	public String toString() {
+	    return "Client{" +
+	            "clientId=" + clientId +
+	            ", id=" + getId() + 
+	            ", cpf=" + getCpf() + 
+	            ", email=" + getContactEmail() + 
+	            ", name=" + getName() + 
+	            ", birthDate=" + getBirthDate() +
+	            '}';
+	}
 
     
 }

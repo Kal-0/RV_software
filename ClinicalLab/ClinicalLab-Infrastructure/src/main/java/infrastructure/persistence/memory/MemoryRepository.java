@@ -2,9 +2,12 @@ package infrastructure.persistence.memory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
+
 import domain.common.entities.client.Client;
 import domain.common.entities.client.ClientId;
 import domain.common.entities.client.ClientRepository;
+import domain.common.entities.person.Cpf;
 import domain.common.entities.attendant.Attendant;
 import domain.common.entities.attendant.AttendantId;
 import domain.common.entities.attendant.AttendantRepository;
@@ -38,6 +41,21 @@ public class MemoryRepository implements ClientRepository, AttendantRepository {
             throw new IllegalArgumentException("The client ID can not be null");
         }
         return clients.get(clientId); // Retorna o cliente ou null se não existir
+    }
+    
+  
+    public Client get(Cpf clientCPF) {
+        if (clientCPF == null) {
+            throw new IllegalArgumentException("The client CPF can not be null");
+        }
+
+        for (Client client : clients.values()) {
+            if (client.getCpf().equals(clientCPF)) {
+                 return client;
+            }
+        }
+
+        return null;
     }
 
     @Override
