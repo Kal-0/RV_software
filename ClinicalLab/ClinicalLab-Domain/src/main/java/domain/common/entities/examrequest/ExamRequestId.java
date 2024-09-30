@@ -8,6 +8,11 @@ public class ExamRequestId {
 		super();
 		this.id = id;
 	}
+	
+	public ExamRequestId() {
+		super();
+		
+	}
 
 	public int getId() {
 		return id;
