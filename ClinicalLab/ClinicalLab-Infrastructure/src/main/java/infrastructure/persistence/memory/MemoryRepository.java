@@ -40,7 +40,49 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         if (clientId == null) {
             throw new IllegalArgumentException("The client ID can not be null");
         }
-        clients.remove(clientId);
+        
+        boolean found = false;
+        
+        for (Client client : clients.values()) {
+            if (client.getId().equals(clientId)) {
+            	                 
+                 clients.remove(clientId);
+                 
+                 found = true;	
+                 
+                 break;
+            }
+        }
+        
+        if(!found) {
+        	throw new IllegalArgumentException("Client not found with this Id");
+        }
+    }
+    
+    @Override
+    public void delete(Cpf clientCpf) {
+        if (clientCpf == null) {
+            throw new IllegalArgumentException("The client ID can not be null");
+        }
+        
+        boolean found = false;
+        
+        for (Client client : clients.values()) {
+            if (client.getCpf().equals(clientCpf)) {
+            	
+                 ClientId clientId = client.getClientId();
+                 
+                 clients.remove(clientId);
+                 
+                 found = true;
+                 
+                 break;
+            }
+        }
+        
+        if(!found) {
+        	throw new IllegalArgumentException("Client not found with this CPF");
+        }
     }
 
     @Override
@@ -51,7 +93,7 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         return clients.get(clientId); // Retorna o cliente ou null se não existir
     }
     
-  
+    @Override
     public Client get(Cpf clientCPF) {
         if (clientCPF == null) {
             throw new IllegalArgumentException("The client CPF can not be null");
@@ -59,6 +101,21 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
 
         for (Client client : clients.values()) {
             if (client.getCpf().equals(clientCPF)) {
+                 return client;
+            }
+        }
+
+        return null;
+    }
+    
+    @Override
+    public Client get(String clientName) {
+        if (clientName == null) {
+            throw new IllegalArgumentException("The client CPF can not be null");
+        }
+
+        for (Client client : clients.values()) {
+            if (client.getName().equals(clientName)) {
                  return client;
             }
         }
