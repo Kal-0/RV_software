@@ -48,7 +48,7 @@ public class DecoyDomain {
 		List<ExamTestId> lext1 = new ArrayList<ExamTestId>();
 		lext1.add(ext1.getId());
 		
-		ExamRequest er2 = new ExamRequest(new ExamRequestId(1), c1.getClientId(), lext1, LocalDate.now(), null, null, "waiting for results");
+		ExamRequest er2 = new ExamRequest(new ExamRequestId(1), c1.getClientId(), lext1, LocalDate.now(), null, null, "new");
 		ClientService cs1 = new ClientService(1, new ServiceNumber("001", false));
 		
 		

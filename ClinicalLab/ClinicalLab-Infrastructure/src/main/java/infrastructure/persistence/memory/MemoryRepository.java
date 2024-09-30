@@ -51,7 +51,7 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         return clients.get(clientId); 
     }
     
-  
+    @Override
     public Client get(Cpf clientCPF) {
         if (clientCPF == null) {
             throw new IllegalArgumentException("The client CPF can not be null");

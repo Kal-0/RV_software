@@ -21,25 +21,15 @@ public class ExamRequestService {
     }
 
   
-    public ExamRequest createExamRequest(ClientId clientId, List<ExamTestId> examTestList, String paymentMethod) {
+    public ExamRequest saveExamRequest(ExamRequest examRequest) {
         
-        if (examTestList == null || examTestList.isEmpty()) {
-            throw new IllegalArgumentException("Test Exam List must be empty");
+        if (examRequest.getExamTestList() == null || examRequest.getExamTestList().isEmpty()) {
+            throw new IllegalArgumentException("Exam Test List must not be empty");
         }
         
-        ExamRequestId examRequestId = new ExamRequestId(); 
+        examRequestRepository.save(examRequest);
         
-        LocalDate requestDate = LocalDate.now();
-        
-        String status = "New";
-        
-        Double totalPrice = 0.0;
-        
-        ExamRequest newExamRequest = new ExamRequest(examRequestId, clientId, examTestList, requestDate, totalPrice, paymentMethod, status);
-        
-        examRequestRepository.save(newExamRequest);
-        
-        return newExamRequest;
+        return examRequestRepository.get(examRequest.getExamRequestId());
     }
     
 
