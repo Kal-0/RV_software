@@ -81,6 +81,7 @@ BoundedContext ExamPerformingProcess implements ExamPerformingProcess {
             Date requestDate
             Double totalPrice
             String paymentMethod
+            String status
         }
 
         ValueObject ExamRequestId {
