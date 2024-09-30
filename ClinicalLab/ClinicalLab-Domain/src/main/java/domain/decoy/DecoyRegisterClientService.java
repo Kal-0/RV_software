@@ -8,7 +8,6 @@ import domain.common.entities.attendant.Attendant;
 import domain.common.entities.client.Client;
 import domain.common.entities.clientservice.ClientServices;
 import domain.common.entities.clientservice.ClientServiceId;
-import domain.common.entities.clientservice.ClinicSystem;
 import domain.common.entities.clientservice.ServiceNumber;
 import domain.common.entities.exam.Exam;
 import domain.common.entities.exam.ExamId;
@@ -20,8 +19,10 @@ import domain.common.entities.person.Cpf;
 import domain.common.entities.person.Email;
 import domain.common.entities.person.Person;
 
-public class DecoyDomain {
-
+public class DecoyRegisterClientService {
+	
+	
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
@@ -49,10 +50,10 @@ public class DecoyDomain {
 		lext1.add(ext1.getId());
 		
 		ExamRequest er2 = new ExamRequest(new ExamRequestId(1), c1.getClientId(), lext1, LocalDate.now(), null, null, "new");
-		ClientServices cs1 = new ClientServices(1, new ServiceNumber("001", false));
+		ClientServices cs1 = new ClientServices(new ClientServiceId(1),
+				new ServiceNumber("001", false), er2.getExamRequestId(), "waiting for service");
 		
 		
         
 	}
-
 }

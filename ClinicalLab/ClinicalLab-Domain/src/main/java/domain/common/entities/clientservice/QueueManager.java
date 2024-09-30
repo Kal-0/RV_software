@@ -5,8 +5,8 @@ import java.util.Queue;
 
 public class QueueManager {
 
-    private Queue<ClientService> priorityQueue;
-    private Queue<ClientService> standardQueue;
+    private Queue<ClientServices> priorityQueue;
+    private Queue<ClientServices> standardQueue;
     private int priorityCalls = 0;
 
     public QueueManager() {
@@ -15,7 +15,7 @@ public class QueueManager {
     }
 
     // Adicionar cliente à fila, verificando prioridade
-    public void addToQueue(ClientService clientService) {
+    public void addToQueue(ClientServices clientService) {
         if (clientService.getServiceNumber().isPriority()) {
             priorityQueue.offer(clientService);
         } else {
@@ -24,7 +24,7 @@ public class QueueManager {
     }
 
     // Chamar próximo número de acordo com as regras
-    public ClientService callNextNumber() {
+    public ClientServices callNextNumber() {
         if (!priorityQueue.isEmpty() && (priorityCalls < 2 || standardQueue.isEmpty())) {
             priorityCalls++;
             return priorityQueue.poll(); // Chama o próximo da fila prioritária

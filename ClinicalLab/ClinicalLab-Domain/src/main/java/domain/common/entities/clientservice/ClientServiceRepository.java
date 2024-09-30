@@ -2,12 +2,12 @@ package domain.common.entities.clientservice;
 
 public interface ClientServiceRepository {
 
-	public void save(ClientService clientService);
+	public void save(ClientServices clientService);
 	
 	public void delete(ClientServiceId id);
 	
-	public ClientService get(ClientServiceId id);
+	public ClientServices get(ClientServiceId id);
 	
-	public void update(ClientService clientService);
+	public void update(ClientServices clientService);
 	
 }

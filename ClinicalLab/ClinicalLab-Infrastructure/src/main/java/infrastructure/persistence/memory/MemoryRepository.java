@@ -32,7 +32,12 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         if (client == null) {
             throw new IllegalArgumentException("The client can not be null");
         }
-        clients.put(client.getClientId(), client);
+        if(get(client.getClientId()) == null) {
+        	clients.put(client.getClientId(), client);
+        }
+        else {
+        	throw new IllegalArgumentException("The client is alredy registered");
+        }
     }
 
     @Override

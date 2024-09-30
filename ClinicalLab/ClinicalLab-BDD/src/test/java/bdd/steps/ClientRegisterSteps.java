@@ -74,6 +74,7 @@ public class ClientRegisterSteps {
             memoryRepository.save(client);
         } catch (RuntimeException e) {
             exception = e;
+            System.out.println(exception);
         }
     }
 

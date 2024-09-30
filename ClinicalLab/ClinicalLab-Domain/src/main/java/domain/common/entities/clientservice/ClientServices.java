@@ -2,35 +2,32 @@ package domain.common.entities.clientservice;
 
 import domain.common.entities.examrequest.ExamRequestId;
 
-public class ClientService {
+public class ClientServices {
 
-	private ClientServiceId id;
+	private ClientServiceId clientServiceId;
     private ServiceNumber serviceNumber;
     private ExamRequestId examRequestId;
-    private BloodDrawStatus bloodDrawStatus;
     private String status;
     
-	public ClientService(ClientServiceId id, ServiceNumber serviceNumberId,
+	public ClientServices(ClientServiceId clientServiceId, ServiceNumber serviceNumberId,
 			ExamRequestId examRequestId, String status) {
 		super();
-		this.id = id;
+		this.clientServiceId = clientServiceId;
 		this.serviceNumber = serviceNumberId;
 		this.examRequestId = examRequestId;
 		this.status = status;
 	}
 	
-	public ClientService(int id, ServiceNumber serviceNumberId,
-			ExamRequestId examRequestId) {
+	public ClientServices(ClientServiceId clientServiceId, ServiceNumber serviceNumberId) {
 		super();
-		this.id = new ClientServiceId(id);
+		this.clientServiceId = clientServiceId;
 		this.serviceNumber = serviceNumberId;
-		this.examRequestId = examRequestId;
 		this.status = "waiting for service";
 	}
 	
-	public ClientService(int id, ServiceNumber serviceNumberId) {
+	public ClientServices(int clientServiceId, ServiceNumber serviceNumberId) {
 		super();
-		this.id = new ClientServiceId(id);
+		this.clientServiceId = new ClientServiceId(clientServiceId);
 		this.serviceNumber = serviceNumberId;
 		this.status = "waiting for service";
 	}
@@ -48,7 +45,7 @@ public class ClientService {
 	}
 
 	public ClientServiceId getId() {
-		return id;
+		return clientServiceId;
 	}
 	
 	public ExamRequestId getExamRequestId() {
@@ -57,14 +54,6 @@ public class ClientService {
 
 	public void setExamRequestId(ExamRequestId examRequestId) {
 		this.examRequestId = examRequestId;
-	}
-
-	public BloodDrawStatus getBloodDrawStatus() {
-		return bloodDrawStatus;
-	}
-
-	public void setBloodDrawStatus(BloodDrawStatus bloodDrawStatus) {
-		this.bloodDrawStatus = bloodDrawStatus;
 	}
     
     
