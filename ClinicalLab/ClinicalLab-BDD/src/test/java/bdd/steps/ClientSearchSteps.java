@@ -1,8 +1,8 @@
 package bdd.steps;
 
 import domain.common.entities.client.Client;
-import domain.common.entities.client.ClientService;
 import domain.common.entities.person.Cpf;
+import domain.service.ClientService;
 import infrastructure.persistence.memory.MemoryRepository;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

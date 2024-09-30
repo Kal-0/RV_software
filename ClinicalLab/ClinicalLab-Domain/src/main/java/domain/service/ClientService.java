@@ -1,7 +1,9 @@
-package domain.common.entities.client;
+package domain.service;
 
 import java.util.NoSuchElementException;
 
+import domain.common.entities.client.Client;
+import domain.common.entities.client.ClientRepository;
 import domain.common.entities.person.Cpf;
 
 public class ClientService {
