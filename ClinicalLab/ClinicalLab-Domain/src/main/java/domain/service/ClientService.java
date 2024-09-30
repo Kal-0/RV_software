@@ -15,7 +15,16 @@ public class ClientService {
         this.clientRepository = repository;
     }
     	
-
+    
+    public Client save(Client client) {
+        if (client != null) {
+        	clientRepository.save(client);
+            return clientRepository.get(client.getClientId());
+        } else {
+            throw new NoSuchElementException("Client must not be null");
+        }	
+    }
+    
     public Client getClientByCpf(Cpf cpf) {
         Client client = clientRepository.get(cpf);
         if (client != null) {
