@@ -90,7 +90,7 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         if (clientId == null) {
             throw new IllegalArgumentException("The client ID can not be null");
         }
-        return clients.get(clientId); // Retorna o cliente ou null se não existir
+        return clients.get(clientId); 
     }
     
     @Override

@@ -30,8 +30,7 @@ public class TotalPriceService {
                 totalPrice += exam.getPrice();
             }
         }
-
-        // Atualiza o preço total no ExamRequest
+        
         examRequest.setTotalPrice(totalPrice);
     }
 }

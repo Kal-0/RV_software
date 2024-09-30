@@ -1,13 +1,21 @@
 package domain.decoy;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import domain.common.entities.attendant.Attendant;
 import domain.common.entities.client.Client;
 import domain.common.entities.clientservice.ClientService;
 import domain.common.entities.clientservice.ClientServiceId;
 import domain.common.entities.clientservice.ClinicSystem;
 import domain.common.entities.clientservice.ServiceNumber;
+import domain.common.entities.exam.Exam;
+import domain.common.entities.exam.ExamId;
 import domain.common.entities.examrequest.ExamRequest;
 import domain.common.entities.examrequest.ExamRequestId;
+import domain.common.entities.examtest.ExamTest;
+import domain.common.entities.examtest.ExamTestId;
 import domain.common.entities.person.Cpf;
 import domain.common.entities.person.Email;
 import domain.common.entities.person.Person;
@@ -33,10 +41,16 @@ public class DecoyDomain {
 		Attendant a1 = new Attendant(3, "123456789-00", "attendant@tome.com", "attendant1", "2004-06-14", 1, "password");
 		System.out.println(a1.getName());
 		
-		
-		ClientService cs1 = new ClientService(1, new ServiceNumber("001", false));
 //		criando exame
-		ExamRequest er2 = new ExamRequest(new ExamRequestId(1), c1.getClientId(), null, null, null, null, null)
+		Exam ex1 = new Exam(new ExamId(1), "exame1", "requirements1", 15.00, 2);
+		
+		ExamTest ext1 = new ExamTest(new ExamTestId(1), ex1.getId(), null);
+		List<ExamTestId> lext1 = new ArrayList<ExamTestId>();
+		lext1.add(ext1.getId());
+		
+		ExamRequest er2 = new ExamRequest(new ExamRequestId(1), c1.getClientId(), lext1, LocalDate.now(), null, null, "waiting for results");
+		ClientService cs1 = new ClientService(1, new ServiceNumber("001", false));
+		
 		
         
 	}
