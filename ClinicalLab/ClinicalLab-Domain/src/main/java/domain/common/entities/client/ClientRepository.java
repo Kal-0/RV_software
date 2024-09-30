@@ -8,9 +8,13 @@ public interface ClientRepository {
 	
 	public void delete(ClientId clientId);
 	
+	public void delete(Cpf cpf);
+	
 	public Client get(ClientId clientId);
 	
 	public Client get(Cpf clientCPF);
+	
+	public Client get(String name);
 	
 	public void update(Client client);
 	
