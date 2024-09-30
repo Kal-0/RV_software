@@ -24,14 +24,14 @@ public class ExamRequestService {
     public ExamRequest createExamRequest(ClientId clientId, List<ExamTestId> examTestList, String paymentMethod) {
         
         if (examTestList == null || examTestList.isEmpty()) {
-            throw new IllegalArgumentException("A lista de testes de exame não pode estar vazia");
+            throw new IllegalArgumentException("Test Exam List must be empty");
         }
         
         ExamRequestId examRequestId = new ExamRequestId(); 
         
         LocalDate requestDate = LocalDate.now();
         
-        String status = "Novo";
+        String status = "New";
         
         Double totalPrice = 0.0;
         
@@ -48,11 +48,33 @@ public class ExamRequestService {
         ExamRequest examRequest = examRequestRepository.get(examRequestId);
         
         if (examRequest == null) {
-            throw new IllegalArgumentException("ExamRequest não encontrado");
+            throw new IllegalArgumentException("ExamRequest not found");
         }
 
         totalPriceService.calculateTotalPrice(examRequest);
         
+        examRequestRepository.update(examRequest);
+    }
+    
+    public void selectPaymentMethod(ExamRequestId examRequestId, String paymentMethod) {
+        ExamRequest examRequest = examRequestRepository.get(examRequestId);
+
+        if (examRequest.getTotalPrice() == null || examRequest.getTotalPrice() == 0) {
+            throw new RuntimeException("Total price must be calculated before selecting a payment method");
+        }
+
+        examRequest.setPaymentMethod(paymentMethod);
+        examRequestRepository.update(examRequest);
+    }
+
+    public void completePayment(ExamRequestId examRequestId) {
+        ExamRequest examRequest = examRequestRepository.get(examRequestId);
+
+        if (examRequest.getTotalPrice() == null || examRequest.getTotalPrice() == 0) {
+            throw new RuntimeException("Payment cannot be completed without total price calculation");
+        }
+
+        examRequest.setStatus("Waiting for collection");
         examRequestRepository.update(examRequest);
     }
 }
