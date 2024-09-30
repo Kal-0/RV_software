@@ -9,7 +9,7 @@ BLab is a web platform designed to manage the daily processes of a blood test la
 <p>You can view the domain description using the domain ubiquitous language document  <a href="https://docs.google.com/document/d/1DZ_5M0e5dnlBABqFou3MBMePG59BQ2IYpBedNu41YqE/view?usp=sharing">here</a>.</p>
 
 ## Avion
-<p>You can see our user stories organization on Avion <a href="https://drive.google.com/file/d/1jFtwQ636goHWFS0G0uI7yfdzeR66v2rD/view?usp=drive_link">here</a>.</p>
+<p>You can see our user stories organization on Avion <a href="https://drive.google.com/file/d/1QqKN98PWX3YmvLcJBWG1QWrpBpDLUO3G/view?usp=sharing">here</a>.</p>
 
 ## Figma
 <p>You can view the mid-fidelity prototype <a href="https://www.figma.com/design/UtY0PrtheYUmGJx37DKvXu/Laborat%C3%B3rio-de-Exame-de-Sangue?node-id=0-1&t=Cl8AgbZwdAmzWVfd-1">here</a>.</p>
