@@ -2,29 +2,11 @@ package infrastructure.persistence.memory;
 
 import java.util.HashMap;
 import java.util.Map;
-<<<<<<< HEAD
-
-import domain.common.entities.attendant.Attendant;
-import domain.common.entities.attendant.AttendantId;
-import domain.common.entities.attendant.AttendantRepository;
 import domain.common.entities.client.Client;
 import domain.common.entities.client.ClientId;
 import domain.common.entities.client.ClientRepository;
 import domain.common.entities.exam.Exam;
 import domain.common.entities.exam.ExamId;
-import domain.common.entities.exam.ExamRepository;
-
-
-/*implement the repositories here*/
-public class MemoryRepository implements ExamRepository, ClientRepository, AttendantRepository {
-	private Map<ExamId, Exam> exams = new HashMap<>();
-	private Map<ClientId, Client> clients = new HashMap<>();
-=======
-import java.util.NoSuchElementException;
-
-import domain.common.entities.client.Client;
-import domain.common.entities.client.ClientId;
-import domain.common.entities.client.ClientRepository;
 import domain.common.entities.exam.ExamRepository;
 import domain.common.entities.person.Cpf;
 import domain.common.entities.attendant.Attendant;
@@ -33,58 +15,18 @@ import domain.common.entities.attendant.AttendantRepository;
 import domain.common.entities.examrequest.ExamRequest;
 import domain.common.entities.examrequest.ExamRequestId;
 import domain.common.entities.examrequest.ExamRequestRepository;
+import domain.common.entities.examtest.ExamTest;
+import domain.common.entities.examtest.ExamTestId;
+import domain.common.entities.examtest.ExamTestRepository;
 
 
-/*implement the repositories here*/
-public class MemoryRepository implements ClientRepository, AttendantRepository, ExamRequestRepository {
+public class MemoryRepository implements ClientRepository, AttendantRepository, ExamRequestRepository, ExamRepository, ExamTestRepository {
     private Map<ClientId, Client> clients = new HashMap<>();
->>>>>>> 5178b04bfd15ffaf822568a0485d973ef69f9055
     private Map<AttendantId, Attendant> attendants = new HashMap<>();
     private Map<ExamRequestId, ExamRequest> examRequests = new HashMap<>();
     
-
-<<<<<<< HEAD
-//    EXAMINATION
-    /* Exam */
-    @Override
-    public void save(Exam exam) {
-        if (exam == null) {
-            throw new IllegalArgumentException("The exam can not be null");
-        }
-        exams.put(exam.getId(), exam);
-    }
-
-    @Override
-    public void delete(ExamId examId) {
-        if (examId == null) {
-            throw new IllegalArgumentException("The exam ID can not be null");
-        }
-        exams.remove(examId);
-    }
-
-    @Override
-    public Exam get(ExamId examId) {
-        if (examId == null) {
-            throw new IllegalArgumentException("The exam ID can not be null");
-        }
-        return exams.get(examId); // Retorna o exame ou null se não existir
-    }
-
-    @Override
-    public void update(Exam exam) {
-        if (exam == null) {
-            throw new IllegalArgumentException("The exam can not be null");
-        }
-        exams.put(exam.getId(), exam);
-    }
     
     
-    
-//    PERSON
-    /* Client Methods */
-=======
-	/* Client Methods */
->>>>>>> 5178b04bfd15ffaf822568a0485d973ef69f9055
     @Override
     public void save(Client client) {
         if (client == null) {
@@ -154,7 +96,7 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         if (attendantId == null) {
             throw new IllegalArgumentException("The attendant ID can not be null");
         }
-        return attendants.get(attendantId); // Retorna o atendente ou null se não existir
+        return attendants.get(attendantId);
     }
 
     @Override
@@ -197,5 +139,58 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         }
         examRequests.put(examRequest.getExamRequestId(), examRequest);
     }
+    
+
+	@Override
+	public void save(Exam exam) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(ExamId id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Exam get(ExamId id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(Exam exam) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
+	@Override
+	public void save(ExamTest examTest) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(ExamTestId id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ExamTest get(ExamTestId id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(ExamTest examTest) {
+		// TODO Auto-generated method stub
+		
+	}
+
+    
     
 }

@@ -1,5 +1,7 @@
 package domain.common.entities.examrequest;
 
+
+
 public interface ExamRequestRepository {
 
 	public void save(ExamRequest examRequest);

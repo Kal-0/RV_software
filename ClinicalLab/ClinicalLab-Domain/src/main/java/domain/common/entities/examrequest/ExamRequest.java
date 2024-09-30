@@ -8,34 +8,26 @@ import domain.common.entities.client.ClientId;
 
 public class ExamRequest {
 	
-    private ExamRequestId id;
+    private ExamRequestId examRequestId;
     private ClientId clientId;
     private List<ExamTestId> examTestList;
     private LocalDate requestDate;
     private Double totalPrice;
     private String paymentMethod;
+    private String status;
     
-    
-    
-	public ExamRequest(ExamRequestId id, ClientId clientId, List<ExamTestId> examTestList, LocalDate requestDate,
-			Double totalPrice, String paymentMethod) {
-		super();
-		this.id = id;
-		this.clientId = clientId;
-		this.examTestList = examTestList;
-		this.requestDate = requestDate;
-		this.totalPrice = totalPrice;
-		this.paymentMethod = paymentMethod;
-	}
-	
-	public ExamRequest(ExamRequestId id, ClientId clientId, LocalDate requestDate,
-			String paymentMethod, String status) {
-		super();
-		this.id = id;
-		this.clientId = clientId;
-		this.requestDate = requestDate;
-		this.paymentMethod = paymentMethod;
-	}
+
+    public ExamRequest(ExamRequestId examRequestId, ClientId clientId, List<ExamTestId> examTestList, LocalDate requestDate,
+                       Double totalPrice, String paymentMethod, String status) {
+        this.examRequestId = examRequestId;
+        this.clientId = clientId;
+        this.examTestList = examTestList;
+        this.requestDate = requestDate;
+        this.totalPrice = totalPrice;
+        this.paymentMethod = paymentMethod;
+        this.status = status;  
+    }
+ 
 
 	public List<ExamTestId> getExamTestList() {
 		return examTestList;
@@ -69,12 +61,29 @@ public class ExamRequest {
 		this.paymentMethod = paymentMethod;
 	}
 
-	public ExamRequestId getId() {
-		return id;
+	public ExamRequestId getExamRequestId() {
+		return examRequestId;
+	}
+	
+	public void setExamRequestId(ExamRequestId examRequestId) {
+		 this.examRequestId = examRequestId;
 	}
 
 	public ClientId getClientId() {
 		return clientId;
+	}
+	
+	public void setClientId(ClientId clientId) {
+		this.clientId = clientId;
+	}
+	
+	
+	public String getStatus() {
+	     return status;
+	}
+
+	public void setStatus(String status) {
+	     this.status = status;
 	}
 	
     
