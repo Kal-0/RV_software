@@ -7,18 +7,24 @@ import java.util.NoSuchElementException;
 import domain.common.entities.client.Client;
 import domain.common.entities.client.ClientId;
 import domain.common.entities.client.ClientRepository;
+import domain.common.entities.exam.ExamRepository;
 import domain.common.entities.person.Cpf;
 import domain.common.entities.attendant.Attendant;
 import domain.common.entities.attendant.AttendantId;
 import domain.common.entities.attendant.AttendantRepository;
+import domain.common.entities.examrequest.ExamRequest;
+import domain.common.entities.examrequest.ExamRequestId;
+import domain.common.entities.examrequest.ExamRequestRepository;
 
 
 /*implement the repositories here*/
-public class MemoryRepository implements ClientRepository, AttendantRepository {
+public class MemoryRepository implements ClientRepository, AttendantRepository, ExamRequestRepository {
     private Map<ClientId, Client> clients = new HashMap<>();
     private Map<AttendantId, Attendant> attendants = new HashMap<>();
+    private Map<ExamRequestId, ExamRequest> examRequests = new HashMap<>();
+    
 
-    /* Client Methods */
+	/* Client Methods */
     @Override
     public void save(Client client) {
         if (client == null) {
@@ -98,4 +104,38 @@ public class MemoryRepository implements ClientRepository, AttendantRepository {
         }
         attendants.put(attendant.getAttendantId(), attendant);
     }
+    
+	
+    
+    @Override
+    public void save(ExamRequest examRequest) {
+    	if (examRequest == null) {
+            throw new IllegalArgumentException("The Exam Request can not be null");
+        }
+        examRequests.put(examRequest.getExamRequestId(), examRequest);
+    }
+    @Override
+    public void delete(ExamRequestId examRequestId) {
+    	if (examRequestId == null) {
+            throw new IllegalArgumentException("The Exam Request ID can not be null");
+        }
+        examRequests.remove(examRequestId);
+    }
+    
+    @Override
+    public ExamRequest get(ExamRequestId examRequestId) {
+        if (examRequestId == null) {
+            throw new IllegalArgumentException("The Exam Request ID can not be null");
+        }
+        return examRequests.get(examRequestId);
+    }
+    
+    @Override
+    public void update(ExamRequest examRequest) {
+    	if (examRequest == null) {
+            throw new IllegalArgumentException("The Exam Request can not be null");
+        }
+        examRequests.put(examRequest.getExamRequestId(), examRequest);
+    }
+    
 }

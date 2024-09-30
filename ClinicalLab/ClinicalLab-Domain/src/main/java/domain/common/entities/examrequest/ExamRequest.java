@@ -70,13 +70,13 @@ public class ExamRequest {
 		this.status = status;
 	}
 
-	public ExamRequestId getId() {
+	public ExamRequestId getExamRequestId() {
 		return id;
 	}
 
 	public ClientId getClientId() {
 		return clientId;
 	}
-    
+	
     
 }

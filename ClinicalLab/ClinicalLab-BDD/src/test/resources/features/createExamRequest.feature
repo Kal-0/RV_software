@@ -18,4 +18,4 @@ Scenario: Client does not meet the exam requirements
   When the attendant tries to submit the exam request
   Then the system shows an error message indicating that the prerequisites are not met
   And the system advises the client to return once the requirements are fulfilled
-  And the system prevents the exam request submission
+  And the system prevents the exam reqx'uest submission
