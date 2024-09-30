@@ -86,5 +86,9 @@ public class ExamRequest {
 	     this.status = status;
 	}
 	
+	public boolean isTotalPriceCalculated() {
+	    return this.totalPrice != null && this.totalPrice > 0;
+	}
+	
     
 }
