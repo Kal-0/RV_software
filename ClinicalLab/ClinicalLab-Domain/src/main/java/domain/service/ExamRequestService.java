@@ -20,18 +20,20 @@ public class ExamRequestService {
         this.totalPriceService = totalPriceService;
     }
 
-  
-    public ExamRequest saveExamRequest(ExamRequest examRequest) {
-        
-        if (examRequest.getExamTestList() == null || examRequest.getExamTestList().isEmpty()) {
-            throw new IllegalArgumentException("Exam Test List must not be empty");
-        }
-        
-        examRequestRepository.save(examRequest);
-        
-        return examRequestRepository.get(examRequest.getExamRequestId());
+
+public ExamRequest saveExamRequest(ExamRequest examRequest) {
+
+    if (examRequestRepository.get(examRequest.getExamRequestId()) != null) {
+        throw new IllegalArgumentException("The exam request already exists");
     }
-    
+
+    if (examRequest.getExamTestList() == null || examRequest.getExamTestList().isEmpty()) {
+        throw new IllegalArgumentException("Exam Test List must not be empty");
+    }
+
+    examRequestRepository.save(examRequest);
+    return examRequestRepository.get(examRequest.getExamRequestId());
+}
 
     public void processExamRequest(ExamRequestId examRequestId) {
    

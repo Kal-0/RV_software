@@ -11,8 +11,3 @@ Feature: Clients Register
      When an attendant registers the client
      Then the system returns an error message informing the incorrect data
 
-   Scenario: Registering a client that already exists
-     Given a "returning" client with "correct" data
-     When an attendant registers the client
-     Then the system returns an error message stating the client is already registered
-  

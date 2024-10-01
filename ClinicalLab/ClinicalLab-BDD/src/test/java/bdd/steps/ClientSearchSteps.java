@@ -49,8 +49,10 @@ public class ClientSearchSteps {
         try {
         	
             foundClient = clientService.getClientByCpf(new Cpf(cpf));
+            exception = null; 
         } catch (NoSuchElementException e) {
             exception = e;
+            foundClient = null;
         }
     } 
 
@@ -60,8 +62,10 @@ public class ClientSearchSteps {
         assertNotNull(foundClient, "Client should be found");
     }
  
+
     @Then("the system shows a message stating that the client is already registered")
     public void the_system_shows_a_message_stating_that_the_client_is_already_registered() {
+        assertNotNull(foundClient, "Client should be found"); // Ensure client is found
         assertNull(exception, "No exception should be thrown if the client exists");
         System.out.println("Message: Client is already registered");
     }
@@ -72,7 +76,7 @@ public class ClientSearchSteps {
         assertEquals(NoSuchElementException.class, exception.getClass(), "Should throw NoSuchElementException");
         System.out.println("Message: No client was found");
     }
-    
+
     @Then("the system prompts the attendant to register a new client")
     public void the_system_prompts_the_attendant_to_register_a_new_client() {
         assertNotNull(exception, "An exception should be thrown for missing client");
