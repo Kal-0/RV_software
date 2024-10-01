@@ -10,6 +10,6 @@ Scenario: Searching for an existing client
 Scenario: Searching for CPF 
     Given the attendant enters a CPF in the system
     When the system searches for the CPF
-    And the CPF isn`t from a client
+    And the CPF isn`t from a regsitered client
     Then the system returns a message stating that no client was found
     And the system prompts the attendant to register a new client
