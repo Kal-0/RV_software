@@ -110,7 +110,9 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         }
 
         for (Client client : clients.values()) {
-            if (client.getCpf().equals(clientCPF)) {
+        	
+            if (client.getCpf().getCpf().equals(clientCPF.getCpf())) {
+            	
                  return client;
             }
         }

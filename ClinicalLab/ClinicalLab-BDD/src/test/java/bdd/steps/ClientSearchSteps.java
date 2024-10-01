@@ -23,43 +23,46 @@ public class ClientSearchSteps {
     private Client foundClient;
     private String cpf;
     private RuntimeException exception;
-
-    @Given("a registered client with CPF {string} exists in the system")
-    public void a_registered_client_with_cpf_exists_in_the_system(String cpf) {
-        this.cpf = cpf; 
-        ClientId clientId = new ClientId(1); 
-        Email contactEmail = new Email("example@example.com");
-        String name = "John Doe";
-        LocalDate birthDate = LocalDate.of(1990, 1, 1);
-
-        
-        Client client = new Client(new PersonId(1), new Cpf(cpf), contactEmail, name, birthDate, clientId);
-        memoryRepository.save(client); 
-        System.out.println("Client with CPF " + cpf + " has been registered.");
+    
+    
+    @Given("that there is a client with the CPF {string} in the system")
+    public void that_there_is_a_client_with_the_CPF_in_the_system(String cpf) {
+    	Client client = new Client(
+                new PersonId(1), 
+                new Cpf(cpf), 
+                new Email("johndoe@example.com"), 
+                "John Doe", 
+                LocalDate.of(1990, 1, 1), 
+                new ClientId(1)
+            );
+    	
+    	clientService.save(client);
     }
-
+    
     @Given("the attendant enters the client's CPF {string} in the system")
     public void the_attendant_enters_the_client_s_cpf_in_the_system(String cpf) {
-        this.cpf = cpf; 
-        System.out.println("Attendant enters CPF: " + cpf);
-    }
+        this.cpf = cpf;
 
-    @Given("the attendant enters a CPF {string} in the system")
-    public void the_attendant_enters_a_cpf_in_the_system(String cpf) {
-        this.cpf = cpf; 
-        System.out.println("Attendant enters CPF: " + cpf);
     }
 
     @When("the system searches for the client")
     public void the_system_searches_for_the_client() {
         try {
+        	
             foundClient = clientService.getClientByCpf(new Cpf(cpf));
             exception = null; 
         } catch (NoSuchElementException e) {
             exception = e;
             foundClient = null;
         }
+    } 
+
+    @Then("the system returns the client's information")
+    public void the_system_returns_the_clients_information() {
+    	System.out.println("Client found: " + foundClient);
+        assertNotNull(foundClient, "Client should be found");
     }
+ 
 
     @When("the system searches for the CPF")
     public void the_system_searches_for_the_cpf() {
@@ -91,4 +94,5 @@ public class ClientSearchSteps {
         assertNotNull(exception, "An exception should be thrown for missing client");
         System.out.println("Message: Please register a new client.");
     }
+
 }
