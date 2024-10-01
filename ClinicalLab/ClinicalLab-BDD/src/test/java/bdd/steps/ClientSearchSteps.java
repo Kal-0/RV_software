@@ -80,26 +80,15 @@ public class ClientSearchSteps {
     public void the_system_shows(String expectedMessage) {
     	if(expectedMessage.equals("client found")) {
     		assertNull(exception, "Client found"); 
+    		assertNotNull(foundClient);
     	}
     	else {
     	
-    		assertNotNull(exception, exception.getMessage());
+    		assertNotNull(exception, "no exception thronw");
+    		assertEquals(exception.getMessage(), expectedMessage);
     	}
     }
     
-    @Then("the system shows a message stating that the client is already registered")
-    public void the_system_shows_a_message_stating_that_the_client_is_already_registered() {
-        assertNotNull(foundClient, "Client should be found"); 
-        assertNull(exception, "No exception should be thrown if the client exists");
-        System.out.println("Message: Client is already registered");
-    }
-
-    @Then("the system returns a message stating that no client was found")
-    public void the_system_returns_a_message_stating_that_no_client_was_found() {
-        assertNotNull(exception, "Exception should be thrown if no client is found");
-        assertEquals(NoSuchElementException.class, exception.getClass(), "Should throw NoSuchElementException");
-        System.out.println("Message: No client was found");
-    }
 
     @Then("the system prompts the attendant to register a new client")
     public void the_system_prompts_the_attendant_to_register_a_new_client() {
