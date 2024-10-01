@@ -9,7 +9,7 @@ BLab is a web platform designed to manage the daily processes of a blood test la
 <p>You can view the domain description using the domain ubiquitous language document  <a href="https://docs.google.com/document/d/1DZ_5M0e5dnlBABqFou3MBMePG59BQ2IYpBedNu41YqE/view?usp=sharing">here</a>.</p>
 
 ## Avion
-<p>You can see our user stories organization on Avion <a href="https://drive.google.com/file/d/1QqKN98PWX3YmvLcJBWG1QWrpBpDLUO3G/view?usp=sharing">here</a>.</p>
+<p>You can see our user stories organization on Avion <a href="https://rvssaulo.avion.io/share/baeKBCqo5xieSDrnX">here</a>.</p>
 
 ## Figma
 <p>You can view the mid-fidelity prototype <a href="https://www.figma.com/design/UtY0PrtheYUmGJx37DKvXu/Laborat%C3%B3rio-de-Exame-de-Sangue?node-id=0-1&t=Cl8AgbZwdAmzWVfd-1">here</a>.</p>
@@ -44,7 +44,7 @@ O BLab é uma plataforma web para gereciamento de processos diarios de um labora
 <p> Você pode ver a descrição do domínio fazendo uso do dicionário de linguagem onipresente do domínio <a href= "https://docs.google.com/document/d/1DZ_5M0e5dnlBABqFou3MBMePG59BQ2IYpBedNu41YqE/view?usp=sharing"> aqui </a>. </p>
 
 ## Avion
-<p>Você pode ver toda nossa organização de user stories no Avion <a href= "https://drive.google.com/file/d/1RmzUk0sHvt0uqqPipq2_6OxgFvxaGW89/view?usp=drive_link" > aqui </a>. </p>
+<p>Você pode ver toda nossa organização de user stories no Avion <a href= "https://rvssaulo.avion.io/share/baeKBCqo5xieSDrnX" > aqui </a>. </p>
 	
 ## Figma
 <p>Você pode ver o protótipo de média <a href="https://www.figma.com/design/UtY0PrtheYUmGJx37DKvXu/Laborat%C3%B3rio-de-Exame-de-Sangue?node-id=0-1&t=Cl8AgbZwdAmzWVfd-1">here</a>.</p>
@@ -53,7 +53,7 @@ O BLab é uma plataforma web para gereciamento de processos diarios de um labora
 <p>Você pode ver por enquanto o protótipo da nossa aplicação <a href= "https://www.figma.com/proto/UtY0PrtheYUmGJx37DKvXu/Laborat%C3%B3rio-de-Exame-de-Sangue?node-id=4-191&starting-point-node-id=4%3A191&t=wqQetzHHhzoKLYZB-1">aqui</a>.</p>
 
 ## Context Mapper 
-<p> Você pode ver o nosso mapa de contexto desenvolvido com o Context Mapper e o modelo(s) do(s) subdomínio(s) principal(is) desenvolvido com o Context Mapper <a href="#" > aqui</a>. </p>
+<p> Você pode ver o nosso mapa de contexto desenvolvido com o Context Mapper e o modelo(s) do(s) subdomínio(s) principal(is) desenvolvido com o Context Mapper <a href="https://www.canva.com/design/DAGR_ptML6s/mm5yrs5goD87oa71PJSgfQ/edit?utm_content=DAGR_ptML6s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" > aqui</a>. </p>
 
 ## Cenários BDD e Automação dos cenários BDD
 <p> Você pode ver nos arquivos .feature que estão nesse repositório e a automação desses cenários também estão nesse repositório. </p>
