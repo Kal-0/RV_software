@@ -27,6 +27,7 @@ public class ClientService {
     
     public Client getClientByCpf(Cpf cpf) {
         Client client = clientRepository.get(cpf);
+        
         if (client != null) {
             return client;
         } else {

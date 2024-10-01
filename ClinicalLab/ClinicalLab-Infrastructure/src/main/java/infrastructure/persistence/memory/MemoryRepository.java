@@ -108,9 +108,9 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         if (clientCPF == null) {
             throw new IllegalArgumentException("The client CPF can not be null");
         }
-
         for (Client client : clients.values()) {
-            if (client.getCpf().equals(clientCPF)) {
+        	
+            if (client.getCpf().getCpf().equals(clientCPF.getCpf())) {
                  return client;
             }
         }
