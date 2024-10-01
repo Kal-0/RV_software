@@ -25,18 +25,19 @@ public class ClientSearchSteps {
     private RuntimeException exception;
     
     
-    @Given("that there is a client with the CPF {string} in the system")
-    public void that_there_is_a_client_with_the_CPF_in_the_system(String cpf) {
-    	Client client = new Client(
-                new PersonId(1), 
-                new Cpf(cpf), 
-                new Email("johndoe@example.com"), 
-                "John Doe", 
-                LocalDate.of(1990, 1, 1), 
-                new ClientId(1)
-            );
-    	
+    @Given("that there is a client with the id {int}, CPF {string} in the system")
+    public void that_there_is_a_client_with_the_id_CPF_in_the_system(int id, String cpf) {
+    	if(id != 2) {
+	    	Client client = new Client(
+	                new PersonId(id), 
+	                new Cpf(cpf), 
+	                new Email("johndoe@example.com"), 
+	                "John Doe", 
+	                LocalDate.of(1990, 1, 1), 
+	                new ClientId(id)
+	            );
     	clientService.save(client);
+    	}
     }
     
     @Given("the attendant enters the client's CPF {string} in the system")
@@ -74,7 +75,18 @@ public class ClientSearchSteps {
             foundClient = null;
         }
     }
-
+    
+    @Then("the system shows {string}")
+    public void the_system_shows(String expectedMessage) {
+    	if(expectedMessage.equals("client found")) {
+    		assertNull(exception, "Client found"); 
+    	}
+    	else {
+    	
+    		assertNotNull(exception, exception.getMessage());
+    	}
+    }
+    
     @Then("the system shows a message stating that the client is already registered")
     public void the_system_shows_a_message_stating_that_the_client_is_already_registered() {
         assertNotNull(foundClient, "Client should be found"); 
