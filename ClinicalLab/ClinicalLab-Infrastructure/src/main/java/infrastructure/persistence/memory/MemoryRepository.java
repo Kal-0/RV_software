@@ -21,7 +21,7 @@ import domain.common.entities.examtest.ExamTestRepository;
 
 
 public class MemoryRepository implements ClientRepository, AttendantRepository, ExamRequestRepository, ExamRepository, ExamTestRepository {
-    private Map<ClientId, Client> clients = new HashMap<>();
+    private Map<Integer, Client> clients = new HashMap<>();
     private Map<AttendantId, Attendant> attendants = new HashMap<>();
     private Map<ExamRequestId, ExamRequest> examRequests = new HashMap<>();
     
@@ -32,12 +32,13 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         if (client == null) {
             throw new IllegalArgumentException("The client can not be null");
         }
-        if(get(client.getClientId()) == null) {
-        	clients.put(client.getClientId(), client);
-        }
-        else {
+//        System.out.println("*********"+get(client.getClientId())+"-VEF-");
+        if(get(client.getClientId()) != null) {
+//        	System.out.println("*********ERRO************");
         	throw new IllegalArgumentException("The client is alredy registered");
         }
+        
+    	clients.put(client.getClientId().getId(), client);
     }
 
     @Override
@@ -49,9 +50,9 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         boolean found = false;
         
         for (Client client : clients.values()) {
-            if (client.getId().equals(clientId)) {
+            if (client.getId().getId() == (clientId.getId())) {
             	                 
-                 clients.remove(clientId);
+                 clients.remove(clientId.getId());
                  
                  found = true;	
                  
@@ -77,7 +78,7 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
             	
                  ClientId clientId = client.getClientId();
                  
-                 clients.remove(clientId);
+                 clients.remove(clientId.getId());
                  
                  found = true;
                  
@@ -95,7 +96,11 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         if (clientId == null) {
             throw new IllegalArgumentException("The client ID can not be null");
         }
-        return clients.get(clientId); 
+        
+        
+        return clients.get(clientId.getId());
+        
+        
     }
     
     @Override
@@ -139,7 +144,7 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         for (Client cliente : clients.values()) {
             if (cliente.getId().equals(client.getId())) {
             	
-        		clients.put(client.getClientId(), client);
+        		clients.put(client.getClientId().getId(), client);
                  
                 found = true;
                  

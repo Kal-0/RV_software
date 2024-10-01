@@ -72,9 +72,9 @@ public class ClientRegisterSteps {
     public void an_attendant_registers_the_client() {
         try {
             memoryRepository.save(client);
+            System.out.println("*********"+memoryRepository.get(client.getClientId())+"************");
         } catch (RuntimeException e) {
             exception = e;
-            System.out.println(exception);
         }
     }
 
