@@ -44,7 +44,7 @@ O BLab é uma plataforma web para gereciamento de processos diarios de um labora
 <p> Você pode ver a descrição do domínio fazendo uso do dicionário de linguagem onipresente do domínio <a href= "https://docs.google.com/document/d/1DZ_5M0e5dnlBABqFou3MBMePG59BQ2IYpBedNu41YqE/view?usp=sharing"> aqui </a>. </p>
 
 ## Avion
-<p>Você pode ver toda nossa organização de user stories no Avion <a href= "https://drive.google.com/file/d/1RmzUk0sHvt0uqqPipq2_6OxgFvxaGW89/view?usp=drive_link" > aqui </a>. </p>
+<p>Você pode ver toda nossa organização de user stories no Avion <a href= "https://rvssaulo.avion.io/share/baeKBCqo5xieSDrnX" > aqui </a>. </p>
 	
 ## Figma
 <p>Você pode ver o protótipo de média <a href="https://www.figma.com/design/UtY0PrtheYUmGJx37DKvXu/Laborat%C3%B3rio-de-Exame-de-Sangue?node-id=0-1&t=Cl8AgbZwdAmzWVfd-1">here</a>.</p>
