@@ -1,4 +1,4 @@
-package domain.service;
+package domain.services;
 
 import domain.common.entities.examrequest.ExamRequest;
 import domain.common.entities.examtest.ExamTestId;

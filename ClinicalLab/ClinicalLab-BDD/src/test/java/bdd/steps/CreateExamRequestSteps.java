@@ -14,8 +14,8 @@ import domain.common.entities.examrequest.ExamRequestId;
 import domain.common.entities.examrequest.ExamRequestRepository;
 import domain.common.entities.examtest.ExamTestId;
 import domain.common.entities.examtest.ExamTestRepository;
-import domain.service.ExamRequestService;
-import domain.service.TotalPriceService;
+import domain.services.ExamRequestService;
+import domain.services.TotalPriceService;
 import infrastructure.persistence.memory.MemoryRepository; // Supondo que você esteja usando a implementação em memória
 import io.cucumber.java.en.*;
 
