@@ -53,7 +53,7 @@ O BLab é uma plataforma web para gereciamento de processos diarios de um labora
 <p>Você pode ver por enquanto o protótipo da nossa aplicação <a href= "https://www.figma.com/proto/UtY0PrtheYUmGJx37DKvXu/Laborat%C3%B3rio-de-Exame-de-Sangue?node-id=4-191&starting-point-node-id=4%3A191&t=wqQetzHHhzoKLYZB-1">aqui</a>.</p>
 
 ## Context Mapper 
-<p> Você pode ver o nosso mapa de contexto desenvolvido com o Context Mapper e o modelo(s) do(s) subdomínio(s) principal(is) desenvolvido com o Context Mapper <a href="#" > aqui</a>. </p>
+<p> Você pode ver o nosso mapa de contexto desenvolvido com o Context Mapper e o modelo(s) do(s) subdomínio(s) principal(is) desenvolvido com o Context Mapper <a href="https://www.canva.com/design/DAGR_ptML6s/mm5yrs5goD87oa71PJSgfQ/edit?utm_content=DAGR_ptML6s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" > aqui</a>. </p>
 
 ## Cenários BDD e Automação dos cenários BDD
 <p> Você pode ver nos arquivos .feature que estão nesse repositório e a automação desses cenários também estão nesse repositório. </p>
