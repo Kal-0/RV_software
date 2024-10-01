@@ -36,8 +36,9 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         	clients.put(client.getClientId(), client);
         }
         else {
-        	throw new IllegalArgumentException("The client is alredy registered");
+            throw new IllegalArgumentException("The client is already registered");
         }
+
     }
 
     @Override
@@ -101,16 +102,14 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
     @Override
     public Client get(Cpf clientCPF) {
         if (clientCPF == null) {
-            throw new IllegalArgumentException("The client CPF can not be null");
+            throw new IllegalArgumentException("The client CPF cannot be null");
         }
-
         for (Client client : clients.values()) {
             if (client.getCpf().equals(clientCPF)) {
-                 return client;
+                return client;
             }
         }
-
-        return null;
+        return null; 
     }
     
     @Override

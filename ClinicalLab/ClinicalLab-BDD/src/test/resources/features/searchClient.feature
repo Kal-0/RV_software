@@ -1,13 +1,15 @@
 Feature: Clients Search
 
-@tag1
-Scenario Outline: Searching for a client
-    Given the attendant enters the client's CPF "<cpf>" in the system
+Scenario: Searching for an existing client
+    Given the attendant enters the client's CPF in the system
     When the system searches for the client
-    Then the system returns <client_info>
-    And <system_message>
+    And the client is registered 
+    Then the system shows a message stating that the client is already registered
+    
 
-    Examples: 
-      | cpf           | client_info                       | system_message                                                |
-      | 12345678900   | the client's information           | the system shows a message stating that the client is already registered |
-      | 99999999999   | a message stating that no client was found | the system prompts the attendant to register a new client |
+Scenario: Searching for CPF 
+    Given the attendant enters a CPF in the system
+    When the system searches for the CPF
+    And the CPF isn`t from a client
+    Then the system returns a message stating that no client was found
+    And the system prompts the attendant to register a new client

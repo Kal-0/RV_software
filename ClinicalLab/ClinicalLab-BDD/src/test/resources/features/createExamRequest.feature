@@ -2,9 +2,9 @@ Feature: Create Exam Request
 
   Scenario: Successfully creating a new exam request
     Given a client without a registered exam requests
-    When the attendant submits a new exam request for "blood test"
+    When the attendant completes a new exam request
+    And change the exam request status to "Waiting for collection"
     Then the system saves the exam request
-    And the system shows a confirmation message
 
   Scenario: Trying to register the same exam request twice
     Given a client with an existing exam request
