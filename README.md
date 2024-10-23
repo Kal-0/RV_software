@@ -18,6 +18,9 @@ BLab is a web platform designed to manage the daily processes of a blood test la
 
 <p>You can view our application prototype <a href="https://www.figma.com/proto/UtY0PrtheYUmGJx37DKvXu/Laborat%C3%B3rio-de-Exame-de-Sangue?node-id=4-191&starting-point-node-id=4%3A191&t=wqQetzHHhzoKLYZB-1">here</a>.</p>
 
+## Project Presentation
+<p>You can view the presentation of the 1st part of the project <a href="https://www.canva.com/design/DAGSVXEyt9E/qjbEqTZ6oocjRa-9ym4Asg/edit?utm_content=DAGSVXEyt9E&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">here</a>.</p>
+
 ## Context Mapper
 <p>You can see our context map developed with Context Mapper and the model(s) of the main subdomain(s) developed with Context Mapper <a href="https://www.canva.com/design/DAGR_ptML6s/mm5yrs5goD87oa71PJSgfQ/edit?utm_content=DAGR_ptML6s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">here</a>.</p>
 
