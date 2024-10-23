@@ -1,12 +1,13 @@
 package domain.services;
 
-import domain.common.entities.examrequest.ExamRequest;
-import domain.common.entities.examtest.ExamTestId;
-import domain.common.entities.exam.Exam;
-import domain.common.entities.exam.ExamId;
-import domain.common.entities.exam.ExamRepository;
-import domain.common.entities.examtest.ExamTestRepository;
 import java.util.List;
+
+import domain.entities.exam.Exam;
+import domain.entities.exam.ExamId;
+import domain.entities.exam.ExamRepository;
+import domain.entities.examrequest.ExamRequest;
+import domain.entities.examtest.ExamTestId;
+import domain.entities.examtest.ExamTestRepository;
 
 public class TotalPriceService {
 

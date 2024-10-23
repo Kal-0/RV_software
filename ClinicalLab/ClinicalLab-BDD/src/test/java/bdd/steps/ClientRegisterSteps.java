@@ -2,17 +2,17 @@ package bdd.steps;
 
 import java.time.LocalDate;
 
+import domain.entities.client.Client;
+import domain.entities.client.ClientId;
+import domain.entities.person.Cpf;
+import domain.entities.person.Email;
+import domain.entities.person.PersonId;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
-import domain.common.entities.client.Client;
-import domain.common.entities.client.ClientId;
-import domain.common.entities.person.Cpf;
-import domain.common.entities.person.Email;
-import domain.common.entities.person.PersonId;
 import infrastructure.persistence.memory.MemoryRepository;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

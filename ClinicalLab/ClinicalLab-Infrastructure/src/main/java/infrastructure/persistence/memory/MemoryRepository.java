@@ -2,26 +2,27 @@ package infrastructure.persistence.memory;
 
 import java.util.HashMap;
 import java.util.Map;
-import domain.common.entities.client.Client;
-import domain.common.entities.client.ClientId;
-import domain.common.entities.client.ClientRepository;
-import domain.common.entities.exam.Exam;
-import domain.common.entities.exam.ExamId;
-import domain.common.entities.exam.ExamRepository;
-import domain.common.entities.person.Cpf;
-import domain.common.entities.attendant.Attendant;
-import domain.common.entities.attendant.AttendantId;
-import domain.common.entities.attendant.AttendantRepository;
-import domain.common.entities.examrequest.ExamRequest;
-import domain.common.entities.examrequest.ExamRequestId;
-import domain.common.entities.examrequest.ExamRequestRepository;
-import domain.common.entities.examtest.ExamTest;
-import domain.common.entities.examtest.ExamTestId;
-import domain.common.entities.examtest.ExamTestRepository;
+
+import domain.entities.attendant.Attendant;
+import domain.entities.attendant.AttendantId;
+import domain.entities.attendant.AttendantRepository;
+import domain.entities.client.Client;
+import domain.entities.client.ClientId;
+import domain.entities.client.ClientRepository;
+import domain.entities.exam.Exam;
+import domain.entities.exam.ExamId;
+import domain.entities.exam.ExamRepository;
+import domain.entities.examrequest.ExamRequest;
+import domain.entities.examrequest.ExamRequestId;
+import domain.entities.examrequest.ExamRequestRepository;
+import domain.entities.examtest.ExamTest;
+import domain.entities.examtest.ExamTestId;
+import domain.entities.examtest.ExamTestRepository;
+import domain.entities.person.Cpf;
 
 
 public class MemoryRepository implements ClientRepository, AttendantRepository, ExamRequestRepository, ExamRepository, ExamTestRepository {
-    private Map<Integer, Client> clients = new HashMap<>();
+    private Map<ClientId, Client> clients = new HashMap<>();
     private Map<AttendantId, Attendant> attendants = new HashMap<>();
     private Map<ExamRequestId, ExamRequest> examRequests = new HashMap<>();
     
@@ -38,7 +39,7 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         	throw new IllegalArgumentException("The client is alredy registered");
         }
         
-    	clients.put(client.getClientId().getId(), client);
+    	clients.put(client.getClientId(), client);
     }
 
     @Override
@@ -50,9 +51,9 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         boolean found = false;
         
         for (Client client : clients.values()) {
-            if (client.getId().getId() == (clientId.getId())) {
+            if (client.getId().equals(clientId)) {
             	                 
-                 clients.remove(clientId.getId());
+                 clients.remove(clientId);
                  
                  found = true;	
                  
@@ -78,7 +79,7 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
             	
                  ClientId clientId = client.getClientId();
                  
-                 clients.remove(clientId.getId());
+                 clients.remove(clientId);
                  
                  found = true;
                  
@@ -98,7 +99,7 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         }
         
         
-        return clients.get(clientId.getId());
+        return clients.get(clientId);
         
         
     }
@@ -146,7 +147,7 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         for (Client cliente : clients.values()) {
             if (cliente.getId().equals(client.getId())) {
             	
-        		clients.put(client.getClientId().getId(), client);
+        		clients.put(client.getClientId(), client);
                  
                 found = true;
                  

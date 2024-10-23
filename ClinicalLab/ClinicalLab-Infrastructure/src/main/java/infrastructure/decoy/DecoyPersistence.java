@@ -1,14 +1,15 @@
 package infrastructure.decoy;
 
 import infrastructure.persistence.memory.MemoryRepository;
-import domain.common.entities.examrequest.ExamRequest;
-import domain.common.entities.examrequest.ExamRequestId;
-import domain.common.entities.client.ClientId;
-import domain.common.entities.examtest.ExamTestId;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import domain.entities.client.ClientId;
+import domain.entities.examrequest.ExamRequest;
+import domain.entities.examrequest.ExamRequestId;
+import domain.entities.examtest.ExamTestId;
 
 public class DecoyPersistence {
 
@@ -47,6 +48,7 @@ public class DecoyPersistence {
 
         if (savedExamRequest != null) {
             System.out.println("Exam Request salvo com sucesso!");
+            System.out.println(examRequest.getExamRequestId().getId());
         } else {
             System.out.println("Falha ao salvar o Exam Request.");
         }

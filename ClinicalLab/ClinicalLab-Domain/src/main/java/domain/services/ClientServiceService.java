@@ -2,11 +2,11 @@ package domain.services;
 
 import java.util.NoSuchElementException;
 
-import domain.common.entities.clientservice.ClientServiceId;
-import domain.common.entities.clientservice.ClientServiceRepository;
-import domain.common.entities.clientservice.ClientServices;
-import domain.common.entities.examrequest.ExamRequest;
-import domain.common.entities.examrequest.ExamRequestId;
+import domain.entities.clientservice.ClientServiceId;
+import domain.entities.clientservice.ClientServiceRepository;
+import domain.entities.clientservice.ClientServices;
+import domain.entities.examrequest.ExamRequest;
+import domain.entities.examrequest.ExamRequestId;
 
 public class ClientServiceService {
 	private ClientServiceRepository clientServiceRepository;

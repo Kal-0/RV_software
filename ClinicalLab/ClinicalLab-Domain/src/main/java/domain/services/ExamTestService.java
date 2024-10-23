@@ -1,8 +1,8 @@
 package domain.services;
 
-import domain.common.entities.examtest.ExamTest;
-import domain.common.entities.examtest.ExamTestId;
-import domain.common.entities.examtest.ExamTestRepository;
+import domain.entities.examtest.ExamTest;
+import domain.entities.examtest.ExamTestId;
+import domain.entities.examtest.ExamTestRepository;
 
 public class ExamTestService {
 	ExamTestRepository examTestRepository;

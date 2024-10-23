@@ -1,9 +1,9 @@
 package bdd.steps;
 
-import domain.common.entities.client.ClientId;
-import domain.common.entities.examrequest.ExamRequest;
-import domain.common.entities.examrequest.ExamRequestId;
-import domain.common.entities.examtest.ExamTestId;
+import domain.entities.client.ClientId;
+import domain.entities.examrequest.ExamRequest;
+import domain.entities.examrequest.ExamRequestId;
+import domain.entities.examtest.ExamTestId;
 import domain.services.ExamRequestService;
 import domain.services.TotalPriceService;
 import infrastructure.persistence.memory.MemoryRepository;
@@ -27,7 +27,7 @@ public class SelectPaymentMethodSteps {
 
     @Given("the system has not calculated the total price")
     public void the_system_has_not_calculated_the_total_price() {
-        examRequest = new ExamRequest(new ExamRequestId(), null, Arrays.asList(new ExamTestId(1)), null, null, null, "new");
+        examRequest = new ExamRequest(new ExamRequestId(1), null, Arrays.asList(new ExamTestId(1)), null, null, null, "new");
         memoryRepository.save(examRequest);
     }
 
@@ -57,7 +57,7 @@ public class SelectPaymentMethodSteps {
         );
        
         ClientId clientId = new ClientId(1);
-        ExamRequestId examRequestId = new ExamRequestId();
+        ExamRequestId examRequestId = new ExamRequestId(1);
         
         examRequest = new ExamRequest(examRequestId, clientId, examTestList, LocalDate.now(), 100.0, null, "new");
         memoryRepository.save(examRequest);

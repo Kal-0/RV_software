@@ -5,15 +5,15 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-import domain.common.entities.client.ClientId;
-import domain.common.entities.exam.Exam;
-import domain.common.entities.exam.ExamId;
-import domain.common.entities.exam.ExamRepository;
-import domain.common.entities.examrequest.ExamRequest;
-import domain.common.entities.examrequest.ExamRequestId;
-import domain.common.entities.examrequest.ExamRequestRepository;
-import domain.common.entities.examtest.ExamTestId;
-import domain.common.entities.examtest.ExamTestRepository;
+import domain.entities.client.ClientId;
+import domain.entities.exam.Exam;
+import domain.entities.exam.ExamId;
+import domain.entities.exam.ExamRepository;
+import domain.entities.examrequest.ExamRequest;
+import domain.entities.examrequest.ExamRequestId;
+import domain.entities.examrequest.ExamRequestRepository;
+import domain.entities.examtest.ExamTestId;
+import domain.entities.examtest.ExamTestRepository;
 import domain.services.ExamRequestService;
 import domain.services.TotalPriceService;
 import infrastructure.persistence.memory.MemoryRepository; // Supondo que você esteja usando a implementação em memória

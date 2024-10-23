@@ -2,10 +2,10 @@ package bdd.steps;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import domain.common.entities.clientservice.ClientServiceId;
-import domain.common.entities.clientservice.ClientServices;
-import domain.common.entities.clientservice.QueueManager;
-import domain.common.entities.clientservice.ServiceNumber;
+import domain.entities.clientservice.ClientServiceId;
+import domain.entities.clientservice.ClientServices;
+import domain.entities.clientservice.QueueManager;
+import domain.entities.clientservice.ServiceNumber;
 import io.cucumber.java.en.*;
 
 public class QueueManagerSteps {

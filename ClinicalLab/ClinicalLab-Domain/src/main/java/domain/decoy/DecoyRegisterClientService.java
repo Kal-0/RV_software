@@ -4,20 +4,20 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.common.entities.attendant.Attendant;
-import domain.common.entities.client.Client;
-import domain.common.entities.clientservice.ClientServices;
-import domain.common.entities.clientservice.ClientServiceId;
-import domain.common.entities.clientservice.ServiceNumber;
-import domain.common.entities.exam.Exam;
-import domain.common.entities.exam.ExamId;
-import domain.common.entities.examrequest.ExamRequest;
-import domain.common.entities.examrequest.ExamRequestId;
-import domain.common.entities.examtest.ExamTest;
-import domain.common.entities.examtest.ExamTestId;
-import domain.common.entities.person.Cpf;
-import domain.common.entities.person.Email;
-import domain.common.entities.person.Person;
+import domain.entities.attendant.Attendant;
+import domain.entities.client.Client;
+import domain.entities.clientservice.ClientServiceId;
+import domain.entities.clientservice.ClientServices;
+import domain.entities.clientservice.ServiceNumber;
+import domain.entities.exam.Exam;
+import domain.entities.exam.ExamId;
+import domain.entities.examrequest.ExamRequest;
+import domain.entities.examrequest.ExamRequestId;
+import domain.entities.examtest.ExamTest;
+import domain.entities.examtest.ExamTestId;
+import domain.entities.person.Cpf;
+import domain.entities.person.Email;
+import domain.entities.person.Person;
 
 public class DecoyRegisterClientService {
 	

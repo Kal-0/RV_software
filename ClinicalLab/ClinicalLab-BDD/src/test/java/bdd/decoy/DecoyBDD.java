@@ -1,11 +1,11 @@
 package bdd.decoy;
 
-import domain.common.entities.attendant.Attendant;
-import domain.common.entities.client.Client;
-import domain.common.entities.client.ClientId;
-import domain.common.entities.person.Cpf;
-import domain.common.entities.person.Email;
-import domain.common.entities.person.Person;
+import domain.entities.attendant.Attendant;
+import domain.entities.client.Client;
+import domain.entities.client.ClientId;
+import domain.entities.person.Cpf;
+import domain.entities.person.Email;
+import domain.entities.person.Person;
 import infrastructure.persistence.memory.MemoryRepository;
 
 public class DecoyBDD {
