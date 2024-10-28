@@ -3,18 +3,21 @@ package domain.entities.examrequest;
 import java.time.LocalDate;
 import java.util.List;
 
+
 import domain.entities.client.ClientId;
 import domain.entities.examtest.ExamTestId;
 
 public class ExamRequest {
 	
-    private ExamRequestId examRequestId;
-    private ClientId clientId;
-    private List<ExamTestId> examTestList;
-    private LocalDate requestDate;
-    private Double totalPrice;
-    private String paymentMethod;
-    private String status;
+	    
+	private ExamRequestId examRequestId;
+	private ClientId clientId;
+	private List<ExamTestId> examTestList;
+	private LocalDate requestDate;
+	private Double totalPrice;
+	private String paymentMethod;
+	private String status;
+
     
 
     public ExamRequest(ExamRequestId examRequestId, ClientId clientId, List<ExamTestId> examTestList, LocalDate requestDate,
