@@ -13,24 +13,12 @@ import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "clients")
-public class ClientJPA {
+public class ClientJPA extends PersonJPA {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long clientId;
 
-    @Column(nullable = false, unique = true)
-    private String cpf;
-
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String contactEmail;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date birthDate;
 
     
 }
