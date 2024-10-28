@@ -1,9 +1,10 @@
 package infrastructure.persistence.jpa;
 
+import domain.entities.exam.Exam;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "examTest")
+@Table(name = "ExamTest")
 public class ExamTestJPA {
 
     @Id
@@ -11,21 +12,14 @@ public class ExamTestJPA {
     private Long examTestId;
 
     @ManyToOne
-    @JoinColumn(name = "examId", nullable = false)
-    private Long examId;
+    @JoinColumn(name = "Exam_Id")
+    private Exam exam;
 
-    @ManyToOne
-    @JoinColumn(name = "testResultId", nullable = false)
-    private Long testResultId;
+    @OneToOne
+    @JoinColumn(name = "TestResult_Id", nullable = true)
+    private TestResultJPA testResult;
 
     @Column(name = "status")
     private String status;
 
-    public ExamTestJPA(Long examTestId, Long examId, Long testResultId) {
-        this.examTestId = examTestId;
-        this.examId = examId;
-        this.testResultId = testResultId;
-    }
-
-    public ExamTestJPA() {}
 }

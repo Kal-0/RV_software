@@ -5,7 +5,7 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "examRequest")
+@Table(name = "ExamRequest")
 public class ExamRequestJPA {
 
     @Id
@@ -13,12 +13,12 @@ public class ExamRequestJPA {
     private Long examRequestId;
 
     @ManyToOne
-    @JoinColumn(name = "clientId", nullable = false)
-    private Long clientId;
+    @JoinColumn(name = "Client_Id")
+    private ClientJPA client;
 
-    @ElementCollection
-    @CollectionTable(name = "examRequestTests", joinColumns = @JoinColumn(name = "examRequestId"))
-    private List<Long> examTestList; // Alterado para Long
+    @OneToMany
+    @JoinColumn(name = "Service_Number_Id")
+    private List<ExamTestJPA> examTestList;
 
     @Column(name = "requestDate", nullable = false)
     private LocalDate requestDate;
@@ -32,17 +32,4 @@ public class ExamRequestJPA {
     @Column(name = "status", nullable = false)
     private String status;
 
-    public ExamRequestJPA(Long examRequestId, Long clientId, List<Long> examTestList, LocalDate requestDate,
-                          Double totalPrice, String paymentMethod, String status) {
-        super();
-        this.examRequestId = examRequestId;
-        this.clientId = clientId;
-        this.examTestList = examTestList;
-        this.requestDate = requestDate;
-        this.totalPrice = totalPrice;
-        this.paymentMethod = paymentMethod;
-        this.status = status;  
-    }
-
-    public ExamRequestJPA() {}
 }

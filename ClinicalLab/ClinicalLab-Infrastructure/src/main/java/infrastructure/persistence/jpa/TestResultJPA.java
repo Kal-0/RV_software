@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "testResult")
+@Table(name = "TestResult")
 public class TestResultJPA {
 
     @Id
@@ -17,11 +17,4 @@ public class TestResultJPA {
     @Column(name = "resultContent")
     private String resultContent;
 
-    public TestResultJPA(Long testResultId, LocalDate resultDate, String resultContent) {
-        this.testResultId = testResultId;
-        this.resultDate = resultDate;
-        this.resultContent = resultContent;
-    }
-
-    public TestResultJPA() {}
 }

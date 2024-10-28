@@ -16,11 +16,5 @@ public class FinancialOverviewJPA {
     @Column(name = "insurancePayments", nullable = false)
     private int insurancePayments;
 
-    public FinancialOverviewJPA(int privatePayments, int insurancePayments, Long financialOverviewId) {
-        this.privatePayments = privatePayments;
-        this.insurancePayments = insurancePayments;
-        this.financialOverviewId = financialOverviewId;
-    }
-
-    public FinancialOverviewJPA() {}
+   
 }
