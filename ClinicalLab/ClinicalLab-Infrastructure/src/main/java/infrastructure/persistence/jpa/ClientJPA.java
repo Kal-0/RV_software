@@ -15,11 +15,6 @@ import jakarta.persistence.TemporalType;
 @Table(name = "Clients")
 public class ClientJPA extends PersonJPA {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long clientId;
-
 
     
 }

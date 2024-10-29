@@ -5,7 +5,7 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "ExamRequest")
+@Table(name = "Exam_Request")
 public class ExamRequestJPA {
 
     @Id
@@ -17,7 +17,7 @@ public class ExamRequestJPA {
     private ClientJPA client;
 
     @OneToMany
-    @JoinColumn(name = "Service_Number_Id")
+    @JoinColumn(name = "Exams_List_Id")
     private List<ExamTestJPA> examTestList;
 
     @Column(name = "requestDate", nullable = false)

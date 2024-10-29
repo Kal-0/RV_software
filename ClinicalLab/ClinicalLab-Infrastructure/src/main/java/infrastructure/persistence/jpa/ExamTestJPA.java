@@ -1,10 +1,9 @@
 package infrastructure.persistence.jpa;
 
-import domain.entities.exam.Exam;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "ExamTest")
+@Table(name = "Exam_Test")
 public class ExamTestJPA {
 
     @Id
@@ -13,7 +12,7 @@ public class ExamTestJPA {
 
     @ManyToOne
     @JoinColumn(name = "Exam_Id")
-    private Exam exam;
+    private ExamJPA exam;
 
     @OneToOne
     @JoinColumn(name = "TestResult_Id", nullable = true)

@@ -10,10 +10,6 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Attendants")
 public class AttendantJPA extends PersonJPA {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long attendantId;
     private String password;
     
 
