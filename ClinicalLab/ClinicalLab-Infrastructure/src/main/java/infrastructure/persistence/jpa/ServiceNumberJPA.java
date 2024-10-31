@@ -11,8 +11,8 @@ import jakarta.persistence.Table;
 public class ServiceNumberJPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-    private String number;
-    private boolean isPriority;
-    private String status;
+	public Integer id;
+	public String number;
+	public boolean isPriority;
+	public String status;
 }
