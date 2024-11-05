@@ -15,6 +15,18 @@ import jakarta.persistence.TemporalType;
 @Table(name = "Clients")
 public class ClientJPA extends PersonJPA {
 
+	private int clientId;
+	
+	public void setClientId(int id) {
+		clientId = id;
+		
+		this.setId(clientId);
+	}
+	
+	public int getClientId() {
+		return this.getId();
+	}
+
 
     
 }

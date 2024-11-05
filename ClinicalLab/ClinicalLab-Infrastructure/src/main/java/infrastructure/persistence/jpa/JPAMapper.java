@@ -1,0 +1,95 @@
+package infrastructure.persistence.jpa;
+
+import org.modelmapper.AbstractConverter;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.config.Configuration;
+import org.modelmapper.config.Configuration.AccessLevel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import domain.entities.client.Client;
+import domain.entities.client.ClientId;
+import domain.entities.person.Cpf;
+import domain.entities.person.Email;
+import domain.entities.person.PersonId;
+import domain.entities.exam.Exam;
+import domain.entities.exam.ExamId;
+
+@Component
+public class JPAMapper extends ModelMapper {
+
+    @Autowired
+    public JPAMapper() {
+        Configuration configuration = getConfiguration();
+        configuration.setFieldMatchingEnabled(true);
+        configuration.setFieldAccessLevel(AccessLevel.PRIVATE);
+
+        // Adiciona conversores genéricos aqui
+        addGenericConverters();
+    }
+
+    private void addGenericConverters() {
+        // Converter para ClientJPA -> Client
+        addConverter(new AbstractConverter<ClientJPA, Client>() {
+            @Override
+            protected Client convert(ClientJPA source) {
+                return new Client(
+                    new PersonId(source.getId()),
+                    new Cpf(source.getCpf()),
+                    new Email(source.getContactEmail()),
+                    source.getName(),
+                    source.getBirthDate(),
+                    new ClientId(source.getClientId())
+                );
+            }
+        });
+
+        // Converter para Client -> ClientJPA
+        addConverter(new AbstractConverter<Client, ClientJPA>() {
+            @Override
+            protected ClientJPA convert(Client source) {
+                ClientJPA clientJPA = new ClientJPA();
+                clientJPA.setId(source.getId().getId());
+                clientJPA.setCpf(source.getCpf().getCpf());
+                clientJPA.setContactEmail(source.getContactEmail().getEmailText());
+                clientJPA.setName(source.getName());
+                clientJPA.setBirthDate(source.getBirthDate());
+                clientJPA.setClientId(source.getClientId().getId());
+                return clientJPA;
+            }
+        });
+
+        // Converter para ExamJPA -> Exam
+        addConverter(new AbstractConverter<ExamJPA, Exam>() {
+            @Override
+            protected Exam convert(ExamJPA source) {
+                return new Exam(
+                    new ExamId(source.getId()),
+                    source.getName(),
+                    source.getRequirements(),
+                    source.getPrice(),
+                    source.getAnalysisTime()
+                );
+            }
+        });
+
+        // Converter para Exam -> ExamJPA
+        addConverter(new AbstractConverter<Exam, ExamJPA>() {
+            @Override
+            protected ExamJPA convert(Exam source) {
+                ExamJPA examJPA = new ExamJPA();
+                examJPA.setId((long) source.getId().getId());  
+                examJPA.setName(source.getName());
+                examJPA.setRequirements(source.getRequirements());
+                examJPA.setPrice(source.getPrice());
+                examJPA.setAnalysisTime(source.getAnalysisTime());
+                return examJPA;
+            }
+        });
+    }
+
+    @Override
+    public <D> D map(Object source, Class<D> destinationType) {
+        return source != null ? super.map(source, destinationType) : null;
+    }
+}
