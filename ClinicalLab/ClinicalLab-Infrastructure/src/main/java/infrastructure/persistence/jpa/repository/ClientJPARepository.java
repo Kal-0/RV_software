@@ -5,6 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import infrastructure.persistence.jpa.ClientJPA;
 
-public interface ClientRepository extends JpaRepository<ClientJPA, Long>{
+public interface ClientJPARepository extends JpaRepository<ClientJPA, Long>{
+	
+	 ClientJPA findByCpf(String cpf);
+	 ClientJPA findByName(String name);
 
 }

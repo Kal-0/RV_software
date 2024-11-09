@@ -4,8 +4,8 @@ import domain.entities.EntityId;
 
 public class ExamId extends EntityId{
 
-    public ExamId(int id) {
-        super(id);
+    public ExamId(long id) {
+        super((int) id);
     }
 
     
