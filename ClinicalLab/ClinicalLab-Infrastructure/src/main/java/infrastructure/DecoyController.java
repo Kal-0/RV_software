@@ -3,8 +3,6 @@ package infrastructure;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import infrastructure.persistence.jpa.ServiceNumberJPA;
-
 @RestController
 public class DecoyController {
 
