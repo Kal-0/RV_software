@@ -98,7 +98,7 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
             throw new IllegalArgumentException("The client ID can not be null");
         }
         
-        
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         return clients.get(clientId);
         
         

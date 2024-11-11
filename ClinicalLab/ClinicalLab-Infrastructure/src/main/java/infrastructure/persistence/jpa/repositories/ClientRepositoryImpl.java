@@ -23,7 +23,12 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Override
     public void save(Client client) {
         ClientJPA clientJPA = jpaMapper.map(client, ClientJPA.class);
-        clientJPARepository.save(clientJPA);
+        if (clientJPA != null) {
+            clientJPARepository.save(clientJPA);
+            System.out.println("Cliente salvo no repositório com sucesso.");
+        }else {
+        	System.out.println("CLIENTE NAO FOI SALVO CORRETAMENTE");
+        }
     }
 
     @Override
