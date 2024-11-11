@@ -16,4 +16,29 @@
     <module>backend</module>
     <module>frontend</module>
   </modules>
+
+  <dependencies>
+    <dependency>
+      <groupId>cesar.rv</groupId>
+      <artifactId>ClinicalLab-Domain</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>cesar.rv</groupId>
+      <artifactId>ClinicalLab-Infrastructure</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>3.3.3</version>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>
