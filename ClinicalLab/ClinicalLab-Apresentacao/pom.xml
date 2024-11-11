@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cesar.rv</groupId>
+    <artifactId>ClinicalLab</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>ClinicalLab-Apresentacao</artifactId>
+  <packaging>pom</packaging>
+  
+  <properties>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>	
+  
+  <modules>
+    <module>backend</module>
+    <module>frontend</module>
+  </modules>
+
+  <dependencies>
+    <dependency>
+      <groupId>cesar.rv</groupId>
+      <artifactId>ClinicalLab-Domain</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>cesar.rv</groupId>
+      <artifactId>ClinicalLab-Infrastructure</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>3.3.3</version>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
