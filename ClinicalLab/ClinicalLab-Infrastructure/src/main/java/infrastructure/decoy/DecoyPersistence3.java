@@ -13,7 +13,6 @@ import infrastructure.Aplicacao;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import java.time.LocalDate;
 
 public class DecoyPersistence3 {
@@ -27,8 +26,8 @@ public class DecoyPersistence3 {
         
         // Obtendo a instância do repositório de Exam a partir do contexto
         ExamRepository examRepository = context.getBean(ExamRepository.class);
-        /*
-        // Criando instâncias necessárias para o Client
+        
+        // Criando instâncias para o Client
         PersonId personId = new PersonId(1);
         Cpf cpf = new Cpf("123.456.789-00");
         Email contactEmail = new Email("cliente@exemplo.com");
@@ -38,33 +37,28 @@ public class DecoyPersistence3 {
 
         // Teste de criação e salvamento de um cliente
         Client newClient = new Client(personId, cpf, contactEmail, name, birthDate, clientId);
-
-        // Salvar o cliente
         clientRepository.save(newClient);
-        System.out.println("========================================================");
         System.out.println("Cliente salvo: " + newClient);
-        System.out.println("========================================================");
 
         // Teste de recuperação do cliente
         Client retrievedClient = clientRepository.get(clientId);
-        System.out.println("========================================================");
-        System.out.println("Cliente recuperado: " + retrievedClient.toString());
-        System.out.println("========================================================");
+        if (retrievedClient != null) {
+            System.out.println("Cliente recuperado: " + retrievedClient);
+        } else {
+            System.err.println("Erro: Cliente não encontrado.");
+        }
 
         // Teste de atualização do cliente
         newClient.setName("Nome do Cliente Atualizado");
         clientRepository.update(newClient);
-        System.out.println("========================================================");
-        System.out.println("Cliente atualizado: " + clientRepository.get(clientId));
-        System.out.println("========================================================");
-        
-        */
+        Client updatedClient = clientRepository.get(clientId);
+        System.out.println("Cliente atualizado: " + (updatedClient != null ? updatedClient : "Erro na atualização"));
 
         // Teste de deleção do cliente
-        //clientRepository.delete(clientId);
-        //System.out.println("Cliente deletado: " + (clientRepository.get(clientId) == null ? "Sim" : "Não"));
-        
-        // Criando instâncias necessárias para o Exam
+        clientRepository.delete(clientId);
+        System.out.println("Cliente deletado: " + (clientRepository.get(clientId) == null ? "Sim" : "Não"));
+
+        // Criando instâncias para o Exam
         ExamId examId = new ExamId(1);
         String examName = "Exame de Sangue";
         String requirements = "Nenhum";
@@ -73,31 +67,25 @@ public class DecoyPersistence3 {
 
         // Teste de criação e salvamento de um exame
         Exam newExam = new Exam(examId, examName, requirements, price, analysisTime);
-        
-        // Salvar o exame
         examRepository.save(newExam);
-        System.out.println("========================================================");
         System.out.println("Exame salvo: " + newExam);
-        System.out.println("========================================================");
 
-        
         // Teste de recuperação do exame
         Exam retrievedExam = examRepository.get(examId);
-        System.out.println("========================================================");
-        System.out.println("Exame recuperado: " + retrievedExam);
-        System.out.println("========================================================");
+        if (retrievedExam != null) {
+            System.out.println("Exame recuperado: " + retrievedExam);
+        } else {
+            System.err.println("Erro: Exame não encontrado.");
+        }
 
-/*
         // Teste de atualização do exame
         newExam.setName("Exame de Sangue Atualizado");
         examRepository.update(newExam);
-        System.out.println("========================================================");
-        System.out.println("Exame atualizado: " + examRepository.get(examId));
-        System.out.println("========================================================");
-        */
-        
+        Exam updatedExam = examRepository.get(examId);
+        System.out.println("Exame atualizado: " + (updatedExam != null ? updatedExam : "Erro na atualização"));
+
         // Teste de deleção do exame
-        //examRepository.delete(examId);
-        //System.out.println("Exame deletado: " + (examRepository.get(examId) == null ? "Sim" : "Não"));
+        examRepository.delete(examId);
+        System.out.println("Exame deletado: " + (examRepository.get(examId) == null ? "Sim" : "Não"));
     }
 }
