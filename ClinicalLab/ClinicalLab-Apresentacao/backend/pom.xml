@@ -2,18 +2,8 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>cesar.rv</groupId>
-    <artifactId>ClinicalLab</artifactId>
+    <artifactId>ClinicalLab-Apresentacao</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>ClinicalLab-Apresentacao</artifactId>
-  <packaging>pom</packaging>
-  
-  <properties>
-	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>	
-  
-  <modules>
-    <module>backend</module>
-    <module>frontend</module>
-  </modules>
+  <artifactId>backend</artifactId>
 </project>
