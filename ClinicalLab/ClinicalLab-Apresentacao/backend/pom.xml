@@ -11,10 +11,12 @@
     <dependency>
       <groupId>cesar.rv</groupId>
       <artifactId>ClinicalLab-Domain</artifactId>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>cesar.rv</groupId>
       <artifactId>ClinicalLab-Infrastructure</artifactId>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
