@@ -3,9 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  /* Updated color scheme to a light background */
+
   color-scheme: light;
-  color: #213547; /* Dark text color */
+  color: #213547;
   background-color: #ffffff;
 
   font-synthesis: none;
@@ -52,104 +52,10 @@ button {
 }
 
 button:hover {
-  background-color: #ffa726; /* Darker orange on hover */
+  background-color: #ffa726;
 }
 
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* Sidebar styles */
-.sidebar {
-  background-color: #f8f9fa; /* Light gray background for sidebar */
-  border-right: 1px solid #e0e0e0;
-}
-
-.sidebar button {
-  background: transparent;
-  padding: 10px;
-}
-
-.sidebar img {
-  width: 24px;
-  height: 24px;
-}
-
-.section-title {
-  font-weight: bold;
-  font-size: 1.5em;
-  color: #213547;
-  margin-bottom: 0.5em;
-}
-
-.section-subtitle {
-  color: #757575; /* Lighter gray for subtitles */
-  font-size: 0.9em;
-  margin-bottom: 1.5em;
-}
-
-input[type="text"],
-input[type="date"],
-input[type="email"] {
-  width: 100%;
-  padding: 0.5em;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  font-size: 1em;
-  margin-top: 0.2em;
-}
-
-input:focus {
-  outline: none;
-  border-color: #ffa726; /* Orange border on focus */
-  box-shadow: 0 0 0 3px rgba(255, 167, 38, 0.2);
-}
-
-/* Styling for specific sections */
-#general-info {
-  margin: 2em 0;
-}
-
-.card {
-  background-color: #f1f1f1;
-  border-radius: 8px;
-  padding: 1em;
-  margin: 1em 0;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1em;
-  background-color: #ffffff;
-}
-
-header img.logo {
-  width: 20px;
-}
-
-header .user-icon {
-  background-color: #ffa726; /* Orange circle for user icon */
-  color: #ffffff;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font-weight: bold;
-  font-size: 1em;
-}
-
-/* Media queries for responsive adjustments */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 60px;
-  }
-
-  .card {
-    margin: 0.5em 0;
-  }
 }
