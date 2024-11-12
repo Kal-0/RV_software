@@ -77,7 +77,7 @@ public class DecoyPersistence3 {
         } else {
             System.err.println("Erro: Exame não encontrado.");
         }
-
+        /*
         // Teste de atualização do exame
         newExam.setName("Exame de Sangue Atualizado");
         examRepository.update(newExam);
@@ -87,5 +87,6 @@ public class DecoyPersistence3 {
         // Teste de deleção do exame
         examRepository.delete(examId);
         System.out.println("Exame deletado: " + (examRepository.get(examId) == null ? "Sim" : "Não"));
+        */
     }
 }

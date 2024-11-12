@@ -21,15 +21,16 @@ public class ExamJPA {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String name;
     private String requirements;
     private Double price;
     private Integer analysisTime;
-	public Long getId() {
+    
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -77,12 +78,12 @@ class ExamRepositoryImpl implements ExamRepository {
     
     @Override
     public void delete(ExamId id) {
-        examJPARepository.deleteById((long) id.getId());
+        examJPARepository.deleteById(id.getId());
     }
 
     @Override
     public Exam get(ExamId id) {
-        ExamJPA examJPA = examJPARepository.findById((long) id.getId()).orElse(null);
+        ExamJPA examJPA = examJPARepository.findById(id.getId()).orElse(null);
         return examMapper.map(examJPA);
     }
 

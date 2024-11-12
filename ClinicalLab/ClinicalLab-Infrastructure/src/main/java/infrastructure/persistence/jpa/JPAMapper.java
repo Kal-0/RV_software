@@ -78,7 +78,7 @@ public class JPAMapper extends ModelMapper {
             @Override
             protected ExamJPA convert(Exam source) {
                 ExamJPA examJPA = new ExamJPA();
-                examJPA.setId((long) source.getId().getId());  
+                examJPA.setId(source.getId().getId());  
                 examJPA.setName(source.getName());
                 examJPA.setRequirements(source.getRequirements());
                 examJPA.setPrice(source.getPrice());
