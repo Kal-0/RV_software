@@ -68,11 +68,11 @@ class ExamRepositoryImpl implements ExamRepository {
     private ExamJPARepository examJPARepository;
 
     @Autowired
-    private ExamMapper examMapper; // Usar o ExamMapper
+    private JPAMapper mapper; // Usar o ExamMapper
 
     @Override
     public void save(Exam exam) {
-        ExamJPA examJPA = examMapper.map(exam);
+        ExamJPA examJPA = mapper.map(exam, ExamJPA.class);
         examJPARepository.save(examJPA);
     }
     
@@ -84,12 +84,12 @@ class ExamRepositoryImpl implements ExamRepository {
     @Override
     public Exam get(ExamId id) {
         ExamJPA examJPA = examJPARepository.findById(id.getId()).orElse(null);
-        return examMapper.map(examJPA);
+        return mapper.map(examJPA, Exam.class);
     }
 
     @Override
     public void update(Exam exam) {
-        ExamJPA examJPA = examMapper.map(exam);
+        ExamJPA examJPA = mapper.map(exam, ExamJPA.class);
         examJPARepository.save(examJPA);
     }
 }

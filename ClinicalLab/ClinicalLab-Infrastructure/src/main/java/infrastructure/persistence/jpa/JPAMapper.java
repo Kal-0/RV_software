@@ -9,11 +9,13 @@ import org.springframework.stereotype.Component;
 
 import domain.entities.client.Client;
 import domain.entities.client.ClientId;
+import domain.entities.exam.Exam;
+import domain.entities.exam.ExamId;
 import domain.entities.person.Cpf;
 import domain.entities.person.Email;
 import domain.entities.person.PersonId;
-import domain.entities.exam.Exam;
-import domain.entities.exam.ExamId;
+import domain.entities.servicenumber.ServiceNumber;
+import domain.entities.servicenumber.ServiceNumberId;
 
 @Component
 public class JPAMapper extends ModelMapper {
@@ -59,6 +61,8 @@ public class JPAMapper extends ModelMapper {
             }
         });
 
+        
+        // EXAM ============================================================
         // Converter para ExamJPA -> Exam
         addConverter(new AbstractConverter<ExamJPA, Exam>() {
             @Override
@@ -86,6 +90,34 @@ public class JPAMapper extends ModelMapper {
                 return examJPA;
             }
         });
+        
+//        SERVICENUMBER======================================
+     // Converter para ServiceNumberJPA -> ServiceNumber
+        addConverter(new AbstractConverter<ServiceNumberJPA, ServiceNumber>() {
+            @Override
+            protected ServiceNumber convert(ServiceNumberJPA source) {
+                return new ServiceNumber(
+                    new ServiceNumberId(source.id),
+                    source.number,
+                    source.isPriority,
+                    source.status
+                );
+            }
+        });
+
+        // Converter para ServiceNumber -> ServiceNumberJPA
+        addConverter(new AbstractConverter<ServiceNumber, ServiceNumberJPA>() {
+            @Override
+            protected ServiceNumberJPA convert(ServiceNumber source) {
+                ServiceNumberJPA ServiceNumberJPA = new ServiceNumberJPA();
+                ServiceNumberJPA.id = source.getId().getId();  
+                ServiceNumberJPA.number = source.getNumber();
+                ServiceNumberJPA.isPriority = source.isPriority();
+                ServiceNumberJPA.status = source.getStatus();
+                return ServiceNumberJPA;
+            }
+        });
+        
     }
 
     @Override

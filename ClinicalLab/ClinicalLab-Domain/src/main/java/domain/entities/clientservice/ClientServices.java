@@ -1,6 +1,7 @@
 package domain.entities.clientservice;
 
 import domain.entities.examrequest.ExamRequestId;
+import domain.entities.servicenumber.ServiceNumber;
 
 public class ClientServices {
 
