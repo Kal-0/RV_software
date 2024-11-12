@@ -21,15 +21,16 @@ public class ExamJPA {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String name;
     private String requirements;
     private Double price;
     private Integer analysisTime;
-	public Long getId() {
+    
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -67,28 +68,28 @@ class ExamRepositoryImpl implements ExamRepository {
     private ExamJPARepository examJPARepository;
 
     @Autowired
-    private ExamMapper examMapper; // Usar o ExamMapper
+    private JPAMapper mapper; // Usar o ExamMapper
 
     @Override
     public void save(Exam exam) {
-        ExamJPA examJPA = examMapper.map(exam);
+        ExamJPA examJPA = mapper.map(exam, ExamJPA.class);
         examJPARepository.save(examJPA);
     }
     
     @Override
     public void delete(ExamId id) {
-        examJPARepository.deleteById((long) id.getId());
+        examJPARepository.deleteById(id.getId());
     }
 
     @Override
     public Exam get(ExamId id) {
-        ExamJPA examJPA = examJPARepository.findById((long) id.getId()).orElse(null);
-        return examMapper.map(examJPA);
+        ExamJPA examJPA = examJPARepository.findById(id.getId()).orElse(null);
+        return mapper.map(examJPA, Exam.class);
     }
 
     @Override
     public void update(Exam exam) {
-        ExamJPA examJPA = examMapper.map(exam);
+        ExamJPA examJPA = mapper.map(exam, ExamJPA.class);
         examJPARepository.save(examJPA);
     }
 }

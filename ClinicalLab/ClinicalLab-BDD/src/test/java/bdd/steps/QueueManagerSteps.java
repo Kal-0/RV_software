@@ -1,12 +1,16 @@
 package bdd.steps;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import domain.entities.clientservice.ClientServiceId;
 import domain.entities.clientservice.ClientServices;
 import domain.entities.clientservice.QueueManager;
-import domain.entities.clientservice.ServiceNumber;
-import io.cucumber.java.en.*;
+import domain.entities.servicenumber.ServiceNumber;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class QueueManagerSteps {
 

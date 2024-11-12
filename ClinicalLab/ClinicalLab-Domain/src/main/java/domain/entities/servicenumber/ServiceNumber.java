@@ -13,6 +13,17 @@ public class ServiceNumber {
 		this.isPriority = isPriority;
 		this.status = status;
 	}
+	
+	public ServiceNumber(String number, boolean priority) {
+		super();
+		this.number = number;
+		this.isPriority = priority;
+	}
+	
+	public ServiceNumber() {
+		super();
+
+	}
 
 	public String getNumber() {
 		return number;

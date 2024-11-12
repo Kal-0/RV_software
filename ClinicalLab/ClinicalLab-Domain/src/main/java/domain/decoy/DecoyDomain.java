@@ -6,10 +6,7 @@ import java.util.List;
 
 import domain.entities.attendant.Attendant;
 import domain.entities.client.Client;
-import domain.entities.clientservice.ClientServiceId;
 import domain.entities.clientservice.ClientServices;
-import domain.entities.clientservice.ClinicSystem;
-import domain.entities.clientservice.ServiceNumber;
 import domain.entities.exam.Exam;
 import domain.entities.exam.ExamId;
 import domain.entities.examrequest.ExamRequest;
@@ -19,6 +16,7 @@ import domain.entities.examtest.ExamTestId;
 import domain.entities.person.Cpf;
 import domain.entities.person.Email;
 import domain.entities.person.Person;
+import domain.entities.servicenumber.ServiceNumber;
 
 public class DecoyDomain {
 

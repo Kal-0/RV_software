@@ -4,7 +4,7 @@ import domain.entities.EntityId;
 
 public class ServiceNumberId extends EntityId{
 
-	public ServiceNumberId(int id) {
+	public ServiceNumberId(Integer id) {
 		super(id);
 	}
 	
