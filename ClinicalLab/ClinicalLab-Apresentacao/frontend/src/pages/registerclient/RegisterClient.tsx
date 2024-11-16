@@ -1,7 +1,7 @@
 // Import necessary dependencies
 import React from 'react';
 
-const ClientScreen: React.FC = () => {
+const RegisterClient: React.FC = () => {
     return (
         <div className="flex h-screen bg-gray-100">
             {/* Main Content */}
@@ -84,4 +84,4 @@ const ClientScreen: React.FC = () => {
     );
 };
 
-export default ClientScreen;
+export default RegisterClient;
