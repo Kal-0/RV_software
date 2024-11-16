@@ -1,5 +1,8 @@
 package infrastructure.persistence.jpa;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration;
@@ -11,15 +14,22 @@ import domain.entities.client.Client;
 import domain.entities.client.ClientId;
 import domain.entities.exam.Exam;
 import domain.entities.exam.ExamId;
+import domain.entities.examrequest.ExamRequest;
+import domain.entities.examrequest.ExamRequestId;
+import domain.entities.examtest.ExamTest;
+import domain.entities.examtest.ExamTestId;
 import domain.entities.person.Cpf;
 import domain.entities.person.Email;
 import domain.entities.person.PersonId;
 import domain.entities.servicenumber.ServiceNumber;
 import domain.entities.servicenumber.ServiceNumberId;
+import domain.entities.testresult.TestResult;
+import domain.entities.testresult.TestResultId;
 
 @Component
 public class JPAMapper extends ModelMapper {
 
+	
     @Autowired
     public JPAMapper() {
         Configuration configuration = getConfiguration();
@@ -117,6 +127,113 @@ public class JPAMapper extends ModelMapper {
                 return ServiceNumberJPA;
             }
         });
+        
+        // TEST RESULT ==================================
+        
+     // Converter para TestResultJPA -> TestResult
+        addConverter(new AbstractConverter<TestResultJPA, TestResult>() {
+            @Override
+            protected TestResult convert(TestResultJPA source) {
+                return new TestResult(
+                    new TestResultId(source.getTestResultId()),
+                    source.getResultDate(),
+                    source.getResultContent()
+                );
+            }
+        });
+
+        // Converter para TestResult -> TestResultJPA
+        addConverter(new AbstractConverter<TestResult, TestResultJPA>() {
+            @Override
+            protected TestResultJPA convert(TestResult source) {
+                TestResultJPA testResultJPA = new TestResultJPA();
+                testResultJPA.setTestResultId(source.getId().getId());
+                testResultJPA.setResultDate(source.getResultDate());
+                testResultJPA.setResultContent(source.getResultContent());
+                return testResultJPA;
+            }
+        });
+        
+        
+     // EXAM REQUEST ==================================
+        
+        // Conversor para ExamRequestJPA -> ExamRequest
+        addConverter(new AbstractConverter<ExamRequestJPA, ExamRequest>() {
+        	@Override
+        	protected ExamRequest convert(ExamRequestJPA source) {
+             return new ExamRequest(
+                 new ExamRequestId(source.getExamRequestId()),
+                 new ClientId(source.getClient().getId()),  // Supondo que ClientJPA tenha um método getId()
+                 source.getExamTestList().stream()
+                       .map(examTestJPA -> new ExamTestId(examTestJPA.getExamTestId()))  // Supondo que ExamTestJPA tenha um método getExamTestId()
+                       .collect(Collectors.toList()),
+                 source.getRequestDate(),
+                 source.getTotalPrice(),
+                 source.getPaymentMethod(),
+                 source.getStatus()
+             );
+         }
+     });
+
+     // Conversor para ExamRequest -> ExamRequestJPA
+     addConverter(new AbstractConverter<ExamRequest, ExamRequestJPA>() {
+         @Override
+         protected ExamRequestJPA convert(ExamRequest source) {
+             ExamRequestJPA examRequestJPA = new ExamRequestJPA();
+             examRequestJPA.setExamRequestId(source.getExamRequestId().getId());
+             
+             // Obtém o ClientJPA usando o ClientId
+             ClientJPA client = map(source.getClientId(), ClientJPA.class);
+             examRequestJPA.setClient(client);
+
+             // Converte a lista de ExamTestId para uma lista de ExamTestJPA
+             List<ExamTestJPA> examTestJPAList = source.getExamTestList().stream()
+                 .map(examTestId -> map(examTestId, ExamTestJPA.class))
+                 .collect(Collectors.toList());
+             examRequestJPA.setExamTestList(examTestJPAList);
+
+             examRequestJPA.setRequestDate(source.getRequestDate());
+             examRequestJPA.setTotalPrice(source.getTotalPrice());
+             examRequestJPA.setPaymentMethod(source.getPaymentMethod());
+             examRequestJPA.setStatus(source.getStatus());
+
+             	return examRequestJPA;
+         	}
+     	});
+
+
+
+        
+	     // EXAM TEST ============================
+	
+	     // Converter de ExamTestJPA -> ExamTest
+	     addConverter(new AbstractConverter<ExamTestJPA, ExamTest>() {
+	         @Override
+	         protected ExamTest convert(ExamTestJPA source) {
+	             return new ExamTest(
+	                 new ExamTestId(source.getExamTestId()),
+	                 new ExamId(source.getExam().getId()),  // Obtém o ID do Exam
+	                 new TestResultId(source.getTestResult().getTestResultId()),
+	                 source.getStatus()
+	             );
+	         }
+	     });
+	
+	     // Converter de ExamTest -> ExamTestJPA
+	     addConverter(new AbstractConverter<ExamTest, ExamTestJPA>() {
+	         @Override
+	         protected ExamTestJPA convert(ExamTest source) {
+	             ExamTestJPA examTestJPA = new ExamTestJPA();
+	             examTestJPA.setExamTestId(source.getId().getId());
+	             
+	             // Mapeamento do objeto Exam e TestResult
+	             examTestJPA.setExam(map(source.getExamId(), ExamJPA.class));
+	             examTestJPA.setTestResult(map(source.getTestResultId(), TestResultJPA.class));
+	             
+             examTestJPA.setStatus(source.getStatus());
+             return examTestJPA;
+         }
+     });
         
     }
 

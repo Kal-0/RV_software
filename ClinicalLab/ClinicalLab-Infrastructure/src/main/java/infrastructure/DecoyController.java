@@ -1,10 +1,10 @@
 package infrastructure;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import domain.entities.exam.ExamRepository;
+import infrastructure.decoy.DecoyPersistence3;
+import infrastructure.persistence.jpa.ServiceNumberJPA;
 
 @RestController
 public class DecoyController {
@@ -13,9 +13,7 @@ public class DecoyController {
     public String teste() {
 //    	ServiceNumberJPA sn1 = new ServiceNumberJPA();
 //    	sn1.isPriority = 
-    	
-    	
-    	
+    	DecoyPersistence3.main(null);
         return "A aplicação está rodando!";
         
     }

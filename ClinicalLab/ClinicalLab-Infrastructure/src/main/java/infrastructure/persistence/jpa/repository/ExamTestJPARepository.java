@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import infrastructure.persistence.jpa.ExamTestJPA;
 
-public interface ExamTestRepository extends JpaRepository<ExamTestJPA, Integer>{
+public interface ExamTestJPARepository extends JpaRepository<ExamTestJPA, Integer>{
 
 }

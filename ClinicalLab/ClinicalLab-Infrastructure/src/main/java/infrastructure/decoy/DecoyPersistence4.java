@@ -1,14 +1,29 @@
 package infrastructure.decoy;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import domain.entities.client.ClientId;
 import domain.entities.exam.Exam;
 import domain.entities.exam.ExamId;
 import domain.entities.exam.ExamRepository;
+import domain.entities.examrequest.ExamRequest;
+import domain.entities.examrequest.ExamRequestId;
+import domain.entities.examrequest.ExamRequestRepository;
+import domain.entities.examtest.ExamTest;
+import domain.entities.examtest.ExamTestId;
+import domain.entities.examtest.ExamTestRepository;
 import domain.entities.servicenumber.ServiceNumber;
 import domain.entities.servicenumber.ServiceNumberId;
 import domain.entities.servicenumber.ServiceNumberRepository;
+import domain.entities.testresult.TestResult;
+import domain.entities.testresult.TestResultId;
+import domain.entities.testresult.TestResultRepository;
 
 @Component
 public class DecoyPersistence4 {
@@ -19,6 +34,14 @@ public class DecoyPersistence4 {
 	@Autowired
 	private ServiceNumberRepository serviceNumberRepository;
 	
+	@Autowired
+	private TestResultRepository testResultRepository;
+	
+	@Autowired
+	private  ExamTestRepository  examTestRepository;
+	
+	@Autowired
+	private ExamRequestRepository examRequestRepository;
 
     public void executeTest() {
         // Criando instâncias para o Exam
@@ -53,9 +76,6 @@ public class DecoyPersistence4 {
         
         
         
-        
-     
-        
 
         // Criando instâncias para o ServiceNumber
         ServiceNumberId serviceNumberId = new ServiceNumberId(1); // Supondo que ServiceNumberId tenha um construtor que aceita um int
@@ -85,6 +105,92 @@ public class DecoyPersistence4 {
 //        // Teste de deleção do ServiceNumber
 //        serviceNumberRepository.delete(serviceNumberId);
 //        System.out.println("ServiceNumber deletado: " + (serviceNumberRepository.get(serviceNumberId) == null ? "Sim" : "Não"));
+        
+        TestResultId testResultId = new TestResultId(1); // Supondo que TestResultId tenha um construtor que aceita um int
+        LocalDate resultDate = LocalDate.of(2024, 1, 1);
+        String resultContent = "Conteúdo do Resultado de Teste";
+
+        // Teste de criação e salvamento de um TestResult
+        TestResult newTestResult = new TestResult(testResultId, resultDate, resultContent);
+        testResultRepository.save(newTestResult);
+        System.out.println("TestResult salvo: " + newTestResult);
+
+        // Teste de recuperação do TestResult
+        TestResult retrievedTestResult = testResultRepository.get(testResultId);
+        if (retrievedTestResult != null) {
+            System.out.println("TestResult recuperado: " + retrievedTestResult);
+        } else {
+            System.err.println("Erro: TestResult não encontrado.");
+        }
+
+        // Teste de atualização do TestResult
+        newTestResult.setResultContent("Conteúdo Atualizado do Resultado de Teste");
+        testResultRepository.update(newTestResult);
+        TestResult updatedTestResult = testResultRepository.get(testResultId);
+        System.out.println("TestResult atualizado: " + (updatedTestResult != null ? updatedTestResult : "Erro na atualização"));
+
+        // Teste de deleção do TestResult (opcional)
+        // testResultRepository.delete(testResultId);
+        // System.out.println("TestResult deletado: " + (testResultRepository.get(testResultId) == null ? "Sim" : "Não"));
+        
+
+        ExamTestId examTestId = new ExamTestId(1); // Criando um ID para o Teste de Exame
+        ExamId examIds = new ExamId(1);
+        TestResultId testResultIds = new TestResultId(1);
+        String statusExamTest = "Ta testando ainda";
+        
+        // Teste de criação e salvamento de um ExamTest
+        ExamTest newExamTest = new ExamTest(examTestId, examIds, testResultIds, statusExamTest);
+        examTestRepository.save(newExamTest); // Salvando o Exame no repositório
+        System.out.println("ExamTest salvo: " + newExamTest);
+        
+        
+        // TESTE DO EXAM REQUEST
+        
+        /*
     
+        // Criando instâncias para o ExamRequest
+        ExamRequestId examRequestId = new ExamRequestId(1);
+        ClientId clientId = new ClientId(1);
+        LocalDate requestDate = LocalDate.of(2024, 1, 15);
+        Double totalPrice = 500.0;
+        String paymentMethod = "Cartão de Crédito";
+        String statUus = "Pendente";
+
+        List<ExamTestId> examTestList = java.util.stream.Stream.of(1, 2)
+        	    .map(ExamTestId::new) // Cria uma instância de ExamTestId para cada número
+        	    .collect(Collectors.toList());
+
+        // Teste de criação e salvamento de um ExamRequest
+        ExamRequest newExamRequest = new ExamRequest(
+            examRequestId,
+            clientId,
+            examTestList,
+            requestDate,
+            totalPrice,
+            paymentMethod,
+            statUus
+        );
+        examRequestRepository.save(newExamRequest);
+        System.out.println("ExamRequest salvo: " + newExamRequest);
+
+        // Teste de recuperação do ExamRequest
+        ExamRequest retrievedExamRequest = examRequestRepository.get(examRequestId);
+        if (retrievedExamRequest != null) {
+            System.out.println("ExamRequest recuperado: " + retrievedExamRequest);
+        } else {
+            System.err.println("Erro: ExamRequest não encontrado.");
+        }
+
+        // Teste de atualização do ExamRequest
+        newExamRequest.setStatus("Finalizado");
+        examRequestRepository.update(newExamRequest);
+        ExamRequest updatedExamRequest = examRequestRepository.get(examRequestId);
+        System.out.println("ExamRequest atualizado: " + (updatedExamRequest != null ? updatedExamRequest : "Erro na atualização"));
+
+        // Teste de deleção do ExamRequest (opcional)
+        // examRequestRepository.delete(examRequestId);
+        // System.out.println("ExamRequest deletado: " + (examRequestRepository.get(examRequestId) == null ? "Sim" : "Não"));
+        */
     }
 }
