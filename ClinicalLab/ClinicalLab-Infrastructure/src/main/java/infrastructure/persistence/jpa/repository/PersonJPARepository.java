@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import infrastructure.persistence.jpa.PersonJPA;
 
-public interface PersonRepository extends JpaRepository<PersonJPA, Integer>{
+public interface PersonJPARepository extends JpaRepository<PersonJPA, Integer>{
 
 }

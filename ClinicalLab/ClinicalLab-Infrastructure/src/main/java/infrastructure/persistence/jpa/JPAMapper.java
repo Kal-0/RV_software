@@ -20,6 +20,7 @@ import domain.entities.examtest.ExamTest;
 import domain.entities.examtest.ExamTestId;
 import domain.entities.person.Cpf;
 import domain.entities.person.Email;
+import domain.entities.person.Person;
 import domain.entities.person.PersonId;
 import domain.entities.servicenumber.ServiceNumber;
 import domain.entities.servicenumber.ServiceNumberId;
@@ -234,6 +235,37 @@ public class JPAMapper extends ModelMapper {
              return examTestJPA;
          }
      });
+	     
+	  // PERSON =========================================
+
+	  // Conversor para PersonJPA -> Person
+	  addConverter(new AbstractConverter<PersonJPA, Person>() {
+	      @Override
+	      protected Person convert(PersonJPA source) {
+	          return new Person(
+	              new PersonId(source.getId()),
+	              new Cpf(source.getCpf()),
+	              new Email(source.getContactEmail()),
+	              source.getName(),
+	              source.getBirthDate()
+	          );
+	      }
+	  });
+
+	  // Conversor para Person -> PersonJPA
+	  addConverter(new AbstractConverter<Person, PersonJPA>() {
+	      @Override
+	      protected PersonJPA convert(Person source) {
+	          PersonJPA personJPA = new PersonJPA();
+	          personJPA.setId(source.getId().getId());
+	          personJPA.setCpf(source.getCpf().getCpf());
+	          personJPA.setContactEmail(source.getContactEmail().getEmailText());
+	          personJPA.setName(source.getName());
+	          personJPA.setBirthDate(source.getBirthDate());
+	          return personJPA;
+	      }
+	  });
+
         
     }
 

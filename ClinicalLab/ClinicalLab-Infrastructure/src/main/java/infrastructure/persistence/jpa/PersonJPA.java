@@ -2,6 +2,13 @@ package infrastructure.persistence.jpa;
 
 import java.time.LocalDate;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import domain.entities.person.Person;
+import domain.entities.person.PersonId;
+import domain.entities.person.PersonRepository;
+import infrastructure.persistence.jpa.repository.PersonJPARepository;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +20,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "People")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class PersonJPA {
+public class PersonJPA {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -58,4 +65,36 @@ public abstract class PersonJPA {
 
     // Construtores, getters e setters
     
+}
+@Repository
+class PersonRepositoryImpl implements PersonRepository {
+
+    @Autowired
+    private PersonJPARepository personJPARepository;
+
+    @Autowired
+    private JPAMapper mapper;
+
+    @Override
+    public void save(Person person) {
+        PersonJPA personJPA = mapper.map(person, PersonJPA.class);
+        personJPARepository.save(personJPA);
+    }
+
+    @Override
+    public void delete(PersonId id) {
+        personJPARepository.deleteById(id.getId());
+    }
+
+    @Override
+    public Person get(PersonId id) {
+        PersonJPA personJPA = personJPARepository.findById(id.getId()).orElse(null);
+        return mapper.map(personJPA, Person.class);
+    }
+
+    @Override
+    public void update(Person person) {
+        PersonJPA personJPA = mapper.map(person, PersonJPA.class);
+        personJPARepository.save(personJPA);
+    }
 }
