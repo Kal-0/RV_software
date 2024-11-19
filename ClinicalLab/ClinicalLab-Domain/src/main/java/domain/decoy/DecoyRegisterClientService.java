@@ -45,13 +45,13 @@ public class DecoyRegisterClientService {
 //		criando exame
 		Exam ex1 = new Exam(new ExamId(1), "exame1", "requirements1", 15.00, 2);
 		
-		ExamTest ext1 = new ExamTest(new ExamTestId(1), ex1.getId(), null);
-		List<ExamTestId> lext1 = new ArrayList<ExamTestId>();
-		lext1.add(ext1.getId());
+		//ExamTest ext1 = new ExamTest(new ExamTestId(1), ex1.getId(), null);
+		//List<ExamTestId> lext1 = new ArrayList<ExamTestId>();
+		//lext1.add(ext1.getId());
 		
-		ExamRequest er2 = new ExamRequest(new ExamRequestId(1), c1.getClientId(), lext1, LocalDate.now(), null, null, "new");
-		ClientServices cs1 = new ClientServices(new ClientServiceId(1),
-				new ServiceNumber("001", false), er2.getExamRequestId(), "waiting for service");
+		//ExamRequest er2 = new ExamRequest(new ExamRequestId(1), c1.getClientId(), lext1, LocalDate.now(), null, null, "new");
+		//ClientServices cs1 = new ClientServices(new ClientServiceId(1),
+				//new ServiceNumber("001", false), er2.getExamRequestId(), "waiting for service");
 		
 		
         

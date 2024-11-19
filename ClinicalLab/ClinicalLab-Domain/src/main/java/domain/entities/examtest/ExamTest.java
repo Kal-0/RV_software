@@ -10,11 +10,12 @@ public class ExamTest {
     private TestResultId testResultId;
     private String status; 
     
-	public ExamTest(ExamTestId id, ExamId examId, TestResultId testResultId) {
+	public ExamTest(ExamTestId id, ExamId examId, TestResultId testResultId, String status) {
 		super();
 		this.id = id;
 		this.examId = examId;
 		this.testResultId = testResultId;
+		this.status = status;
 	}
 
 	public ExamTestId getId() {
