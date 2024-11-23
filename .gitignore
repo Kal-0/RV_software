@@ -1,64 +1,55 @@
-HELP.md
+# Maven
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+# Gradle
+.gradle/
+/nb-gradle/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
-.vscode/
-
-### MACOS ###
-.DS_Store
-
-# Eclipse specific files
-.project
-.classpath
-.settings/
-
-# Binary directories
-bin/
-target/
-build/
-
-# Local configuration files
-*.launch
-.metadata/
-.recommenders/
-.org.eclipse.core.resources/
-
-# Ignore IDE-specific directories
+# IntelliJ IDEA
 .idea/
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# Visual Studio Code
 .vscode/
 
-# Compiled class files
-*.class
+# Node.js and frontend
+node_modules/
+ClinicalLab/ClinicalLab-Apresentacao/frontend/node/node
+ClinicalLab/ClinicalLab-Apresentacao/frontend/node/npm
+ClinicalLab/ClinicalLab-Apresentacao/frontend/node/npm.cmd
 
-# Log and temporary files
+dist/
+build/
+yarn.lock
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs and temporary files
 *.log
 tmp/
 
@@ -66,12 +57,17 @@ tmp/
 .DS_Store
 Thumbs.db
 
-# Maven and Gradle build directories
-/target/
-/.mvn/
-/.gradle/
+# Compiled class files
+*.class
 
+# Local configuration files
+*.launch
+.metadata/
+.recommenders/
+.org.eclipse.core.resources/
 
+# Binary directories
+bin/
 
 # PlantUML
 src-gen/
