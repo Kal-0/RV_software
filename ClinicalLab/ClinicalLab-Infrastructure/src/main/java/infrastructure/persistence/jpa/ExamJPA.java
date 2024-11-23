@@ -7,7 +7,6 @@ import domain.entities.exam.Exam;
 import domain.entities.exam.ExamId;
 import domain.entities.exam.ExamRepository;
 import infrastructure.persistence.jpa.repository.ExamJPARepository;
-import infrastructure.persistence.mappers.ExamMapper;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
