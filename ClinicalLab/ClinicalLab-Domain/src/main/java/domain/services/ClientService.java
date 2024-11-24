@@ -7,6 +7,7 @@ import domain.entities.client.ClientId;
 import domain.entities.client.ClientRepository;
 import domain.entities.person.Cpf;
 
+
 public class ClientService {
 	
     private ClientRepository clientRepository;

@@ -8,6 +8,7 @@ import domain.entities.clientservice.ClientServices;
 import domain.entities.examrequest.ExamRequest;
 import domain.entities.examrequest.ExamRequestId;
 
+
 public class ClientServiceService {
 	private ClientServiceRepository clientServiceRepository;
 
