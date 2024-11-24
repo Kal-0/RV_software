@@ -10,6 +10,8 @@ import org.modelmapper.config.Configuration.AccessLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import domain.entities.attendant.Attendant;
+import domain.entities.attendant.AttendantId;
 import domain.entities.client.Client;
 import domain.entities.client.ClientId;
 import domain.entities.exam.Exam;
@@ -42,6 +44,40 @@ public class JPAMapper extends ModelMapper {
     }
 
     private void addGenericConverters() {
+    	// PERSON =========================================
+
+    	  // Conversor para PersonJPA -> Person
+    	  addConverter(new AbstractConverter<PersonJPA, Person>() {
+    	      @Override
+    	      protected Person convert(PersonJPA source) {
+    	          return new Person(
+    	              new PersonId(source.getId()),
+    	              new Cpf(source.getCpf()),
+    	              new Email(source.getContactEmail()),
+    	              source.getName(),
+    	              source.getBirthDate()
+    	          );
+    	      }
+    	  });
+
+    	  // Conversor para Person -> PersonJPA
+    	  addConverter(new AbstractConverter<Person, PersonJPA>() {
+    	      @Override
+    	      protected PersonJPA convert(Person source) {
+    	          PersonJPA personJPA = new PersonJPA();
+    	          personJPA.setId(source.getId().getId());
+    	          personJPA.setCpf(source.getCpf().getCpf());
+    	          personJPA.setContactEmail(source.getContactEmail().getEmailText());
+    	          personJPA.setName(source.getName());
+    	          personJPA.setBirthDate(source.getBirthDate());
+    	          return personJPA;
+    	      }
+    	  });
+    	
+    	
+//    	==============CLIENT=================
+    	
+    	
         // Converter para ClientJPA -> Client
         addConverter(new AbstractConverter<ClientJPA, Client>() {
             @Override
@@ -56,7 +92,7 @@ public class JPAMapper extends ModelMapper {
                 );
             }
         });
-
+        
         // Converter para Client -> ClientJPA
         addConverter(new AbstractConverter<Client, ClientJPA>() {
             @Override
@@ -71,6 +107,49 @@ public class JPAMapper extends ModelMapper {
                 return clientJPA;
             }
         });
+        
+        
+        
+//    	==============ATTENDANT=================
+    	
+    	
+        // Converter para AttendantJPA -> Attendant
+        addConverter(new AbstractConverter<AttendantJPA, Attendant>() {
+            @Override
+            protected Attendant convert(AttendantJPA source) {
+                return new Attendant(
+                    new PersonId(source.getId()),
+                    new Cpf(source.getCpf()),
+                    new Email(source.getContactEmail()),
+                    source.getName(),
+                    source.getBirthDate(),
+                    new AttendantId(source.getAttendantId()),
+                    source.getPassword()
+                );
+            }
+        });
+        
+     // Converter para Attendant -> AttendantJPA
+        addConverter(new AbstractConverter<Attendant, AttendantJPA>() {
+            @Override
+            protected AttendantJPA convert(Attendant source) {
+                AttendantJPA attendantJPA = new AttendantJPA();
+                attendantJPA.setId(source.getId().getId());
+                attendantJPA.setCpf(source.getCpf().getCpf());
+                attendantJPA.setContactEmail(source.getContactEmail().getEmailText());
+                attendantJPA.setName(source.getName());
+                attendantJPA.setBirthDate(source.getBirthDate());
+                attendantJPA.setAttendantId(source.getAttendantId().getId());
+                attendantJPA.setPassword(source.getPassword());
+                return attendantJPA;
+            }
+        });
+
+        
+        
+        
+        
+        
 
         
         // EXAM ============================================================
@@ -236,35 +315,7 @@ public class JPAMapper extends ModelMapper {
          }
      });
 	     
-	  // PERSON =========================================
-
-	  // Conversor para PersonJPA -> Person
-	  addConverter(new AbstractConverter<PersonJPA, Person>() {
-	      @Override
-	      protected Person convert(PersonJPA source) {
-	          return new Person(
-	              new PersonId(source.getId()),
-	              new Cpf(source.getCpf()),
-	              new Email(source.getContactEmail()),
-	              source.getName(),
-	              source.getBirthDate()
-	          );
-	      }
-	  });
-
-	  // Conversor para Person -> PersonJPA
-	  addConverter(new AbstractConverter<Person, PersonJPA>() {
-	      @Override
-	      protected PersonJPA convert(Person source) {
-	          PersonJPA personJPA = new PersonJPA();
-	          personJPA.setId(source.getId().getId());
-	          personJPA.setCpf(source.getCpf().getCpf());
-	          personJPA.setContactEmail(source.getContactEmail().getEmailText());
-	          personJPA.setName(source.getName());
-	          personJPA.setBirthDate(source.getBirthDate());
-	          return personJPA;
-	      }
-	  });
+	 
 
         
     }

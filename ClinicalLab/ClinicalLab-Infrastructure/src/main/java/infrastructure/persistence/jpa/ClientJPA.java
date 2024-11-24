@@ -8,14 +8,16 @@ import domain.entities.client.ClientId;
 import domain.entities.client.ClientRepository;
 import domain.entities.person.Cpf;
 import infrastructure.persistence.jpa.repository.ClientJPARepository;
-import infrastructure.persistence.jpa.repository.ExamJPARepository;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Clients")
+@PrimaryKeyJoinColumn(name = "id") // Define que 'id' é a chave estrangeira que referencia 'People'
 public class ClientJPA extends PersonJPA {
-
+	@Column(unique = true)
 	private int clientId;
 	
 	public void setClientId(int id) {

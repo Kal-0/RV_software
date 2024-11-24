@@ -1,5 +1,10 @@
 package infrastructure.decoy;
 
+import java.time.LocalDate;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import domain.entities.client.Client;
 import domain.entities.client.ClientId;
 import domain.entities.client.ClientRepository;
@@ -10,10 +15,6 @@ import domain.entities.person.Cpf;
 import domain.entities.person.Email;
 import domain.entities.person.PersonId;
 import infrastructure.Aplicacao;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import java.time.LocalDate;
 
 public class DecoyPersistence3 {
 
