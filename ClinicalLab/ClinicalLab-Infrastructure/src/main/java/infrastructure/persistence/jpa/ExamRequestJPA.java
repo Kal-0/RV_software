@@ -3,6 +3,7 @@ package infrastructure.persistence.jpa;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,7 @@ import domain.entities.examrequest.ExamRequestId;
 import domain.entities.examrequest.ExamRequestRepository;
 import infrastructure.persistence.jpa.repository.ExamRequestJPARepository;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 
 @Entity
 @Table(name = "Exam_Request")
@@ -117,12 +119,14 @@ class ExamRequestRepositoryImpl implements ExamRequestRepository {
     public void delete(ExamRequestId id) {
         examRequestJPARepository.deleteById(id.getId());
     }
-
+    
+    @Transactional
     @Override
     public ExamRequest get(ExamRequestId id) {
         ExamRequestJPA examRequestJPA = examRequestJPARepository.findById(id.getId()).orElse(null);
         return mapper.map(examRequestJPA, ExamRequest.class);
     }
+
 
     @Override
     public void update(ExamRequest examRequest) {
