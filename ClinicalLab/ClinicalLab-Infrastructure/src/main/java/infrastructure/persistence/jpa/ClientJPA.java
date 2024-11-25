@@ -1,6 +1,7 @@
 package infrastructure.persistence.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import domain.entities.client.Client;

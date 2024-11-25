@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -17,8 +18,8 @@
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.12.0</version>
-
                 <executions>
+                    <!-- Instalar Node.js e NPM, uma vez durante o build -->
                     <execution>
                         <id>install-node-and-npm</id>
                         <goals>
@@ -30,6 +31,7 @@
                         </configuration>
                     </execution>
 
+                    <!-- Instalar dependências do NPM -->
                     <execution>
                         <id>npm-install</id>
                         <goals>
@@ -40,14 +42,16 @@
                         </configuration>
                     </execution>
 
+                    <!-- Rodar o build do frontend, em vez de npm run dev (que é contínuo) -->
                     <execution>
-                        <id>npm-run-dev</id>
+                        <id>npm-run-build</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>run dev</arguments>
+                            <arguments>run build</arguments> <!-- Altere para um build, não para o modo dev -->
                         </configuration>
+                        <phase>compile</phase> <!-- Executa no ciclo de compile, para não ficar em loop -->
                     </execution>
                 </executions>
             </plugin>

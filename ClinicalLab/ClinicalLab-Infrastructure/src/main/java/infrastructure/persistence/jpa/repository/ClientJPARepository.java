@@ -12,7 +12,7 @@ public interface ClientJPARepository extends JpaRepository<ClientJPA, Integer>{
 	Optional<ClientJPA> findByClientId(Integer clientId);
 	Optional<ClientJPA> findByCpf(String cpf);
 	Optional<ClientJPA> findByName(String name);
-	Optional<ClientJPA> deleteByClientId(Integer clientId);
-	Optional<ClientJPA> deleteByCpf(String cpf);
+	void deleteByClientId(Integer clientId);
+	void deleteByCpf(String cpf);
 
 }

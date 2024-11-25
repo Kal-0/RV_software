@@ -19,9 +19,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 		<module>ClinicalLab-Infrastructure</module>
 		<module>ClinicalLab-BDD</module>
 		<module>ClinicalLab-Domain</module>
-		<module>ClinicalLab-Presentation</module>
 		<module>ClinicalLab-Pai</module>
 		<module>ClinicalLab-Docker</module>
+		<module>ClinicalLab-Presentation</module>
 	</modules>
   
 </project>
