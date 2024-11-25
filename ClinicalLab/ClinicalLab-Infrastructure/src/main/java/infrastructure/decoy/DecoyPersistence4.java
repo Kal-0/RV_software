@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import domain.entities.attendant.Attendant;
+import domain.entities.attendant.AttendantRepository;
 import domain.entities.client.Client;
 import domain.entities.client.ClientId;
 import domain.entities.client.ClientRepository;
@@ -47,17 +49,31 @@ public class DecoyPersistence4 {
 	
 	@Autowired
 	private ClientRepository clientRepository;
+	
+	@Autowired
+	private AttendantRepository attendantRepository;
 
     public void executeTest() {
     	
-//      CRIAÇÂO DE CLIENTE
-        
+//       CLIENT
+    	
+        // criacao de cliente
     	Client c1 = new Client(1, "123.456.789-00", "email@email.com", "cao", "2004-06-14", 1);
   		clientRepository.save(c1);
   		
   		Client c1Copy = clientRepository.get(c1.getClientId());
   		System.out.println(c1Copy.getCpf().getCpf());
     	
+  		
+  		
+//  		ATTENDANT
+  		//criacao de attendant
+  		Attendant a1 = new Attendant(1, "123.456.789-00", "email@email.com", "cao", "2004-06-14", 1, "pass");
+  		attendantRepository.save(a1);
+  		
+  		Attendant a1Copy = attendantRepository.get(a1.getAttendantId());
+  		System.out.println(a1Copy.getName());
+  		
   		
 //  		EXAM
     	
@@ -141,8 +157,8 @@ public class DecoyPersistence4 {
         
       
       
-////    TESTE DO EXAM REQUEST
-//      
+//    TESTE DO EXAM REQUEST
+      
 //      // Criando instâncias para o ExamRequest
 //      ExamRequestId examRequestId = new ExamRequestId(1);
 //      ClientId clientId = new ClientId(1);
@@ -185,7 +201,7 @@ public class DecoyPersistence4 {
 //      // Teste de deleção do ExamRequest (opcional)
 //      // examRequestRepository.delete(examRequestId);
 //      // System.out.println("ExamRequest deletado: " + (examRequestRepository.get(examRequestId) == null ? "Sim" : "Não"));
-//        
+        
       
       
         

@@ -36,10 +36,14 @@ build/
 .vscode/
 
 # Node.js and frontend
+# Ignorar dependências do Node.js
+/ClinicalLab/ClinicalLab-Apresentacao/frontend/node/
+/ClinicalLab/ClinicalLab-Apresentacao/frontend/node_modules/
 node_modules/
 ClinicalLab/ClinicalLab-Apresentacao/frontend/node/node
 ClinicalLab/ClinicalLab-Apresentacao/frontend/node/npm
 ClinicalLab/ClinicalLab-Apresentacao/frontend/node/npm.cmd
+
 
 dist/
 build/
