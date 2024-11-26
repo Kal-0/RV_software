@@ -43,7 +43,6 @@ public class ClientController {
         List<ClientJPA> clientsJPA = new ArrayList<ClientJPA>();
         
         for (Client client : clients) {
-        	System.out.println(client.getName());
         	clientsJPA.add(mapper.map(client, ClientJPA.class ));
 		}
         		

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import domain.entities.client.Client;
 import domain.entities.examrequest.ExamRequest;
 import domain.entities.examrequest.ExamRequestId;
 import domain.entities.examrequest.ExamRequestRepository;
@@ -131,6 +132,17 @@ class ExamRequestRepositoryImpl implements ExamRequestRepository {
         ExamRequestJPA examRequestJPA = examRequestJPARepository.findById(id.getId()).orElse(null);
         return mapper.map(examRequestJPA, ExamRequest.class);
     }
+    
+    @Override
+	public List<ExamRequest> getAll() {
+	    // Busca todas as entidades ClientzJPA do banco de dados
+	    List<ClientJPA> clientsJPA = clientJPARepository.findAll();
+
+	    // Mapeia cada ClientJPA para Client (domínio) usando o mapper
+	    return clientsJPA.stream()
+	                     .map(clientJPA -> mapper.map(clientJPA, Client.class))
+	                     .toList();
+	}
 
     @Override
     public void update(ExamRequest examRequest) {
