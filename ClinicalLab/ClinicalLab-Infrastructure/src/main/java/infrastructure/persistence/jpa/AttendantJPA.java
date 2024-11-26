@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 @PrimaryKeyJoinColumn(name = "id") // Define que 'id' é a chave estrangeira que referencia 'People'
 public class AttendantJPA extends PersonJPA {
 	@Column(unique = true)
-	private int attendantId;
+	private Integer attendantId;
 	private String password;
    
 	public int getAttendantId() {

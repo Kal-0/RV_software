@@ -23,7 +23,7 @@ import jakarta.persistence.Table;
 public class PersonJPA {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String cpf;
     private String contactEmail;

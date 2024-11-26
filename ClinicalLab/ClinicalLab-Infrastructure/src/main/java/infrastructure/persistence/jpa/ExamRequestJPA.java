@@ -3,6 +3,7 @@ package infrastructure.persistence.jpa;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,7 @@ import domain.entities.examrequest.ExamRequest;
 import domain.entities.examrequest.ExamRequestId;
 import domain.entities.examrequest.ExamRequestRepository;
 import infrastructure.persistence.jpa.repository.ExamRequestJPARepository;
+import jakarta.transaction.Transactional;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,13 +23,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+
 @Entity
 @Table(name = "Exam_Request")
 public class ExamRequestJPA {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int examRequestId;
+    private Integer examRequestId;
 
     @ManyToOne
     @JoinColumn(name = "Client_Id")
@@ -49,7 +52,7 @@ public class ExamRequestJPA {
     @Column(name = "status", nullable = false)
     private String status;
 
-	public int getExamRequestId() {
+	public Integer getExamRequestId() {
 		return examRequestId;
 	}
 
@@ -126,7 +129,8 @@ class ExamRequestRepositoryImpl implements ExamRequestRepository {
     public void delete(ExamRequestId id) {
         examRequestJPARepository.deleteById(id.getId());
     }
-
+    
+    @Transactional
     @Override
     public ExamRequest get(ExamRequestId id) {
         ExamRequestJPA examRequestJPA = examRequestJPARepository.findById(id.getId()).orElse(null);
@@ -143,6 +147,7 @@ class ExamRequestRepositoryImpl implements ExamRequestRepository {
 	                     .map(clientJPA -> mapper.map(clientJPA, Client.class))
 	                     .toList();
 	}
+
 
     @Override
     public void update(ExamRequest examRequest) {
