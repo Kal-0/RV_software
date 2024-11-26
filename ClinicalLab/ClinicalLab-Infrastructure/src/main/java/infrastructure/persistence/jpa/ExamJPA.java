@@ -2,6 +2,8 @@ package infrastructure.persistence.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import domain.entities.exam.Exam;
 import domain.entities.exam.ExamId;
@@ -90,6 +92,14 @@ class ExamRepositoryImpl implements ExamRepository {
     public void update(Exam exam) {
         ExamJPA examJPA = mapper.map(exam, ExamJPA.class);
         examJPARepository.save(examJPA);
+    }
+    
+    @Override
+    public List<Exam> getAll() {
+        List<ExamJPA> examsJPA = examJPARepository.findAll();
+        return examsJPA.stream()
+                .map(examJPA -> mapper.map(examJPA, Exam.class))
+                .collect(Collectors.toList());
     }
 }
 

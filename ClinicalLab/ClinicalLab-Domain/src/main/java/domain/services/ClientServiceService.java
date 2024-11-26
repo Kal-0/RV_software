@@ -1,5 +1,6 @@
 package domain.services;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import domain.entities.clientservice.ClientServiceId;
@@ -10,8 +11,8 @@ import domain.entities.examrequest.ExamRequestId;
 
 
 public class ClientServiceService {
-	
-	private ClientServiceRepository clientServiceRepository;
+
+private ClientServiceRepository clientServiceRepository;
 
     public ClientServiceService(ClientServiceRepository repository) {
         this.clientServiceRepository = repository;
@@ -38,8 +39,35 @@ public class ClientServiceService {
     
     
     public void addExamRequest(ClientServices clientService, ExamRequest examRequest) {
-    	clientService.setExamRequestId(examRequest.getExamRequestId());
+    clientService.setExamRequestId(examRequest.getExamRequestId());
+    }
+    
+    public void delete(ClientServiceId id) {
+        ClientServices clientService = clientServiceRepository.get(id);
+        if (clientService != null) {
+            clientServiceRepository.delete(id);
+        } else {
+            throw new NoSuchElementException("No ClientService found with the given ID.");
+        }
     }
 
+
+    public ClientServices update(ClientServices clientService) {
+        if (clientService != null && clientServiceRepository.get(clientService.getId()) != null) {
+            clientServiceRepository.update(clientService);
+            return clientServiceRepository.get(clientService.getId());
+        } else {
+            throw new NoSuchElementException("ClientService not found for update.");
+        }
+    }
+   
+    public List<ClientServices> getAll(){
+    List<ClientServices> clientServices = clientServiceRepository.getAll();
+    if(clientServices == null || clientServices.isEmpty()) {
+    throw new NoSuchElementException("ClientService not found.");
+    }
+    
+    return clientServices;
+    }
     
 }

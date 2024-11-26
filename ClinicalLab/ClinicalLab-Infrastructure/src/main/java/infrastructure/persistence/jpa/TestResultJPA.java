@@ -2,10 +2,14 @@ package infrastructure.persistence.jpa;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import domain.entities.servicenumber.ServiceNumber;
 import domain.entities.testresult.TestResult;
 import domain.entities.testresult.TestResultId;
 import domain.entities.testresult.TestResultRepository;
@@ -84,4 +88,18 @@ class TestResultRepositoryImpl implements TestResultRepository {
         TestResultJPA testResultJPA = mapper.map(testResult, TestResultJPA.class);
         testResultJPARepository.save(testResultJPA);
     }
+    
+    @Override
+    public List<TestResult> getAll() {
+        List<TestResultJPA> testResultsJPA = testResultJPARepository.findAll();
+        
+        if (testResultsJPA == null || testResultsJPA.isEmpty()) {
+            throw new NoSuchElementException("No TestResult found.");
+        }
+        
+        return testResultsJPA.stream()
+                .map(testResultJPA -> mapper.map(testResultJPA, TestResult.class))
+                .collect(Collectors.toList());
+    }
+    
 }

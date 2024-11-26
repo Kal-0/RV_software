@@ -1,5 +1,8 @@
 package infrastructure.persistence.jpa;
 
+import java.util.stream.Collectors;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -99,5 +102,13 @@ class ClientServiceRepositoryImpl implements ClientServiceRepository {
     public void update(ClientServices clientService) {
         ClientServiceJPA clientServiceJPA = mapper.map(clientService, ClientServiceJPA.class);
         clientServiceJPARepository.save(clientServiceJPA);
+    }
+    
+    @Override
+    public List<ClientServices> getAll() {
+        List<ClientServiceJPA> clientServicesJPA = clientServiceJPARepository.findAll();
+        return clientServicesJPA.stream()
+                .map(clientServiceJPA -> mapper.map(clientServiceJPA, ClientServices.class))
+                .collect(Collectors.toList());
     }
 }

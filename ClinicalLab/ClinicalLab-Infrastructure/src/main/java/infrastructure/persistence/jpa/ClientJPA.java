@@ -1,6 +1,7 @@
 package infrastructure.persistence.jpa;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -89,7 +90,7 @@ class ClientRepositoryImpl implements ClientRepository {
 	    // Busca todas as entidades ClientJPA do banco de dados
 	    List<ClientJPA> clientsJPA = clientJPARepository.findAll();
 
-	    // Mapeia cada ClientJPA para Client (domínio) usando o mapper
+	    // Mapeia cada ClientJPA para Client (domÃ­nio) usando o mapper
 	    return clientsJPA.stream()
 	                     .map(clientJPA -> mapper.map(clientJPA, Client.class))
 	                     .toList();
