@@ -18,15 +18,15 @@ import jakarta.persistence.Table;
 @PrimaryKeyJoinColumn(name = "id") // Define que 'id' é a chave estrangeira que referencia 'People'
 public class ClientJPA extends PersonJPA {
 	@Column(unique = true)
-	private int clientId;
+	private Integer clientId;
 	
-	public void setClientId(int id) {
+	public void setClientId(Integer id) {
 		clientId = id;
 		
 		this.setId(clientId);
 	}
 	
-	public int getClientId() {
+	public Integer getClientId() {
 		return this.getId();
 	}
 

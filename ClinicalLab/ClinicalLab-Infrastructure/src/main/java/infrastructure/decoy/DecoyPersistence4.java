@@ -13,6 +13,9 @@ import domain.entities.attendant.AttendantRepository;
 import domain.entities.client.Client;
 import domain.entities.client.ClientId;
 import domain.entities.client.ClientRepository;
+import domain.entities.clientservice.ClientServiceId;
+import domain.entities.clientservice.ClientServiceRepository;
+import domain.entities.clientservice.ClientServices;
 import domain.entities.exam.Exam;
 import domain.entities.exam.ExamId;
 import domain.entities.exam.ExamRepository;
@@ -52,6 +55,9 @@ public class DecoyPersistence4 {
 	
 	@Autowired
 	private AttendantRepository attendantRepository;
+	
+	@Autowired
+	private ClientServiceRepository clientServiceRepository;
 
     public void executeTest() {
     	
@@ -246,10 +252,81 @@ public class DecoyPersistence4 {
         
 
         
-        
-        
-        
-        
+     // CLIENT SERVICES
+        System.out.println("== TESTANDO CLIENT SERVICES ==");
+
+        // Criando um ServiceNumber para associar ao ClientServices
+        ServiceNumberId serviceNumberIdForClientService = new ServiceNumberId(2); // ID para o ServiceNumber
+        String serviceNumberString = "SN54321";
+        boolean serviceNumberPriority = false;
+        String serviceNumberStatus = "Pendente";
+
+        ServiceNumber serviceNumberForClientService = new ServiceNumber(
+            serviceNumberIdForClientService,
+            serviceNumberString,
+            serviceNumberPriority,
+            serviceNumberStatus
+        );
+
+        // Salvando o ServiceNumber no repositório
+        serviceNumberRepository.save(serviceNumberForClientService);
+        System.out.println("ServiceNumber para ClientServices salvo: " + serviceNumberForClientService);
+
+        // Criando um ExamRequest para associar ao ClientServices (opcional)
+        ExamRequestId examRequestIdForClientService = new ExamRequestId(1);
+        ClientId clientIdForExamRequest = new ClientId(1);
+        LocalDate examRequestDate = LocalDate.of(2024, 12, 15);
+        Double examRequestTotalPrice = 300.0;
+        String examRequestPaymentMethod = "Boleto";
+        String examRequestStatus = "Aguardando Pagamento";
+
+        ExamRequest examRequestForClientService = new ExamRequest(
+            examRequestIdForClientService,
+            clientIdForExamRequest,
+            Arrays.asList(new ExamTestId(1)), // Lista de testes de exame
+            examRequestDate,
+            examRequestTotalPrice,
+            examRequestPaymentMethod,
+            examRequestStatus
+        );
+
+        // Salvando o ExamRequest no repositório
+        examRequestRepository.save(examRequestForClientService);
+        System.out.println("ExamRequest para ClientServices salvo: " + examRequestForClientService);
+
+        // Criando um ClientServices com os objetos associados
+        ClientServiceId clientServiceId = new ClientServiceId(1);
+        String clientServiceStatus = "Em Progresso";
+
+        ClientServices clientServices = new ClientServices(
+            clientServiceId,
+            serviceNumberForClientService,
+            examRequestIdForClientService,
+            clientServiceStatus
+        );
+
+        // Salvando o ClientServices no repositório
+        clientServiceRepository.save(clientServices);
+        System.out.println("ClientServices salvo: " + clientServices);
+
+        // Recuperando o ClientServices
+        ClientServices retrievedClientServices = clientServiceRepository.get(clientServiceId);
+        if (retrievedClientServices != null) {
+            System.out.println("ClientServices recuperado: " + retrievedClientServices);
+        } else {
+            System.err.println("Erro: ClientServices não encontrado.");
+        }
+
+        // Atualizando o ClientServices
+        retrievedClientServices.setStatus("Finalizado");
+        clientServiceRepository.update(retrievedClientServices);
+        ClientServices updatedClientServices = clientServiceRepository.get(clientServiceId);
+        System.out.println("ClientServices atualizado: " + (updatedClientServices != null ? updatedClientServices : "Erro na atualização"));
+
+        // Opcional: Teste de deleção
+        // clientServiceRepository.delete(clientServiceId);
+        // System.out.println("ClientServices deletado: " + (clientServiceRepository.get(clientServiceId) == null ? "Sim" : "Não"));
+
 
     }
 }

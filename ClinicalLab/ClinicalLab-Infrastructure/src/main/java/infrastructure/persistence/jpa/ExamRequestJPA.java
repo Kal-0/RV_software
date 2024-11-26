@@ -29,7 +29,7 @@ public class ExamRequestJPA {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int examRequestId;
+    private Integer examRequestId;
 
     @ManyToOne
     @JoinColumn(name = "Client_Id")
@@ -51,7 +51,7 @@ public class ExamRequestJPA {
     @Column(name = "status", nullable = false)
     private String status;
 
-	public int getExamRequestId() {
+	public Integer getExamRequestId() {
 		return examRequestId;
 	}
 
