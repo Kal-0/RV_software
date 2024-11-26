@@ -10,7 +10,7 @@ public interface ExamRequestRepository {
 	
 	public ExamRequest get(ExamRequestId id);
 	
-	public List<ExamRequest> getAll();
+	public List<ExamRequest> getExamRequestAll();
 	
 	public void update(ExamRequest examRequest);
 	

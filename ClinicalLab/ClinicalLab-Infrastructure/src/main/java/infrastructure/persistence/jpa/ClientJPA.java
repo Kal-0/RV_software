@@ -85,7 +85,7 @@ class ClientRepositoryImpl implements ClientRepository {
 	}
 	
 	@Override
-	public List<Client> getAll() {
+	public List<Client> getClientAll() {
 	    // Busca todas as entidades ClientJPA do banco de dados
 	    List<ClientJPA> clientsJPA = clientJPARepository.findAll();
 

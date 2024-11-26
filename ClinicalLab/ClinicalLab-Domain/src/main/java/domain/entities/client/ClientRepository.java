@@ -18,7 +18,7 @@ public interface ClientRepository {
 	
 	public Client get(String name);
 	
-	public List<Client> getAll();
+	public List<Client> getClientAll();
 	
 	public void update(Client client);
 	

@@ -136,6 +136,12 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
 
         return null;
     }
+    
+    @Override
+	public List<Client> getClientAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
     @Override
     public void update(Client client) {
@@ -219,6 +225,12 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
     }
     
     @Override
+	public List<ExamRequest> getExamRequestAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+    
+    @Override
     public void update(ExamRequest examRequest) {
     	if (examRequest == null) {
             throw new IllegalArgumentException("The Exam Request can not be null");
@@ -277,12 +289,16 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
 		
 	}
 
-	@Override
-	public List<Client> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	
+	
 
     
     
 }
+
+
+
+
+
+
