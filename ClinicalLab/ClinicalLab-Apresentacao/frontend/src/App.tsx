@@ -8,6 +8,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/registerclient" element={<RegisterClient />} />
+                <Route path="/examslist" element={<ExamsDisplay />} />
             </Routes>
         </Router>
     );
