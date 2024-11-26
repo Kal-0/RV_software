@@ -11,13 +11,15 @@ function App() {
     return (
         <Router>
             <Routes>
+                 {/* Home como layout pai */}
                 <Route path="/" element={<Home />} />
-                <Route path="/registerclient" element={<RegisterClient />} />
-                <Route path="/examslist" element={<ExamsList />} />
-                <Route path="/examrequest" element={<ExamRequest />} />
-                <Route path="/paymentmethod" element={<PaymentMethod />} />
-                <Route path="/servicenumber" element={<ServiceNumber />} />
-                <Route path="/listclient" element={<ListClient />} />
+                    {/* Rotas filhas renderizadas na Main */}
+                    <Route path="/servicenumber" element={<ServiceNumber />} />
+                    <Route path="/listclient" element={<ListClient />} />
+                    <Route path="/registerclient" element={<RegisterClient />} />
+                    <Route path="/examslist" element={<ExamsList />} />
+                    <Route path="/examrequest" element={<ExamRequest />} />
+                    <Route path="/paymentmethod" element={<PaymentMethod />} />
             </Routes>
         </Router>
     );
