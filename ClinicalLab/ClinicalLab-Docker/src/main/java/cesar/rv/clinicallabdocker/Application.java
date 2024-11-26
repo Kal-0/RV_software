@@ -11,6 +11,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import domain.entities.client.ClientRepository;
 import domain.services.ClientService;
+import domain.services.ServiceNumberService;
+import domain.entities.servicenumber.ServiceNumberRepository;
+/*import domain.entities.clientservice.ClientServiceRepository;
+import domain.services.ClientServiceService; */
+import domain.entities.examrequest.ExamRequestRepository;
+import domain.services.ExamRequestService;
+import domain.services.TotalPriceService;
+import domain.entities.examtest.ExamTestRepository;
+import domain.entities.exam.ExamRepository;
 
 
 @SpringBootApplication(scanBasePackages = {
@@ -39,15 +48,20 @@ public class Application {
 //        return new ClientServiceService(repository);
 //    }
 //
-//    @Bean
-//    public TotalPriceService totalPriceService(ExamTestRepository examTestRepository, ExamRepository examRepository) {
-//        return new TotalPriceService(examTestRepository, examRepository);
-//    }
-//
-//    @Bean
-//    public ExamRequestService examRequestService(ExamRequestRepository repository, TotalPriceService totalPriceService) {
-//        return new ExamRequestService(repository, totalPriceService);
-//    }
+    @Bean
+    public TotalPriceService totalPriceService(ExamTestRepository examTestRepository, ExamRepository examRepository) {
+        return new TotalPriceService(examTestRepository, examRepository);
+    }
+
+    @Bean
+    public ExamRequestService examRequestService(ExamRequestRepository repository, TotalPriceService totalPriceService) {
+        return new ExamRequestService(repository, totalPriceService);
+    }
+    
+    @Bean
+    public ServiceNumberService serviceNumberService(ServiceNumberRepository repository) {
+        return new ServiceNumberService(repository);
+    }
 
 
     public static void main(String[] args) {
