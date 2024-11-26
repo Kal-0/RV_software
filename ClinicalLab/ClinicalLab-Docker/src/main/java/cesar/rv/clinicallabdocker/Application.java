@@ -60,7 +60,7 @@ public class Application {
             System.out.println("Beans provided by Spring Boot:");
             String[] beanNames = ctx.getBeanDefinitionNames();
             for (String beanName : beanNames) {
-            	System.out.println(beanName);
+//            	System.out.println(beanName);
                 if (beanName.contains("domain")) { // Filtrar apenas beans do backend
                     System.out.println(beanName);
                     

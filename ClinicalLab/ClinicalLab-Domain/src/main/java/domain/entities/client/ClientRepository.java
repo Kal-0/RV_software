@@ -1,5 +1,7 @@
 package domain.entities.client;
 
+import java.util.List;
+
 import domain.entities.person.Cpf;
 
 public interface ClientRepository {
@@ -16,6 +18,9 @@ public interface ClientRepository {
 	
 	public Client get(String name);
 	
+	public List<Client> getAll();
+	
 	public void update(Client client);
+	
 	
 }
