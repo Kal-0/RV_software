@@ -1,12 +1,15 @@
 package backend.controllers;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import domain.entities.examrequest.ExamRequest;
 import domain.entities.examrequest.ExamRequestId;
-import domain.entities.client.ClientId;
 import domain.services.ExamRequestService;
+import infrastructure.persistence.jpa.ExamRequestJPA;
+import infrastructure.persistence.jpa.JPAMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -14,39 +17,62 @@ import java.util.List;
 public class ExamRequestController {
 
     @Autowired
+    private JPAMapper mapper;
+
+    @Autowired
     private ExamRequestService examRequestService;
 
     @PostMapping
-    public ResponseEntity<ExamRequest> register(@RequestBody ExamRequest examRequest) {
-        ExamRequest createdRequest = examRequestService.saveExamRequest(examRequest);
-        return ResponseEntity.status(201).body(createdRequest); // Retorna 201 Created
+    public ResponseEntity<ExamRequestJPA> register(@RequestBody ExamRequestJPA examRequestJPA) {
+        // Mapeia o DTO para a entidade de domínio
+        ExamRequest examRequest = mapper.map(examRequestJPA, ExamRequest.class);
+        // Salva no serviço
+        examRequest = examRequestService.saveExamRequest(examRequest);
+        // Mapeia de volta a entidade para o DTO
+        examRequestJPA = mapper.map(examRequest, ExamRequestJPA.class);
+        return ResponseEntity.status(201).body(examRequestJPA); // Retorna 201 Created
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ExamRequest> getExamRequestById(@PathVariable("id") int id) {
+    public ResponseEntity<ExamRequestJPA> getExamRequestById(@PathVariable("id") int id) {
+        // Cria o identificador da entidade
         ExamRequestId examRequestId = new ExamRequestId(id);
-        ExamRequest examRequest = examRequestService.findExamRequestById(examRequestId);
-        return ResponseEntity.ok(examRequest);
+        // Recupera a entidade do serviço
+        ExamRequest examRequest = examRequestService.getById(examRequestId);
+        // Mapeia a entidade para o DTO
+        ExamRequestJPA examRequestJPA = mapper.map(examRequest, ExamRequestJPA.class);
+        return ResponseEntity.ok(examRequestJPA);
     }
 
     @GetMapping
-    public ResponseEntity<List<ExamRequest>> findAll() {
-        List<ExamRequest> examRequests = examRequestService.getAllExamRequests();
-        return ResponseEntity.ok(examRequests);
+    public ResponseEntity<List<ExamRequestJPA>> findAll() {
+        // Recupera todas as entidades do serviço
+        List<ExamRequest> examRequests = examRequestService.getAll();
+        // Converte para DTOs
+        List<ExamRequestJPA> examRequestsJPA = new ArrayList<>();
+        for (ExamRequest examRequest : examRequests) {
+            examRequestsJPA.add(mapper.map(examRequest, ExamRequestJPA.class));
+        }
+        return ResponseEntity.ok(examRequestsJPA);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ExamRequest> updateExamRequest(@PathVariable("id") int id, @RequestBody ExamRequest examRequest) {
-        ExamRequestId examRequestId = new ExamRequestId(id);
-        examRequest.setExamRequestId(examRequestId);
-        ExamRequest updatedRequest = examRequestService.updateExamRequest(examRequest);
-        return ResponseEntity.ok(updatedRequest);
+    @PutMapping
+    public ResponseEntity<ExamRequestJPA> updateExamRequest(@RequestBody ExamRequestJPA examRequestJPA) {
+        // Mapeia o DTO para a entidade de domínio
+        ExamRequest examRequest = mapper.map(examRequestJPA, ExamRequest.class);
+        // Atualiza no serviço
+        examRequest = examRequestService.update(examRequest);
+        // Mapeia de volta a entidade para o DTO
+        examRequestJPA = mapper.map(examRequest, ExamRequestJPA.class);
+        return ResponseEntity.ok(examRequestJPA);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteExamRequest(@PathVariable("id") int id) {
+        // Cria o identificador da entidade
         ExamRequestId examRequestId = new ExamRequestId(id);
-        examRequestService.deleteExamRequestById(examRequestId);
+        // Remove a entidade no serviço
+        examRequestService.deleteById(examRequestId);
         return ResponseEntity.noContent().build(); // Retorna 204 No Content
     }
 }
