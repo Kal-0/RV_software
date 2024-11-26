@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 import domain.entities.examtest.ExamTest;
 import domain.entities.examtest.ExamTestId;
 import domain.entities.examtest.ExamTestRepository;
-import infrastructure.domainevent.DomainEventPublisher;
-import infrastructure.domainevent.ExamTestSavedEvent;
 import infrastructure.persistence.jpa.repository.ExamTestJPARepository;
 import jakarta.persistence.*;
 
@@ -76,16 +74,12 @@ class ExamTestRepositoryImpl implements ExamTestRepository {
     @Autowired
     private JPAMapper mapper;
     
-    @Autowired
-    private DomainEventPublisher eventPublisher;
 
 
     @Override
     public void save(ExamTest examTest) {
         ExamTestJPA examTestJPA = mapper.map(examTest, ExamTestJPA.class);
         examTestJPARepository.save(examTestJPA);
-        
-        eventPublisher.publish(new ExamTestSavedEvent(examTest));
     }
 
     @Override
