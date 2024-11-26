@@ -11,17 +11,36 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import domain.entities.client.ClientRepository;
 import domain.services.ClientService;
+import domain.services.ServiceNumberService;
+import domain.entities.servicenumber.ServiceNumberRepository;
+import domain.entities.clientservice.ClientServiceRepository;
+import domain.services.ClientServiceService; 
+import domain.entities.examrequest.ExamRequestRepository;
+import domain.services.ExamRequestService;
+import domain.services.TotalPriceService;
+import domain.entities.examtest.ExamTestRepository;
+import domain.services.ExamTestService;
+import domain.entities.exam.ExamRepository;
+import domain.services.ExamService;
+import domain.services.TestResultService;
+import domain.entities.testresult.TestResultRepository;
+import domain.services.AttendantService;
+import domain.entities.attendant.AttendantRepository;
+
+
 
 
 @SpringBootApplication(scanBasePackages = {
 	    "pai",
 		"cesar.rv.clinicallabdocker",
+		"infrastructure.domainevent",
 	    "infrastructure.persistence",
 	    "backend.controllers"
 	})
 @ComponentScan(basePackages = {
 		"pai",
 	    "cesar.rv.clinicallabdocker",
+	    "infrastructure.domainevent",
 	    "infrastructure.persistence",
 	    "backend.controllers"
 	})
@@ -33,21 +52,46 @@ public class Application {
     public ClientService clientService(ClientRepository repository) {
         return new ClientService(repository);
     }
+    
+    @Bean
+    public AttendantService attendantService(AttendantRepository repository) {
+        return new AttendantService(repository);
+    }
 
-//    @Bean
-//    public ClientServiceService clientServiceService(ClientServiceRepository repository) {
-//        return new ClientServiceService(repository);
-//    }
-//
-//    @Bean
-//    public TotalPriceService totalPriceService(ExamTestRepository examTestRepository, ExamRepository examRepository) {
-//        return new TotalPriceService(examTestRepository, examRepository);
-//    }
-//
-//    @Bean
-//    public ExamRequestService examRequestService(ExamRequestRepository repository, TotalPriceService totalPriceService) {
-//        return new ExamRequestService(repository, totalPriceService);
-//    }
+    @Bean
+    public ClientServiceService clientServiceService(ClientServiceRepository repository) {
+        return new ClientServiceService(repository);
+    }
+
+    @Bean
+    public ExamService examService(ExamRepository repository) {
+        return new ExamService(repository);
+    }
+    
+    @Bean
+    public ExamTestService examTestService(ExamTestRepository repository) {
+        return new ExamTestService(repository);
+    }
+    
+    @Bean
+    public TestResultService testResultService(TestResultRepository repository) {
+        return new TestResultService(repository);
+    }
+    
+    @Bean
+    public TotalPriceService totalPriceService(ExamTestRepository examTestRepository, ExamRepository examRepository) {
+        return new TotalPriceService(examTestRepository, examRepository);
+    }
+
+    @Bean
+    public ExamRequestService examRequestService(ExamRequestRepository repository, TotalPriceService totalPriceService) {
+        return new ExamRequestService(repository, totalPriceService);
+    }
+    
+    @Bean
+    public ServiceNumberService serviceNumberService(ServiceNumberRepository repository) {
+        return new ServiceNumberService(repository);
+    }
 
 
     public static void main(String[] args) {
