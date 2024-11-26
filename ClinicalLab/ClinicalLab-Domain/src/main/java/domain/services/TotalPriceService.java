@@ -9,6 +9,7 @@ import domain.entities.examrequest.ExamRequest;
 import domain.entities.examtest.ExamTestId;
 import domain.entities.examtest.ExamTestRepository;
 
+
 public class TotalPriceService {
 
     private final ExamTestRepository examTestRepository;

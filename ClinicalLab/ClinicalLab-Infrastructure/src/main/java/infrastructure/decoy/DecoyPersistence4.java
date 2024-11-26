@@ -36,135 +36,135 @@ import domain.entities.testresult.TestResultRepository;
 public class DecoyPersistence4 {
 
 	@Autowired
-    private ExamRepository examRepository;
-	
+	private ExamRepository examRepository;
+
 	@Autowired
 	private ServiceNumberRepository serviceNumberRepository;
-	
+
 	@Autowired
 	private TestResultRepository testResultRepository;
-	
+
 	@Autowired
 	private  ExamTestRepository  examTestRepository;
-	
+
 	@Autowired
 	private ExamRequestRepository examRequestRepository;
-	
+
 	@Autowired
 	private ClientRepository clientRepository;
-	
+
 	@Autowired
 	private AttendantRepository attendantRepository;
 	
 	@Autowired
 	private ClientServiceRepository clientServiceRepository;
 
-    public void executeTest() {
-    	
+	public void executeTest() {
+
 //       CLIENT
-    	
-        // criacao de cliente
-    	Client c1 = new Client(1, "123.456.789-00", "email@email.com", "cao", "2004-06-14", 1);
-  		clientRepository.save(c1);
-  		
-  		Client c1Copy = clientRepository.get(c1.getClientId());
-  		System.out.println(c1Copy.getCpf().getCpf());
-    	
-  		
-  		
+
+		// criacao de cliente
+		Client c1 = new Client(1, "123.456.789-00", "email@email.com", "cao", "2004-06-14", 1);
+		clientRepository.save(c1);
+
+		Client c1Copy = clientRepository.get(c1.getClientId());
+		System.out.println(c1Copy.getCpf().getCpf());
+
+
+
 //  		ATTENDANT
-  		//criacao de attendant
-  		Attendant a1 = new Attendant(1, "123.456.789-00", "email@email.com", "cao", "2004-06-14", 1, "pass");
-  		attendantRepository.save(a1);
-  		
-  		Attendant a1Copy = attendantRepository.get(a1.getAttendantId());
-  		System.out.println(a1Copy.getName());
-  		
-  		
+		//criacao de attendant
+		Attendant a1 = new Attendant(1, "123.456.789-00", "email@email.com", "cao", "2004-06-14", 1, "pass");
+		attendantRepository.save(a1);
+
+		Attendant a1Copy = attendantRepository.get(a1.getAttendantId());
+		System.out.println(a1Copy.getName());
+
+
 //  		EXAM
-    	
-        // Criando instâncias para o Exam
-        ExamId examId = new ExamId(1);
-        String examName = "Exame de Sangue";
-        String requirements = "Nenhum";
-        Double price = 150.0;
-        int analysisTime = 24;
 
-        // Teste de criação e salvamento de um exame
-        Exam newExam = new Exam(examId, examName, requirements, price, analysisTime);
-        examRepository.save(newExam);
-        System.out.println("Exame salvo: " + newExam);
+		// Criando instâncias para o Exam
+		ExamId examId = new ExamId(1);
+		String examName = "Exame de Sangue";
+		String requirements = "Nenhum";
+		Double price = 150.0;
+		int analysisTime = 24;
 
-        // Teste de recuperação do exame
-        Exam retrievedExam = examRepository.get(examId);
-        if (retrievedExam != null) {
-            System.out.println("Exame recuperado: " + retrievedExam);
-        } else {
-            System.err.println("Erro: Exame não encontrado.");
-        }
+		// Teste de criação e salvamento de um exame
+		Exam newExam = new Exam(examId, examName, requirements, price, analysisTime);
+		examRepository.save(newExam);
+		System.out.println("Exame salvo: " + newExam);
 
-        // Teste de atualização do exame
-        newExam.setName("Exame de Sangue Atualizado");
-        examRepository.update(newExam);
-        Exam updatedExam = examRepository.get(examId);
-        System.out.println("Exame atualizado: " + (updatedExam != null ? updatedExam : "Erro na atualização"));
+		// Teste de recuperação do exame
+		Exam retrievedExam = examRepository.get(examId);
+		if (retrievedExam != null) {
+			System.out.println("Exame recuperado: " + retrievedExam);
+		} else {
+			System.err.println("Erro: Exame não encontrado.");
+		}
+
+		// Teste de atualização do exame
+		newExam.setName("Exame de Sangue Atualizado");
+		examRepository.update(newExam);
+		Exam updatedExam = examRepository.get(examId);
+		System.out.println("Exame atualizado: " + (updatedExam != null ? updatedExam : "Erro na atualização"));
 
 //        // Teste de deleção do exame
 //        examRepository.delete(examId);
 //        System.out.println("Exame deletado: " + (examRepository.get(examId) == null ? "Sim" : "Não"));
-        
-        
+
+
 //        TEST RESULT
-        
-        TestResultId testResultId = new TestResultId(1); // Supondo que TestResultId tenha um construtor que aceita um int
-        LocalDate resultDate = LocalDate.of(2024, 1, 1);
-        String resultContent = "Conteúdo do Resultado de Teste";
 
-        // Teste de criação e salvamento de um TestResult
-        TestResult newTestResult = new TestResult(testResultId, resultDate, resultContent);
-        testResultRepository.save(newTestResult);
-        System.out.println("TestResult salvo: " + newTestResult);
+		TestResultId testResultId = new TestResultId(1); // Supondo que TestResultId tenha um construtor que aceita um int
+		LocalDate resultDate = LocalDate.of(2024, 1, 1);
+		String resultContent = "Conteúdo do Resultado de Teste";
 
-        // Teste de recuperação do TestResult
-        TestResult retrievedTestResult = testResultRepository.get(testResultId);
-        if (retrievedTestResult != null) {
-            System.out.println("TestResult recuperado: " + retrievedTestResult);
-        } else {
-            System.err.println("Erro: TestResult não encontrado.");
-        }
+		// Teste de criação e salvamento de um TestResult
+		TestResult newTestResult = new TestResult(testResultId, resultDate, resultContent);
+		testResultRepository.save(newTestResult);
+		System.out.println("TestResult salvo: " + newTestResult);
 
-        // Teste de atualização do TestResult
-        newTestResult.setResultContent("Conteúdo Atualizado do Resultado de Teste");
-        testResultRepository.update(newTestResult);
-        TestResult updatedTestResult = testResultRepository.get(testResultId);
-        System.out.println("TestResult atualizado: " + (updatedTestResult != null ? updatedTestResult : "Erro na atualização"));
+		// Teste de recuperação do TestResult
+		TestResult retrievedTestResult = testResultRepository.get(testResultId);
+		if (retrievedTestResult != null) {
+			System.out.println("TestResult recuperado: " + retrievedTestResult);
+		} else {
+			System.err.println("Erro: TestResult não encontrado.");
+		}
 
-        // Teste de deleção do TestResult (opcional)
-        // testResultRepository.delete(testResultId);
-        // System.out.println("TestResult deletado: " + (testResultRepository.get(testResultId) == null ? "Sim" : "Não"));
-        
-        
-        
-        
-//      EXAM TEST  
-        
-        ExamTestId examTestId = new ExamTestId(1); // Criando um ID para o Teste de Exame
-        ExamId examIds = new ExamId(1);
-        TestResultId testResultIds = new TestResultId(1);
-        String statusExamTest = "Ta testando ainda";
-        
-        // Teste de criação e salvamento de um ExamTest
-        ExamTest newExamTest = new ExamTest(examTestId, examIds, testResultIds, statusExamTest);
-        examTestRepository.save(newExamTest); // Salvando o Exame no repositório
-        System.out.println("ExamTest salvo: " + newExamTest);
-        
-        
-//      
-        
-      
-      
+		// Teste de atualização do TestResult
+		newTestResult.setResultContent("Conteúdo Atualizado do Resultado de Teste");
+		testResultRepository.update(newTestResult);
+		TestResult updatedTestResult = testResultRepository.get(testResultId);
+		System.out.println("TestResult atualizado: " + (updatedTestResult != null ? updatedTestResult : "Erro na atualização"));
+
+		// Teste de deleção do TestResult (opcional)
+		// testResultRepository.delete(testResultId);
+		// System.out.println("TestResult deletado: " + (testResultRepository.get(testResultId) == null ? "Sim" : "Não"));
+
+
+
+
+//      EXAM TEST
+
+		ExamTestId examTestId = new ExamTestId(1); // Criando um ID para o Teste de Exame
+		ExamId examIds = new ExamId(1);
+		TestResultId testResultIds = new TestResultId(1);
+		String statusExamTest = "Ta testando ainda";
+
+		// Teste de criação e salvamento de um ExamTest
+		ExamTest newExamTest = new ExamTest(examTestId, examIds, testResultIds, statusExamTest);
+		examTestRepository.save(newExamTest); // Salvando o Exame no repositório
+		System.out.println("ExamTest salvo: " + newExamTest);
+
+
+//
+
+
+
 //    TESTE DO EXAM REQUEST
-      
+
 //      // Criando instâncias para o ExamRequest
 //      ExamRequestId examRequestId = new ExamRequestId(1);
 //      ClientId clientId = new ClientId(1);
@@ -207,49 +207,44 @@ public class DecoyPersistence4 {
 //      // Teste de deleção do ExamRequest (opcional)
 //      // examRequestRepository.delete(examRequestId);
 //      // System.out.println("ExamRequest deletado: " + (examRequestRepository.get(examRequestId) == null ? "Sim" : "Não"));
-        
-      
-      
-        
-        
-        
+
+
+
+
+
+
 //        SERVICE NUMBER
 
-        // Criando instâncias para o ServiceNumber
-        ServiceNumberId serviceNumberId = new ServiceNumberId(1); // Supondo que ServiceNumberId tenha um construtor que aceita um int
-        String number = "SN12345";
-        boolean isPriority = true;
-        String status = "Ativo";
+		// Criando instâncias para o ServiceNumber
+		ServiceNumberId serviceNumberId = new ServiceNumberId(1); // Supondo que ServiceNumberId tenha um construtor que aceita um int
+		String number = "SN12345";
+		boolean isPriority = true;
+		String status = "Ativo";
 
-        // Teste de criação e salvamento de um ServiceNumber
-        ServiceNumber newServiceNumber = new ServiceNumber(serviceNumberId, number, isPriority, status);
-        serviceNumberRepository.save(newServiceNumber);
-        System.out.println("ServiceNumber salvo: " + newServiceNumber);
+		// Teste de criação e salvamento de um ServiceNumber
+		ServiceNumber newServiceNumber = new ServiceNumber(serviceNumberId, number, isPriority, status);
+		serviceNumberRepository.save(newServiceNumber);
+		System.out.println("ServiceNumber salvo: " + newServiceNumber);
 
-        // Teste de recuperação do ServiceNumber
-        ServiceNumber retrievedServiceNumber = serviceNumberRepository.get(serviceNumberId);
-        if (retrievedServiceNumber != null) {
-            System.out.println("ServiceNumber recuperado: " + retrievedServiceNumber);
-        } else {
-            System.err.println("Erro: ServiceNumber não encontrado.");
-        }
+		// Teste de recuperação do ServiceNumber
+		ServiceNumber retrievedServiceNumber = serviceNumberRepository.get(serviceNumberId);
+		if (retrievedServiceNumber != null) {
+			System.out.println("ServiceNumber recuperado: " + retrievedServiceNumber);
+		} else {
+			System.err.println("Erro: ServiceNumber não encontrado.");
+		}
 
-        // Teste de atualização do ServiceNumber
-        newServiceNumber.setStatus("Inativo");
-        serviceNumberRepository.update(newServiceNumber);
-        ServiceNumber updatedServiceNumber = serviceNumberRepository.get(serviceNumberId);
-        System.out.println("ServiceNumber atualizado: " + (updatedServiceNumber != null ? updatedServiceNumber : "Erro na atualização"));
+		// Teste de atualização do ServiceNumber
+		newServiceNumber.setStatus("Inativo");
+		serviceNumberRepository.update(newServiceNumber);
+		ServiceNumber updatedServiceNumber = serviceNumberRepository.get(serviceNumberId);
+		System.out.println("ServiceNumber atualizado: " + (updatedServiceNumber != null ? updatedServiceNumber : "Erro na atualização"));
 
 //        // Teste de deleção do ServiceNumber
 //        serviceNumberRepository.delete(serviceNumberId);
 //        System.out.println("ServiceNumber deletado: " + (serviceNumberRepository.get(serviceNumberId) == null ? "Sim" : "Não"));
-        
-        
-        
-        
 
 
-        
 
         
      // CLIENT SERVICES
@@ -328,5 +323,16 @@ public class DecoyPersistence4 {
         // System.out.println("ClientServices deletado: " + (clientServiceRepository.get(clientServiceId) == null ? "Sim" : "Não"));
 
 
-    }
+
+
+
+
+
+
+
+
+
+
+
+	}
 }

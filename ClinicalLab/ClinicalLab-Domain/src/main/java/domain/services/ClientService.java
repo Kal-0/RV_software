@@ -1,11 +1,13 @@
 package domain.services;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import domain.entities.client.Client;
 import domain.entities.client.ClientId;
 import domain.entities.client.ClientRepository;
 import domain.entities.person.Cpf;
+
 
 public class ClientService {
 	
@@ -53,7 +55,17 @@ public class ClientService {
         }	
     }
     
-    public void removeClientById(ClientId id) {
+    
+    public List<Client> getAll() {
+        List<Client> clients = clientRepository.getAll();
+        if (clients != null) {
+            return clients;
+        } else {
+            throw new NoSuchElementException("No clients found.");
+        }	
+    }
+    
+    public void deleteClientById(ClientId id) {
     	
     	if(id == null) {
     		throw new NoSuchElementException("The ID is null");
@@ -68,7 +80,7 @@ public class ClientService {
     		
     }
     
-    public void removeClientByCpf(Cpf cpf) {
+    public void deleteClientByCpf(Cpf cpf) {
     	
     	if(cpf == null) {
     		throw new NoSuchElementException("The CPF is null");
@@ -90,5 +102,7 @@ public class ClientService {
             throw new NoSuchElementException("Client must not be null");
         }
     }
+    
+    
     
 }

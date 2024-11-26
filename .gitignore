@@ -40,9 +40,9 @@ build/
 /ClinicalLab/ClinicalLab-Presentation/frontend/node/
 /ClinicalLab/ClinicalLab-Presentation/frontend/node_modules/
 node_modules/
-ClinicalLab/ClinicalLab-Apresentacao/frontend/node/node
-ClinicalLab/ClinicalLab-Apresentacao/frontend/node/npm
-ClinicalLab/ClinicalLab-Apresentacao/frontend/node/npm.cmd
+ClinicalLab/ClinicalLab-Presentation/frontend/node/node
+ClinicalLab/ClinicalLab-Presentation/frontend/node/npm
+ClinicalLab/ClinicalLab-Presentation/frontend/node/npm.cmd
 
 
 dist/

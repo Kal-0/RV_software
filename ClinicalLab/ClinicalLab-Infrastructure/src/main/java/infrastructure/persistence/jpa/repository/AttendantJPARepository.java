@@ -13,6 +13,6 @@ public interface AttendantJPARepository extends JpaRepository<AttendantJPA, Inte
 	Optional<AttendantJPA> findByAttendantId(Integer attendantId);
 	Optional<AttendantJPA> findByCpf(String cpf);
 	Optional<AttendantJPA> findByName(String name);
-	Optional<AttendantJPA> deleteByAttendantId(Integer attendantId);
-	Optional<AttendantJPA> deleteByCpf(String cpf);
+	void deleteByAttendantId(Integer attendantId);
+	void deleteByCpf(String cpf);
 }
