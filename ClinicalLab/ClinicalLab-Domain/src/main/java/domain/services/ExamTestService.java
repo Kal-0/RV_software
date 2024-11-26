@@ -6,7 +6,7 @@ import domain.entities.examtest.ExamTestRepository;
 
 
 public class ExamTestService {
-	ExamTestRepository examTestRepository;
+	private ExamTestRepository examTestRepository;
 
 	public ExamTestService(ExamTestRepository examTestRepository) {
 		super();

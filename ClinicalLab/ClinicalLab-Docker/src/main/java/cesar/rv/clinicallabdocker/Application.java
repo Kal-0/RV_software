@@ -11,6 +11,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import domain.entities.client.ClientRepository;
 import domain.services.ClientService;
+import domain.services.ServiceNumberService;
+import domain.entities.servicenumber.ServiceNumberRepository;
+/*import domain.entities.clientservice.ClientServiceRepository;
+import domain.services.ClientServiceService;
+import domain.entities.examrequest.ExamRequestRepository;
+import domain.services.ExamRequestService;
+*/
 
 
 @SpringBootApplication(scanBasePackages = {
@@ -48,6 +55,11 @@ public class Application {
 //    public ExamRequestService examRequestService(ExamRequestRepository repository, TotalPriceService totalPriceService) {
 //        return new ExamRequestService(repository, totalPriceService);
 //    }
+    
+    @Bean
+    public ServiceNumberService serviceNumberService(ServiceNumberRepository repository) {
+        return new ServiceNumberService(repository);
+    }
 
 
     public static void main(String[] args) {
@@ -60,7 +72,7 @@ public class Application {
             System.out.println("Beans provided by Spring Boot:");
             String[] beanNames = ctx.getBeanDefinitionNames();
             for (String beanName : beanNames) {
-            	System.out.println(beanName);
+//            	System.out.println(beanName);
                 if (beanName.contains("domain")) { // Filtrar apenas beans do backend
                     System.out.println(beanName);
                     

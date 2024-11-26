@@ -29,6 +29,12 @@
 			<artifactId>ClinicalLab-Domain</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>ClinicalLab-Infrastructure</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 
 </project>

@@ -1,5 +1,6 @@
 package infrastructure.persistence.jpa;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,8 @@ import domain.entities.attendant.Attendant;
 import domain.entities.attendant.AttendantId;
 import domain.entities.client.Client;
 import domain.entities.client.ClientId;
+import domain.entities.clientservice.ClientServiceId;
+import domain.entities.clientservice.ClientServices;
 import domain.entities.exam.Exam;
 import domain.entities.exam.ExamId;
 import domain.entities.examrequest.ExamRequest;
@@ -237,49 +240,75 @@ public class JPAMapper extends ModelMapper {
         
      // EXAM REQUEST ==================================
         
-        // Conversor para ExamRequestJPA -> ExamRequest
+     // Conversor para ExamRequestJPA -> ExamRequest
         addConverter(new AbstractConverter<ExamRequestJPA, ExamRequest>() {
-        	@Override
-        	protected ExamRequest convert(ExamRequestJPA source) {
-             return new ExamRequest(
-                 new ExamRequestId(source.getExamRequestId()),
-                 new ClientId(source.getClient().getId()),  // Supondo que ClientJPA tenha um método getId()
-                 source.getExamTestList().stream()
-                       .map(examTestJPA -> new ExamTestId(examTestJPA.getExamTestId()))  // Supondo que ExamTestJPA tenha um método getExamTestId()
-                       .collect(Collectors.toList()),
-                 source.getRequestDate(),
-                 source.getTotalPrice(),
-                 source.getPaymentMethod(),
-                 source.getStatus()
-             );
-         }
-     });
+            @Override
+            protected ExamRequest convert(ExamRequestJPA source) {
+                if (source == null) return null;
+
+                // Evitar null pointer em client
+                ClientId clientId = source.getClient() != null ? new ClientId(source.getClient().getId()) : null;
+
+                // Converter lista de ExamTestIds usando for
+                List<ExamTestId> examTestList = new ArrayList<>();
+                if (source.getExamTestList() != null) {
+                    for (ExamTestJPA examTestJPA : source.getExamTestList()) {
+                        if (examTestJPA != null) {
+                            examTestList.add(new ExamTestId(examTestJPA.getExamTestId()));
+                        }
+                    }
+                }
+
+                return new ExamRequest(
+                    new ExamRequestId(source.getExamRequestId()),
+                    clientId,
+                    examTestList,
+                    source.getRequestDate(),
+                    source.getTotalPrice(),
+                    source.getPaymentMethod(),
+                    source.getStatus()
+                );
+            }
+        });
+
+
 
      // Conversor para ExamRequest -> ExamRequestJPA
-     addConverter(new AbstractConverter<ExamRequest, ExamRequestJPA>() {
-         @Override
-         protected ExamRequestJPA convert(ExamRequest source) {
-             ExamRequestJPA examRequestJPA = new ExamRequestJPA();
-             examRequestJPA.setExamRequestId(source.getExamRequestId().getId());
-             
-             // Obtém o ClientJPA usando o ClientId
-             ClientJPA client = map(source.getClientId(), ClientJPA.class);
-             examRequestJPA.setClient(client);
+        addConverter(new AbstractConverter<ExamRequest, ExamRequestJPA>() {
+            @Override
+            protected ExamRequestJPA convert(ExamRequest source) {
+                if (source == null) return null;
 
-             // Converte a lista de ExamTestId para uma lista de ExamTestJPA
-             List<ExamTestJPA> examTestJPAList = source.getExamTestList().stream()
-                 .map(examTestId -> map(examTestId, ExamTestJPA.class))
-                 .collect(Collectors.toList());
-             examRequestJPA.setExamTestList(examTestJPAList);
+                ExamRequestJPA examRequestJPA = new ExamRequestJPA();
+                examRequestJPA.setExamRequestId(source.getExamRequestId().getId());
 
-             examRequestJPA.setRequestDate(source.getRequestDate());
-             examRequestJPA.setTotalPrice(source.getTotalPrice());
-             examRequestJPA.setPaymentMethod(source.getPaymentMethod());
-             examRequestJPA.setStatus(source.getStatus());
+                // Mapear client com validação
+                ClientJPA client = source.getClientId() != null ? map(source.getClientId(), ClientJPA.class) : null;
+                examRequestJPA.setClient(client);
 
-             	return examRequestJPA;
-         	}
-     	});
+                // Mapear lista de ExamTestJPA usando for
+                List<ExamTestJPA> examTestJPAList = new ArrayList<>();
+                if (source.getExamTestList() != null) {
+                    for (ExamTestId examTestId : source.getExamTestList()) {
+                        if (examTestId != null) {
+                            ExamTestJPA examTestJPA = map(examTestId, ExamTestJPA.class);
+                            if (examTestJPA != null) {
+                                examTestJPAList.add(examTestJPA);
+                            }
+                        }
+                    }
+                }
+                examRequestJPA.setExamTestList(examTestJPAList);
+
+                examRequestJPA.setRequestDate(source.getRequestDate());
+                examRequestJPA.setTotalPrice(source.getTotalPrice());
+                examRequestJPA.setPaymentMethod(source.getPaymentMethod());
+                examRequestJPA.setStatus(source.getStatus());
+
+                return examRequestJPA;
+            }
+        });
+
 
 
 
@@ -315,7 +344,41 @@ public class JPAMapper extends ModelMapper {
          }
      });
 	     
-	 
+	 // CLIENT SERVICE ===================
+	     
+	  // Converter para ClientServiceJPA -> ClientServices
+	     addConverter(new AbstractConverter<ClientServiceJPA, ClientServices>() {
+	         @Override
+	         protected ClientServices convert(ClientServiceJPA source) {
+	             if (source == null) return null;
+
+	             return new ClientServices(
+	                 new ClientServiceId(source.getClientServiceId()),
+	                 map(source.getServiceNumber(), ServiceNumber.class),
+	                 source.getExamRequest() != null ? new ExamRequestId(source.getExamRequest().getExamRequestId()) : null,
+	                 source.getStatus()
+	             );
+	         }
+	     });
+
+	     // Converter para ClientServices -> ClientServiceJPA
+	     addConverter(new AbstractConverter<ClientServices, ClientServiceJPA>() {
+	         @Override
+	         protected ClientServiceJPA convert(ClientServices source) {
+	             if (source == null) return null;
+
+	             ClientServiceJPA clientServiceJPA = new ClientServiceJPA();
+	             clientServiceJPA.setClientServiceId(source.getId().getId());
+	             clientServiceJPA.setServiceNumber(map(source.getServiceNumber(), ServiceNumberJPA.class));
+	             clientServiceJPA.setExamRequest(
+	                 source.getExamRequestId() != null ? 
+	                     map(source.getExamRequestId(), ExamRequestJPA.class) : null
+	             );
+	             clientServiceJPA.setStatus(source.getStatus());
+	             return clientServiceJPA;
+	         }
+	     });
+
 
         
     }

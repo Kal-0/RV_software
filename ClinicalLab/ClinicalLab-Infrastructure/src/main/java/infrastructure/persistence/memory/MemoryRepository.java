@@ -1,6 +1,7 @@
 package infrastructure.persistence.memory;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import domain.entities.attendant.Attendant;
@@ -274,6 +275,12 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
 	public void update(ExamTest examTest) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Client> getAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
     

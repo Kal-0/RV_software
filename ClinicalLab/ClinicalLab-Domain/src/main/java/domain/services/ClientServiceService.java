@@ -10,14 +10,12 @@ import domain.entities.examrequest.ExamRequestId;
 
 
 public class ClientServiceService {
+	
 	private ClientServiceRepository clientServiceRepository;
 
     public ClientServiceService(ClientServiceRepository repository) {
         this.clientServiceRepository = repository;
     }
-    
-    
-    
     
 
     public ClientServices save(ClientServices clientService) {
