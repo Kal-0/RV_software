@@ -12,6 +12,6 @@ public interface AttendantRepository {
 	
 	public void update(Attendant attendant);
 	
-	public List<Attendant> getAll();
+	public List<Attendant> getAttendantAll();
 	
 }

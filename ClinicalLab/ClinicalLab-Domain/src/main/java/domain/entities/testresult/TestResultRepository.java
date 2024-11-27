@@ -12,6 +12,6 @@ public interface TestResultRepository {
 	
 	public void update(TestResult testResult);
 	
-	public List<TestResult> getAll();
+	public List<TestResult> getTestResultAll();
 	
 }

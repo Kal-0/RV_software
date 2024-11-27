@@ -12,6 +12,6 @@ public interface ExamTestRepository {
 	
 	public void update(ExamTest examTest);
 	
-	public List<ExamTest> getAll();
+	public List<ExamTest> getTestAll();
 	
 }

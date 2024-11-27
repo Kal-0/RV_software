@@ -12,5 +12,5 @@ public interface ServiceNumberRepository {
 	
 	public void update(ServiceNumber serviceNumber);
 	
-	public List<ServiceNumber> getAll();
+	public List<ServiceNumber> getServiceNumberAll();
 }
