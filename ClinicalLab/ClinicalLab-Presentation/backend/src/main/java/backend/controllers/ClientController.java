@@ -11,7 +11,7 @@ import infrastructure.persistence.jpa.JPAMapper;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+//cai0
 @RestController("controlador_cliente")
 @RequestMapping("/client")
 public class ClientController {
@@ -68,4 +68,9 @@ public class ClientController {
         clientService.deleteClientById(clientId);
         return ResponseEntity.ok(clientJPA); // Retorna 204 No Content
     }
+    
+    
+    
+    
+    
 }
