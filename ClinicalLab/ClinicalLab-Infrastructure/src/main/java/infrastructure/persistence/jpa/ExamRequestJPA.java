@@ -2,6 +2,7 @@ package infrastructure.persistence.jpa;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -143,7 +144,7 @@ class ExamRequestRepositoryImpl implements ExamRequestRepository {
 	    // Mapeia cada ClientJPA para Client (domínio) usando o mapper
 	    return examRequestsJPA.stream()
 	                     .map(examRequestJPA -> mapper.map(examRequestJPA, ExamRequest.class))
-	                     .toList();
+	                     .collect(Collectors.toList());
 	}
 
 

@@ -93,7 +93,7 @@ class ClientRepositoryImpl implements ClientRepository {
 	    // Mapeia cada ClientJPA para Client (domÃ­nio) usando o mapper
 	    return clientsJPA.stream()
 	                     .map(clientJPA -> mapper.map(clientJPA, Client.class))
-	                     .toList();
+	                     .collect(Collectors.toList());
 	}
 	
     @Override

@@ -36,14 +36,16 @@ import domain.entities.attendant.AttendantRepository;
 		"cesar.rv.clinicallabdocker",
 		"infrastructure.domainevent",
 	    "infrastructure.persistence",
-	    "backend.controllers"
+	    "backend.controllers",
+        "config"
 	})
 @ComponentScan(basePackages = {
 		"pai",
 	    "cesar.rv.clinicallabdocker",
 	    "infrastructure.domainevent",
 	    "infrastructure.persistence",
-	    "backend.controllers"
+	    "backend.controllers",
+        "config"
 	})
 @EnableJpaRepositories(basePackages = "infrastructure.persistence.jpa.repository")
 @EntityScan(basePackages = "infrastructure.persistence.jpa")

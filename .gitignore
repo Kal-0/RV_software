@@ -37,6 +37,8 @@ build/
 
 # Node.js and frontend
 # Ignorar dependências do Node.js
+ClinicalLab-Apresentacao
+/ClinicalLab/ClinicalLab-Apresentacao
 /ClinicalLab/ClinicalLab-Presentation/frontend/node/
 /ClinicalLab/ClinicalLab-Presentation/frontend/node_modules/
 node_modules/
