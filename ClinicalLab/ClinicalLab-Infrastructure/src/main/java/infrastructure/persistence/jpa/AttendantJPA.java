@@ -1,11 +1,18 @@
 package infrastructure.persistence.jpa;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 import domain.entities.attendant.Attendant;
 import domain.entities.attendant.AttendantId;
 import domain.entities.attendant.AttendantRepository;
+
 import infrastructure.persistence.jpa.repository.AttendantJPARepository;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +24,7 @@ import jakarta.persistence.Table;
 @PrimaryKeyJoinColumn(name = "id") // Define que 'id' é a chave estrangeira que referencia 'People'
 public class AttendantJPA extends PersonJPA {
 	@Column(unique = true)
-	private int attendantId;
+	private Integer attendantId;
 	private String password;
    
 	public int getAttendantId() {
@@ -86,6 +93,15 @@ class AttendantRepositoryImpl implements AttendantRepository {
     public void update(Attendant attendant) {
         AttendantJPA attendantJPA = mapper.map(attendant, AttendantJPA.class);
         attendantJPARepository.save(attendantJPA);
+    }
+    
+    @Override
+    public List<Attendant> getAll() {
+        List<AttendantJPA> attendantsJPA = attendantJPARepository.findAll();
+
+        return attendantsJPA.stream()
+                            .map(attendantJPA -> mapper.map(attendantJPA, Attendant.class))
+                            .collect(Collectors.toList());
     }
 
 	

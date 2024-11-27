@@ -2,8 +2,10 @@ package infrastructure.persistence.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
-import domain.entities.exam.Exam;
 import domain.entities.servicenumber.ServiceNumber;
 import domain.entities.servicenumber.ServiceNumberId;
 import domain.entities.servicenumber.ServiceNumberRepository;
@@ -57,4 +59,19 @@ class ServiceNumberRepositoryImpl implements ServiceNumberRepository {
         ServiceNumberJPA serviceNumberJPA = mapper.map(serviceNumber, ServiceNumberJPA.class);
         ServiceNumberJPARepository.save(serviceNumberJPA);
     }
+    
+    @Override
+    public List<ServiceNumber> getAll() {
+        List<ServiceNumberJPA> serviceNumbersJPA = ServiceNumberJPARepository.findAll();
+        
+        if (serviceNumbersJPA == null || serviceNumbersJPA.isEmpty()) {
+            throw new NoSuchElementException("No ServiceNumbers found.");
+        }
+        
+        return serviceNumbersJPA.stream()
+                .map(serviceNumberJPA -> mapper.map(serviceNumberJPA, ServiceNumber.class))
+
+                .collect(Collectors.toList());
+    }
+
 }

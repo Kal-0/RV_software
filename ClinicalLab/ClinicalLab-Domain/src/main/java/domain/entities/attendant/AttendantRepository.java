@@ -1,5 +1,7 @@
 package domain.entities.attendant;
 
+import java.util.List;
+
 public interface AttendantRepository {
 	
 	public void save(Attendant attendant);
@@ -9,5 +11,7 @@ public interface AttendantRepository {
 	public Attendant get(AttendantId attendantId);
 	
 	public void update(Attendant attendant);
+	
+	public List<Attendant> getAll();
 	
 }

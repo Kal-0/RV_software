@@ -1,7 +1,8 @@
 package domain.entities.servicenumber;
 
+import java.util.List;
+
 public interface ServiceNumberRepository {
-	
 
 	public void save(ServiceNumber serviceNumber);
 	
@@ -10,4 +11,6 @@ public interface ServiceNumberRepository {
 	public ServiceNumber get(ServiceNumberId id);
 	
 	public void update(ServiceNumber serviceNumber);
+	
+	public List<ServiceNumber> getAll();
 }

@@ -21,19 +21,41 @@ public class ExamRequestService {
     }
 
 
-public ExamRequest saveExamRequest(ExamRequest examRequest) {
-
-    if (examRequestRepository.get(examRequest.getExamRequestId()) != null) {
-        throw new IllegalArgumentException("The exam request already exists");
-    }
-
-    if (examRequest.getExamTestList() == null || examRequest.getExamTestList().isEmpty()) {
-        throw new IllegalArgumentException("Exam Test List must not be empty");
-    }
-
-    examRequestRepository.save(examRequest);
-    return examRequestRepository.get(examRequest.getExamRequestId());
-}
+	public ExamRequest saveExamRequest(ExamRequest examRequest) {
+	
+	    if (examRequestRepository.get(examRequest.getExamRequestId()) != null) {
+	        throw new IllegalArgumentException("The exam request already exists");
+	    }
+	
+	    if (examRequest.getExamTestList() == null || examRequest.getExamTestList().isEmpty()) {
+	        throw new IllegalArgumentException("Exam Test List must not be empty");
+	    }
+	
+	    examRequestRepository.save(examRequest);
+	    return examRequestRepository.get(examRequest.getExamRequestId());
+	}
+	
+	public ExamRequest getById (ExamRequestId examResquestId) {
+		
+		return examRequestRepository.get(examResquestId);
+	}
+	
+	public List<ExamRequest> getAll () {
+		
+		return examRequestRepository.getExamRequestAll();
+	}
+	
+	public ExamRequest update (ExamRequest examRequest) {
+		examRequestRepository.update(examRequest);
+		examRequest = examRequestRepository.get(examRequest.getExamRequestId());
+		return examRequest;
+	}
+	
+	public ExamRequest deleteById (ExamRequestId examRequestId) {
+		ExamRequest examRequest = examRequestRepository.get(examRequestId);
+		examRequestRepository.delete(examRequestId);
+		return examRequest;
+	}
 
     public void processExamRequest(ExamRequestId examRequestId) {
    
@@ -69,4 +91,6 @@ public ExamRequest saveExamRequest(ExamRequest examRequest) {
         examRequest.setStatus("Waiting for collection");
         examRequestRepository.update(examRequest);
     }
+    
+    
 }

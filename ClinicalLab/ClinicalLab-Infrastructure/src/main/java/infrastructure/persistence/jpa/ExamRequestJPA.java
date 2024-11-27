@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import domain.entities.client.Client;
 import domain.entities.examrequest.ExamRequest;
 import domain.entities.examrequest.ExamRequestId;
 import domain.entities.examrequest.ExamRequestRepository;
@@ -20,6 +19,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.transaction.Transactional;
+
 
 @Entity
 @Table(name = "Exam_Request")
@@ -27,7 +28,7 @@ public class ExamRequestJPA {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int examRequestId;
+    private Integer examRequestId;
 
     @ManyToOne
     @JoinColumn(name = "Client_Id")
@@ -49,7 +50,7 @@ public class ExamRequestJPA {
     @Column(name = "status", nullable = false)
     private String status;
 
-	public int getExamRequestId() {
+	public Integer getExamRequestId() {
 		return examRequestId;
 	}
 
@@ -126,7 +127,8 @@ class ExamRequestRepositoryImpl implements ExamRequestRepository {
     public void delete(ExamRequestId id) {
         examRequestJPARepository.deleteById(id.getId());
     }
-
+    
+    @Transactional
     @Override
     public ExamRequest get(ExamRequestId id) {
         ExamRequestJPA examRequestJPA = examRequestJPARepository.findById(id.getId()).orElse(null);
@@ -134,15 +136,16 @@ class ExamRequestRepositoryImpl implements ExamRequestRepository {
     }
     
     @Override
-	public List<ExamRequest> getAll() {
+	public List<ExamRequest> getExamRequestAll() {
 	    // Busca todas as entidades ClientzJPA do banco de dados
-	    List<ClientJPA> clientsJPA = clientJPARepository.findAll();
+	    List<ExamRequestJPA> examRequestsJPA = examRequestJPARepository.findAll();
 
 	    // Mapeia cada ClientJPA para Client (domínio) usando o mapper
-	    return clientsJPA.stream()
-	                     .map(clientJPA -> mapper.map(clientJPA, Client.class))
+	    return examRequestsJPA.stream()
+	                     .map(examRequestJPA -> mapper.map(examRequestJPA, ExamRequest.class))
 	                     .toList();
 	}
+
 
     @Override
     public void update(ExamRequest examRequest) {

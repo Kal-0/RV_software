@@ -1,4 +1,7 @@
+
 import React from 'react';
+import { Link } from 'react-router-dom';
+import SideBar from '../../components/SideBar';
 
 const ClientList: React.FC = () => {
 
@@ -14,62 +17,87 @@ const ClientList: React.FC = () => {
         <div className="p-8 bg-gray-100 h-screen">
             {/* Header */}
             <header className="mb-6 flex items-center justify-between">
+                <img src="/assets/blab.png" alt="Blab Logo" className="w-12 h-12 mr-4" />
                 <h1 className="text-2xl font-semibold text-left">Clients</h1>
                 <button className="bg-orange-500 text-white p-2 rounded-full">
                         A
                 </button>
-
-
             </header>
+            
+            <div className="flex">
+                <div className="flex h-screen overflow-x-hidden">
+                    <SideBar />
+                </div>
 
-            {/* Search and Filters */}
-            <div className="mb-6 flex items-center gap-4">
-                <input
-                    type="text"
-                    placeholder="Search for Name, CPF, Birth Date or ID"
-                    className="flex-1 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring focus:ring-orange-300"
-                />
-                <button className="bg-white-500 text-white px-4 py-2 rounded">
-                    <img src="/assets/loupe.png" alt="Search" className="w-5 h-5" />
+                <div className="flex flex-col w-full">               
+                    {/* Search */}
+                    <div className="mb-6 flex gap-4 items-center">
+                        <input
+                            type="text"
+                            placeholder="Search for Name, CPF, Birth Date or ID"
+                            className="flex-1 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring focus:ring-orange-300"
+                        />
+                        <button className="bg-white-500 text-white px-4 py-2 rounded">
+                            <img src="/assets/loupe.png" alt="Search" className="w-5 h-5" />
+                        
+                        </button>
+                    </div>
+                    
+                    {/* Filters */}
+                    <div className="flex gap-4 justify-center">
+                        <select className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-orange-300">
+                            <option>Quantity: All</option>
+                            <option>1-5</option>
+                            <option>6-10</option>
+                            <option>More than 10</option>
+                        </select>
+    
+                        <select className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-orange-300">
+                            <option>Quantity of Exams Requests: All</option>
+                            <option>1-5</option>
+                            <option>6-10</option>
+                            <option>More than 10</option>
+                        </select>
+                    </div>
                 
-                </button>
-            </div>
-            <div className="flex gap-4 mb-6">
-                <button className="bg-orange-500 text-white px-4 py-2 rounded">
-                    Quantity: All
-                </button>
-                <button className="bg-orange-500 text-white px-4 py-2 rounded">
-                    Quantity of Exams Requests: All
-                </button>
-            </div>
+                    {/* Table */}
+                    <div className="flex gap-4 flex-col">                   
+                        <table className="w-full bg-white rounded-lg shadow-md flex-col">
+                            <thead className="bg-gray-200">
+                                <tr>
+                                    <th className="text-left py-2 px-4 text-gray-700">CPF</th>
+                                    <th className="text-left py-2 px-4 text-gray-700">Client</th>
+                                    <th className="text-left py-2 px-4 text-gray-700">Birth Date</th>
+                                    <th className="text-left py-2 px-4 text-gray-700">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {clients.map((client, index) => (
+                                    <tr
+                                        key={index}
+                                        className={`border-t ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}
+                                    >
+                                        <td className="py-2 px-4">{client.cpf}</td>
+                                        <td className="py-2 px-4 text-orange-500 font-medium">
+                                            <Link to="/registerclient" className="p-2 hover:bg-gray-100 rounded">
+                                                {client.name}
+                                            </Link>
+                                        
+                                        </td>
+                                        <td className="py-2 px-4">{client.birthDate}</td>
+                                        <td className="py-2 px-4">{client.email}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
 
-            {/* Table */}
-            <table className="w-full bg-white rounded-lg shadow-md">
-                <thead className="bg-gray-200">
-                    <tr>
-                        <th className="text-left py-2 px-4 text-gray-700">CPF</th>
-                        <th className="text-left py-2 px-4 text-gray-700">Client</th>
-                        <th className="text-left py-2 px-4 text-gray-700">Birth Date</th>
-                        <th className="text-left py-2 px-4 text-gray-700">Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {clients.map((client, index) => (
-                        <tr
-                            key={index}
-                            className={`border-t ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}
-                        >
-                            <td className="py-2 px-4">{client.cpf}</td>
-                            <td className="py-2 px-4 text-orange-500 font-medium">
-                                {client.name}
-                            </td>
-                            <td className="py-2 px-4">{client.birthDate}</td>
-                            <td className="py-2 px-4">{client.email}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                    
+                </div>
+
+            </div>
         </div>
+
     );
 };
 
