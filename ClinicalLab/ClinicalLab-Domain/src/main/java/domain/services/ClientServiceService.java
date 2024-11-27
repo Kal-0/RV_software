@@ -62,7 +62,7 @@ private ClientServiceRepository clientServiceRepository;
     }
    
     public List<ClientServices> getAll(){
-    List<ClientServices> clientServices = clientServiceRepository.getClientServiceAll();
+    List<ClientServices> clientServices = clientServiceRepository.getClientServicesAll();
     if(clientServices == null || clientServices.isEmpty()) {
     throw new NoSuchElementException("ClientService not found.");
     }

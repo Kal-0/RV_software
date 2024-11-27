@@ -12,6 +12,6 @@ public ClientServices get(ClientServiceId id);
 
 public void update(ClientServices clientService);
 
-public List<ClientServices> getClientServiceAll();
+public List<ClientServices> getClientServicesAll();
 
 }

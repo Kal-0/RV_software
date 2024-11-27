@@ -25,7 +25,7 @@ public class ExamTestService {
 
         // Verificar duplicidade de TestResultId (//Tem que verificar isso aqui)
         if (examTest.getTestResultId() != null) {
-            List<ExamTest> allExamTests = examTestRepository.getTestAll();
+            List<ExamTest> allExamTests = examTestRepository.getExamTestAll();
             boolean isDuplicate = allExamTests.stream()
                 .anyMatch(existingTest -> existingTest.getTestResultId() != null &&
                                           existingTest.getTestResultId().equals(examTest.getTestResultId()));
@@ -57,7 +57,7 @@ public class ExamTestService {
      * Retrieve all ExamTests.
      */
     public List<ExamTest> getAll() {
-        List<ExamTest> examTests = examTestRepository.getAll();
+        List<ExamTest> examTests = examTestRepository.getExamTestAll();
         if (examTests == null || examTests.isEmpty()) {
             throw new NoSuchElementException("No ExamTests found.");
         }
