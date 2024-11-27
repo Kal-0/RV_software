@@ -61,7 +61,7 @@ class ServiceNumberRepositoryImpl implements ServiceNumberRepository {
     }
     
     @Override
-    public List<ServiceNumber> getAll() {
+    public List<ServiceNumber> getServiceNumberAll() {
         List<ServiceNumberJPA> serviceNumbersJPA = ServiceNumberJPARepository.findAll();
         
         if (serviceNumbersJPA == null || serviceNumbersJPA.isEmpty()) {

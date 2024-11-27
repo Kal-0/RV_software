@@ -95,7 +95,7 @@ class ExamRepositoryImpl implements ExamRepository {
     }
     
     @Override
-    public List<Exam> getAll() {
+    public List<Exam> getExamAll() {
         List<ExamJPA> examsJPA = examJPARepository.findAll();
         return examsJPA.stream()
                 .map(examJPA -> mapper.map(examJPA, Exam.class))

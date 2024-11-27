@@ -96,7 +96,7 @@ class AttendantRepositoryImpl implements AttendantRepository {
     }
     
     @Override
-    public List<Attendant> getAll() {
+    public List<Attendant> getAttendantAll() {
         List<AttendantJPA> attendantsJPA = attendantJPARepository.findAll();
 
         return attendantsJPA.stream()

@@ -90,7 +90,7 @@ class TestResultRepositoryImpl implements TestResultRepository {
     }
     
     @Override
-    public List<TestResult> getAll() {
+    public List<TestResult> getTestResultAll() {
         List<TestResultJPA> testResultsJPA = testResultJPARepository.findAll();
         
         if (testResultsJPA == null || testResultsJPA.isEmpty()) {

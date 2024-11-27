@@ -105,7 +105,7 @@ class ClientServiceRepositoryImpl implements ClientServiceRepository {
     }
     
     @Override
-    public List<ClientServices> getAll() {
+    public List<ClientServices> getClientServicesAll() {
         List<ClientServiceJPA> clientServicesJPA = clientServiceJPARepository.findAll();
         return clientServicesJPA.stream()
                 .map(clientServiceJPA -> mapper.map(clientServiceJPA, ClientServices.class))

@@ -289,6 +289,24 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
 		
 	}
 
+	@Override
+	public List<ExamTest> getExamTestAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Exam> getExamAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Attendant> getAttendantAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 	
