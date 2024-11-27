@@ -21,7 +21,7 @@ public class ExamService {
             throw new IllegalArgumentException("Exam must not be null.");
         }
 
-        List<Exam> existingExams = examRepository.getAll();
+        List<Exam> existingExams = examRepository.getExamAll();
         boolean examExists = existingExams.stream()
                 .anyMatch(e -> e.getName().equalsIgnoreCase(exam.getName()));
         if (examExists) {
