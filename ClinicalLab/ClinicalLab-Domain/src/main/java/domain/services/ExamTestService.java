@@ -25,7 +25,7 @@ public class ExamTestService {
 
         // Verificar duplicidade de TestResultId (//Tem que verificar isso aqui)
         if (examTest.getTestResultId() != null) {
-            List<ExamTest> allExamTests = examTestRepository.getAll();
+            List<ExamTest> allExamTests = examTestRepository.getTestAll();
             boolean isDuplicate = allExamTests.stream()
                 .anyMatch(existingTest -> existingTest.getTestResultId() != null &&
                                           existingTest.getTestResultId().equals(examTest.getTestResultId()));

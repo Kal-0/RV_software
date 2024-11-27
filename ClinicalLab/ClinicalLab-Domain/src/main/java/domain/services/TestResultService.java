@@ -48,7 +48,7 @@ public class TestResultService {
 
    
     public List<TestResult> getAll() {
-        List<TestResult> testResults = testResultRepository.getAll();
+        List<TestResult> testResults = testResultRepository.getTestResultAll();
         if (testResults == null || testResults.isEmpty()) {
             throw new NoSuchElementException("No TestResults found.");
         }

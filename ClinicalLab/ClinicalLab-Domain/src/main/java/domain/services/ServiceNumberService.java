@@ -17,7 +17,7 @@ public class ServiceNumberService {
         }
 
 
-        List<ServiceNumber> existingServiceNumbers = serviceNumberRepository.getAll();
+        List<ServiceNumber> existingServiceNumbers = serviceNumberRepository.getServiceNumberAll();
         boolean numberExists = existingServiceNumbers.stream()
                 .anyMatch(existing -> existing.getNumber().equals(serviceNumber.getNumber()));
 
@@ -76,7 +76,7 @@ public class ServiceNumberService {
     }
     
     public List<ServiceNumber> getAll() {
-        List<ServiceNumber> serviceNumbers = serviceNumberRepository.getAll();
+        List<ServiceNumber> serviceNumbers = serviceNumberRepository.getServiceNumberAll();
         if (serviceNumbers == null || serviceNumbers.isEmpty()) {
             throw new NoSuchElementException("No ServiceNumbers found.");
         }

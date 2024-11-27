@@ -51,7 +51,7 @@ public class ExamService {
 
 
     public List<Exam> getAll() {
-        List<Exam> exams = examRepository.getAll();
+        List<Exam> exams = examRepository.getExamAll();
         if (exams == null || exams.isEmpty()) {
             throw new NoSuchElementException("No exams found.");
         }

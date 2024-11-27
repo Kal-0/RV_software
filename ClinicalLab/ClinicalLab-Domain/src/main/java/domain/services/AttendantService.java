@@ -44,7 +44,7 @@ public class AttendantService {
 
 
     public List<Attendant> getAll() {
-        List<Attendant> attendants = attendantRepository.getAll();
+        List<Attendant> attendants = attendantRepository.getAttendantAll();
         if (attendants == null || attendants.isEmpty()) {
             throw new NoSuchElementException("No attendants found.");
         }
