@@ -3,7 +3,6 @@ package domain.entities.servicenumber;
 import java.util.List;
 
 public interface ServiceNumberRepository {
-	
 
 	public void save(ServiceNumber serviceNumber);
 	

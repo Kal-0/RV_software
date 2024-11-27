@@ -1,16 +1,28 @@
-// Import necessary dependencies
+
 import React from 'react';
+import { Link } from 'react-router-dom';
+import SideBar from '../../components/SideBar';
 
-const ExamRequest: React.FC = () => {
+const ClientList: React.FC = () => {
     return (
-        <div className="flex flex-col h-screen bg-gray-100 p-8">
+        <div className="p-8 bg-gray-100 h-screen">
             {/* Header */}
-            
-            <header className="flex justify-between items-center mb-8">
-                <h1 className="text-2xl font-semibold">Exam Request</h1>             
+            <header className="mb-6 flex items-center justify-between">
+                <img src="/assets/blab.png" alt="Blab Logo" className="w-12 h-12 mr-4" />
+                <h1 className="text-2xl font-semibold text-left">Exam Request</h1>
+                <button className="bg-orange-500 text-white p-2 rounded-full">
+                        A
+                </button>
             </header>
+            
+            <div className="flex">
+                <div className="flex h-screen overflow-x-hidden">
+                    <SideBar />
+                </div>
 
-            {/* Client and Exam Request Info */}
+                <div className="flex flex-col w-full">               
+                    
+{/* Client and Exam Request Info */}
             <div className="grid grid-cols-2 gap-4 mb-8">
                 {/* Client Info */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
@@ -27,11 +39,14 @@ const ExamRequest: React.FC = () => {
                     <p className="text-gray-700">Request Date</p>
                 </div>
             </div>
-                
 
-                <button className="bg-orange-500 text-white px-4 py-2 rounded">
-                    Update Exams Requests
-                </button>
+             <div className="flex justify-end mt-8">    
+                <Link to="/examslist" className="bg-orange-500 text-white px-4 py-2 rounded">
+                    <button className="bg-orange-500 text-white px-4 py-2 rounded">
+                        Update Exams Requests
+                    </button>
+                </Link>
+            </div>
 
             {/* Exams Table */}
             <div className="bg-white p-6 rounded-lg shadow-md">
@@ -88,12 +103,19 @@ const ExamRequest: React.FC = () => {
 
             {/* Footer */}
             <div className="flex justify-end mt-8">
-                <button className="bg-blue-600 text-white px-6 py-2 rounded">
-                    Checkout
-                </button>
+                <Link to="/paymentmethod" className="bg-blue-600 text-white px-6 py-2 rounded">
+                    <button className="bg-blue-600 text-white px-6 py-2 rounded">
+                        Checkout
+                    </button>
+                </Link>
+            </div>
+
+                </div>
+
             </div>
         </div>
+
     );
 };
 
-export default ExamRequest;
+export default ClientList;

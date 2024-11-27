@@ -70,6 +70,8 @@ class ServiceNumberRepositoryImpl implements ServiceNumberRepository {
         
         return serviceNumbersJPA.stream()
                 .map(serviceNumberJPA -> mapper.map(serviceNumberJPA, ServiceNumber.class))
+
                 .collect(Collectors.toList());
     }
+
 }

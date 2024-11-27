@@ -13,6 +13,7 @@ import domain.entities.client.ClientRepository;
 import domain.services.ClientService;
 import domain.services.ServiceNumberService;
 import domain.entities.servicenumber.ServiceNumberRepository;
+
 import domain.entities.clientservice.ClientServiceRepository;
 import domain.services.ClientServiceService; 
 import domain.entities.examrequest.ExamRequestRepository;
@@ -83,10 +84,13 @@ public class Application {
         return new TotalPriceService(examTestRepository, examRepository);
     }
 
+
+  
     @Bean
     public ExamRequestService examRequestService(ExamRequestRepository repository, TotalPriceService totalPriceService) {
         return new ExamRequestService(repository, totalPriceService);
     }
+
     
     @Bean
     public ServiceNumberService serviceNumberService(ServiceNumberRepository repository) {
