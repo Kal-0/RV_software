@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 //cai0
 @RestController("controlador_cliente")
-@RequestMapping("/client")
+@RequestMapping("/clients")
 public class ClientController {
 
     @Autowired

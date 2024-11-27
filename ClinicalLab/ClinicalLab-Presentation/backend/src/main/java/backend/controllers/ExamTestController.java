@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController("controlador_exames_teste")
-@RequestMapping("exams-test")
+@RequestMapping("exams-tests")
 public class ExamTestController {
 
     @Autowired

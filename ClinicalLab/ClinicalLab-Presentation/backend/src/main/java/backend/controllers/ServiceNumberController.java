@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController("controlador_service_number")
-@RequestMapping("/service-number")
+@RequestMapping("/service-numbers")
 public class ServiceNumberController {
 
     @Autowired
