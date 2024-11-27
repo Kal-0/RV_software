@@ -2,12 +2,12 @@ package infrastructure.persistence.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import domain.entities.examtest.ExamTest;
 import domain.entities.examtest.ExamTestId;
 import domain.entities.examtest.ExamTestRepository;
-import infrastructure.domainevent.DomainEventPublisher;
-import infrastructure.domainevent.ExamTestSavedEvent;
 import infrastructure.persistence.jpa.repository.ExamTestJPARepository;
 import jakarta.persistence.*;
 
@@ -74,16 +74,12 @@ class ExamTestRepositoryImpl implements ExamTestRepository {
     @Autowired
     private JPAMapper mapper;
     
-    @Autowired
-    private DomainEventPublisher eventPublisher;
 
 
     @Override
     public void save(ExamTest examTest) {
         ExamTestJPA examTestJPA = mapper.map(examTest, ExamTestJPA.class);
         examTestJPARepository.save(examTestJPA);
-        
-        eventPublisher.publish(new ExamTestSavedEvent(examTest));
     }
 
     @Override
@@ -101,5 +97,13 @@ class ExamTestRepositoryImpl implements ExamTestRepository {
     public void update(ExamTest examTest) {
         ExamTestJPA examTestJPA = mapper.map(examTest, ExamTestJPA.class);
         examTestJPARepository.save(examTestJPA);
+    }
+    
+    @Override
+    public List<ExamTest> getAll() {
+        List<ExamTestJPA> examsTestJPA = examTestJPARepository.findAll();
+        return examsTestJPA.stream()
+                .map(examTestJPA -> mapper.map(examTestJPA, ExamTest.class))
+                .collect(Collectors.toList());
     }
 }

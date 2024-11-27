@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
-import domain.entities.exam.Exam;
 import domain.entities.servicenumber.ServiceNumber;
 import domain.entities.servicenumber.ServiceNumberId;
 import domain.entities.servicenumber.ServiceNumberRepository;
@@ -71,8 +70,8 @@ class ServiceNumberRepositoryImpl implements ServiceNumberRepository {
         
         return serviceNumbersJPA.stream()
                 .map(serviceNumberJPA -> mapper.map(serviceNumberJPA, ServiceNumber.class))
-                .toList();
+
+                .collect(Collectors.toList());
     }
-    
-    
+
 }

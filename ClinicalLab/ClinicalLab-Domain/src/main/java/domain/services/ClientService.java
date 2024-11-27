@@ -57,7 +57,7 @@ public class ClientService {
     
     
     public List<Client> getAll() {
-        List<Client> clients = clientRepository.getAll();
+        List<Client> clients = clientRepository.getClientAll();
         if (clients != null) {
             return clients;
         } else {

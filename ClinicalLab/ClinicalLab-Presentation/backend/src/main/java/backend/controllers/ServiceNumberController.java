@@ -11,14 +11,11 @@ import infrastructure.persistence.jpa.JPAMapper;
 
 import java.util.ArrayList;
 import java.util.List;
-
 @RestController("controlador_service_number")
 @RequestMapping("/service-number")
 public class ServiceNumberController {
-
     @Autowired
     private JPAMapper mapper;
-
     @Autowired
     private ServiceNumberService serviceNumberService;
 
@@ -38,7 +35,6 @@ public class ServiceNumberController {
         return ResponseEntity.ok(serviceNumberJPA);
     }
 
-
     @GetMapping
     public ResponseEntity<List<ServiceNumberJPA>> getAll() {
         List<ServiceNumber> serviceNumbers = serviceNumberService.getAll();
@@ -51,7 +47,6 @@ public class ServiceNumberController {
         return ResponseEntity.ok(serviceNumbersJPA);
     }
 
-
     @PutMapping
     public ResponseEntity<ServiceNumberJPA> update(@RequestBody ServiceNumberJPA serviceNumberJPA) {
         ServiceNumber serviceNumber = mapper.map(serviceNumberJPA, ServiceNumber.class);
@@ -61,7 +56,6 @@ public class ServiceNumberController {
         return ResponseEntity.ok(serviceNumberJPA);
     }
 
-
     @DeleteMapping("/{id}")
     public ResponseEntity<ServiceNumberJPA> deleteById(@PathVariable("id") int id) {
         ServiceNumberId serviceNumberId = new ServiceNumberId(id);
@@ -70,4 +64,6 @@ public class ServiceNumberController {
         serviceNumberService.deleteById(serviceNumberId);
         return ResponseEntity.ok(serviceNumberJPA); // Retorna 200 OK com os dados deletados
     }
+
 }
+

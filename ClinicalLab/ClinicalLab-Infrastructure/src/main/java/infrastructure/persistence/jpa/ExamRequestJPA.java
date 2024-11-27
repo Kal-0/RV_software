@@ -3,16 +3,13 @@ package infrastructure.persistence.jpa;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import domain.entities.client.Client;
 import domain.entities.examrequest.ExamRequest;
 import domain.entities.examrequest.ExamRequestId;
 import domain.entities.examrequest.ExamRequestRepository;
 import infrastructure.persistence.jpa.repository.ExamRequestJPARepository;
-import jakarta.transaction.Transactional;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +19,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.transaction.Transactional;
 
 
 @Entity
@@ -138,13 +136,13 @@ class ExamRequestRepositoryImpl implements ExamRequestRepository {
     }
     
     @Override
-	public List<ExamRequest> getAll() {
+	public List<ExamRequest> getExamRequestAll() {
 	    // Busca todas as entidades ClientzJPA do banco de dados
-	    List<ClientJPA> clientsJPA = clientJPARepository.findAll();
+	    List<ExamRequestJPA> examRequestsJPA = examRequestJPARepository.findAll();
 
 	    // Mapeia cada ClientJPA para Client (domínio) usando o mapper
-	    return clientsJPA.stream()
-	                     .map(clientJPA -> mapper.map(clientJPA, Client.class))
+	    return examRequestsJPA.stream()
+	                     .map(examRequestJPA -> mapper.map(examRequestJPA, ExamRequest.class))
 	                     .toList();
 	}
 

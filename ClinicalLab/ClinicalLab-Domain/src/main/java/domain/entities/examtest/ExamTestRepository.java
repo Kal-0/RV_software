@@ -1,5 +1,7 @@
 package domain.entities.examtest;
 
+import java.util.List;
+
 public interface ExamTestRepository {
 
 	public void save(ExamTest examTest);
@@ -9,5 +11,7 @@ public interface ExamTestRepository {
 	public ExamTest get(ExamTestId id);
 	
 	public void update(ExamTest examTest);
+	
+	public List<ExamTest> getAll();
 	
 }
