@@ -1,4 +1,4 @@
-package backend.controllers;
+package backend;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +36,7 @@ public class ClientController {
 
     @GetMapping("")
     public ResponseEntity<List<ClientDTO>> getAll() {
-        List<Client> clients = clientService.getClientAll();
+        List<Client> clients = clientService.getAll();
         List<ClientDTO> clientsDTO = new ArrayList<>();
 
         for (Client client : clients) {

@@ -13,7 +13,6 @@ import domain.entities.client.ClientRepository;
 import domain.services.ClientService;
 import domain.services.ServiceNumberService;
 import domain.entities.servicenumber.ServiceNumberRepository;
-
 import domain.entities.clientservice.ClientServiceRepository;
 import domain.services.ClientServiceService; 
 import domain.entities.examrequest.ExamRequestRepository;
@@ -32,15 +31,13 @@ import domain.entities.attendant.AttendantRepository;
 
 
 @SpringBootApplication(scanBasePackages = {
-	    "pai",
-		"cesar.rv.clinicallabdocker",
+        "cesar.rv.clinicallabdocker",
 		"infrastructure.domainevent",
 	    "infrastructure.persistence",
 	    "backend.controllers",
         "config"
 	})
 @ComponentScan(basePackages = {
-		"pai",
 	    "cesar.rv.clinicallabdocker",
 	    "infrastructure.domainevent",
 	    "infrastructure.persistence",

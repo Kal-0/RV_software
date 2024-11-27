@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SideBar from '../../components/SideBar';
 
-const ClientList: React.FC = () => {
-    const [exams, setExams] = useState([]); // Estado para armazenar os exames
+const ExamsList: React.FC = () => {
+    const [exams, setExams] = useState([]); // Armazena os exames disponíveis
     const [selectedAll, setSelectedAll] = useState(false); // Controle do checkbox principal
     const [selectedExams, setSelectedExams] = useState<number[]>([]); // IDs dos exames selecionados
-    const [loading, setLoading] = useState(true); // Estado para indicar carregamento
-    const [error, setError] = useState<string | null>(null); // Estado para erros
+    const [loading, setLoading] = useState(true); // Indica carregamento
+    const [error, setError] = useState<string | null>(null); // Erros durante a execução
 
-    // Função para buscar os dados da API
+    const navigate = useNavigate();
+    const location = useLocation();
+    const client = location.state?.client; // Dados do cliente passados pela navegação
+
+    // Função para buscar os exames da API
     useEffect(() => {
         const fetchExams = async () => {
             try {
@@ -23,21 +27,19 @@ const ClientList: React.FC = () => {
                 console.error('Error fetching exams:', err);
                 setError('Failed to fetch exams.');
             } finally {
-                setLoading(false); // Marca o carregamento como concluído
+                setLoading(false); // Conclui o carregamento
             }
         };
 
         fetchExams();
-    }, []); // Executa apenas uma vez quando o componente é montado
+    }, []);
 
     // Lógica para selecionar todos os checkboxes
     const handleSelectAll = () => {
-        setSelectedAll(!selectedAll); // Inverte o estado
+        setSelectedAll(!selectedAll);
         if (!selectedAll) {
-            // Seleciona todos os exames
             setSelectedExams(exams.map((exam: any) => exam.id));
         } else {
-            // Limpa a seleção
             setSelectedExams([]);
         }
     };
@@ -46,14 +48,85 @@ const ClientList: React.FC = () => {
     const handleSelectExam = (id: number) => {
         setSelectedExams((prevSelected) =>
             prevSelected.includes(id)
-                ? prevSelected.filter((examId) => examId !== id) // Remove da seleção
-                : [...prevSelected, id] // Adiciona à seleção
+                ? prevSelected.filter((examId) => examId !== id)
+                : [...prevSelected, id]
         );
+    };
+
+    // Função para registrar os `ExamTest` e o `ExamRequest`
+    const handleFinalize = async () => {
+        if (!client || selectedExams.length === 0) {
+            alert('Please select at least one exam and ensure client information is provided.');
+            return;
+        }
+
+        try {
+            // Lista para armazenar os `ExamTest` criados
+            const examTestList = [];
+
+            for (const examId of selectedExams) {
+                const exam = exams.find((e: any) => e.id === examId);
+                const examTestPayload = {
+                    examTestId: null,
+                    exam,
+                    testResult: null,
+                    status: 'Pending',
+                };
+
+                const response = await fetch('http://localhost:8080/exam-tests', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(examTestPayload),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to create ExamTest for exam ID: ${examId}`);
+                }
+
+                const savedExamTest = await response.json();
+                examTestList.push(savedExamTest); // Adiciona o `ExamTest` à lista
+            }
+
+            // Calcular o preço total dos exames
+            const totalPrice = examTestList.reduce(
+                (total, examTest) => total + (examTest.exam?.price || 0),
+                0
+            );
+
+            // Criar o `ExamRequest` com o cliente e a lista de `ExamTest`
+            const examRequest = {
+                examRequestId: null,
+                client,
+                examTestList,
+                requestDate: new Date().toISOString().split('T')[0], // Data atual no formato YYYY-MM-DD
+                totalPrice,
+                paymentMethod: 'Not Paid',
+                status: 'Pending',
+            };
+
+            const response = await fetch('http://localhost:8080/exam-request', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(examRequest),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to create ExamRequest.');
+            }
+
+            const savedExamRequest = await response.json();
+            console.log('ExamRequest created:', savedExamRequest);
+
+            alert('Exam Request successfully created!');
+            navigate('/summary', { state: { examRequest: savedExamRequest } }); // Navega para a próxima página
+        } catch (err: any) {
+            console.error('Error:', err);
+            alert('An error occurred while finalizing the Exam Request.');
+        }
     };
 
     return (
         <div className="p-8 bg-gray-100 h-screen">
-            {/* Header */}
             <header className="mb-6 flex items-center justify-between">
                 <img src="/assets/blab.png" alt="Blab Logo" className="w-12 h-12 mr-4" />
                 <h1 className="text-2xl font-semibold text-left">Laboratory Exams</h1>
@@ -66,19 +139,6 @@ const ClientList: React.FC = () => {
                 </div>
 
                 <div className="flex flex-col w-full">
-                    {/* Search */}
-                    <div className="mb-6 flex gap-4 items-center">
-                        <input
-                            type="text"
-                            placeholder="Search for Name, CPF, Birth Date or ID"
-                            className="flex-1 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring focus:ring-orange-300"
-                        />
-                        <button className="bg-white-500 text-white px-4 py-2 rounded">
-                            <img src="/assets/loupe.png" alt="Search" className="w-5 h-5" />
-                        </button>
-                    </div>
-
-                    {/* Exam List */}
                     <div className="bg-white rounded shadow-md overflow-auto">
                         {loading ? (
                             <p>Loading...</p>
@@ -124,13 +184,14 @@ const ClientList: React.FC = () => {
                         )}
                     </div>
 
-                    {/* Done Button */}
                     <div className="flex justify-end mt-8">
-                        <Link to="/examrequest" className="text-orange-500 font-medium">
-                            <button type="button" className="w-full bg-orange-500 text-white px-4 py-2 rounded mt-6">
-                                Done
-                            </button>
-                        </Link>
+                        <button
+                            type="button"
+                            onClick={handleFinalize}
+                            className="w-full bg-orange-500 text-white px-4 py-2 rounded mt-6"
+                        >
+                            Finalize
+                        </button>
                     </div>
                 </div>
             </div>
@@ -138,4 +199,4 @@ const ClientList: React.FC = () => {
     );
 };
 
-export default ClientList;
+export default ExamsList;
