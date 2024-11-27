@@ -1,4 +1,4 @@
-package backend;
+package backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
