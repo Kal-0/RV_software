@@ -23,17 +23,6 @@ public class ExamTestService {
             throw new IllegalArgumentException("ExamTest must not be null.");
         }
 
-        // Verificar duplicidade de TestResultId (//Tem que verificar isso aqui)
-        if (examTest.getTestResultId() != null) {
-            List<ExamTest> allExamTests = examTestRepository.getExamTestAll();
-            boolean isDuplicate = allExamTests.stream()
-                .anyMatch(existingTest -> existingTest.getTestResultId() != null &&
-                                          existingTest.getTestResultId().equals(examTest.getTestResultId()));
-            if (isDuplicate) {
-                throw new IllegalArgumentException("A TestResult with the given ID already exists.");
-            }
-        }
-
         examTestRepository.save(examTest);
         return examTestRepository.get(examTest.getId());
     }
