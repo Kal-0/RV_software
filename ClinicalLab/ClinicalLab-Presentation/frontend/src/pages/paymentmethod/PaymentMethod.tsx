@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SideBar from '../../components/SideBar';
 import { ExamRequest } from '../../model/examRequestModel';
 import { Client } from '../../model/clientModel';
 
 const BillingInfo: React.FC = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const examRequest: ExamRequest | undefined = location.state?.examRequest;
 
     const [client, setClient] = useState<Client | null>(null);
@@ -90,6 +91,7 @@ const BillingInfo: React.FC = () => {
             const updatedData = await response.json();
             console.log('Updated ExamRequest:', updatedData);
             alert('Exam request updated successfully!');
+            navigate('/servicenumber', { state: {} });
         } catch (err: unknown) {
             console.error('Error updating ExamRequest:', err);
             alert('Failed to update ExamRequest. Please try again.');

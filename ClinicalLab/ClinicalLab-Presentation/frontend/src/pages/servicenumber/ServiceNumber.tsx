@@ -10,14 +10,14 @@ const ClientList: React.FC = () => {
             <header className="mb-6 flex items-center justify-between">
                 <img src="/assets/blab.png" alt="Blab Logo" className="w-auto h-12 mr-4" />
                 <h1 className="text-2xl font-semibold text-left">Numbers</h1>
-                <button className="bg-orange-500 text-white p-2 rounded-full">
-                        A
+                <button className="bg-orange-500 text-white p-0 w-8 h-8 rounded-full flex items-center justify-center">
+                    A
                 </button>
             </header>
-            
+
             <div className="flex">
                 <div className="flex h-screen overflow-x-hidden">
-                    <SideBar />
+                <SideBar />
                 </div>
 
                 <div className="flex flex-col w-full">               
