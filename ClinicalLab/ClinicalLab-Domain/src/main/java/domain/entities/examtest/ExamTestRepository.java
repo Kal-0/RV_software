@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ExamTestRepository {
 
-	public void save(ExamTest examTest);
+	public ExamTest save(ExamTest examTest);
 	
 	public void delete(ExamTestId id);
 	

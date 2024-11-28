@@ -347,8 +347,12 @@ public class JPAMapper extends ModelMapper {
 	         @Override
 	         protected ExamTestJPA convert(ExamTest source) {
 	             ExamTestJPA examTestJPA = new ExamTestJPA();
-	             examTestJPA.setExamTestId(source.getId().getId());
-	             
+	             if(source.getId() != null) {
+	            	 examTestJPA.setExamTestId(source.getId().getId());
+	             }
+	             else {
+	            	 examTestJPA.setExamTestId(null);
+	             }
 	             // Mapeamento do objeto Exam e TestResult
 	             examTestJPA.setExam(map(source.getExamId(), ExamJPA.class));
 	             if(source.getTestResultId() != null) {

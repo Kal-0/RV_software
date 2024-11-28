@@ -120,16 +120,16 @@ public class DecoyPersistence4 {
 		
 //      EXAM TEST
 
-		ExamTestId examTestId = new ExamTestId(1); // Criando um ID para o Teste de Exame
+		ExamTestId examTestId = null; // Criando um ID para o Teste de Exame
 		ExamId examIds = new ExamId(1);
 		TestResultId testResultIds = null;
 		String statusExamTest = "Ta testando ainda";
 
 		// Teste de criação e salvamento de um ExamTest
 		ExamTest newExamTest = new ExamTest(examTestId, examIds, testResultIds, statusExamTest);
-		examTestRepository.save(newExamTest); // Salvando o Exame no repositório
+		newExamTest = examTestRepository.save(newExamTest); // Salvando o Exame no repositório
 		System.out.println("ExamTest salvo: " + newExamTest);
-		System.out.println("ExamTest salvo: " + examTestRepository.get(examTestId).getStatus());
+		System.out.println("ExamTest salvo: " + examTestRepository.get(newExamTest.getId()).getStatus());
 
 
 //        TEST RESULT

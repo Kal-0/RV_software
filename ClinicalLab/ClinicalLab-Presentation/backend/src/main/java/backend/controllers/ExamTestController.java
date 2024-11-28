@@ -27,7 +27,7 @@ public class ExamTestController {
         ExamTest examTest = ExamTestMapper.toDomain(examTestDTO);
         ExamTest savedExamTest = examTestService.save(examTest);
         ExamTestDTO response = ExamTestMapper.toDTO(savedExamTest);
-        return ResponseEntity.status(201).body(response);
+        return ResponseEntity.ok(response);
     }
 
     /**

@@ -17,6 +17,14 @@ public class ExamTest {
 		this.testResultId = testResultId;
 		this.status = status;
 	}
+	
+	
+	
+	public void setId(ExamTestId id) {
+		this.id = id;
+	}
+
+
 
 	public ExamTestId getId() {
 		return id;

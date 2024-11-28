@@ -269,8 +269,10 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
 	
 
 	@Override
-	public void save(ExamTest examTest) {
+	public ExamTest save(ExamTest examTest) {
 		// TODO Auto-generated method stub
+		
+		return examTest;
 		
 	}
 

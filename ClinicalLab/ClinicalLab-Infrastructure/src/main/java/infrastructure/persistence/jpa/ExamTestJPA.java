@@ -77,9 +77,11 @@ class ExamTestRepositoryImpl implements ExamTestRepository {
 
 
     @Override
-    public void save(ExamTest examTest) {
+    public ExamTest save(ExamTest examTest) {
         ExamTestJPA examTestJPA = mapper.map(examTest, ExamTestJPA.class);
-        examTestJPARepository.save(examTestJPA);
+        examTestJPA = examTestJPARepository.save(examTestJPA);
+        examTest.setId(new ExamTestId(examTestJPA.getExamTestId()));
+        return examTest;
     }
 
     @Override
