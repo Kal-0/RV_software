@@ -4,6 +4,8 @@
 ## Product
 BLab is a web platform designed to manage the daily processes of a blood test laboratory. It is currently under development to facilitate the management of blood test laboratories.
 
+![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=CONCLUÍDO&color=GREEN&style=for-the-badge)
+
 ## Domain Description
 
 <p>You can view the domain description using the domain ubiquitous language document  <a href="https://docs.google.com/document/d/1DZ_5M0e5dnlBABqFou3MBMePG59BQ2IYpBedNu41YqE/view?usp=sharing">here</a>.</p>
@@ -30,8 +32,21 @@ BLab is a web platform designed to manage the daily processes of a blood test la
 ## Adopting Preliminary, Strategic, Tactical, and Operational Levels of DDD, Clean Architecture, In-Memory Persistence Layer
 <p>You can see this in the structure and code of this project.</p>
 
+## Design Patterns
+* Creational pattern: <b>Singleton</b>
+* Structural pattern: <b>Decorator</b>
+
+## Technologies used
+* Java
+* SQL
+* React
+* Spring Boot
+* Docker
+
 ## Team
-<table> <tr> <td> Adriana Lucia <br /> </td> <td> Albert Asmervik <br /> </td> <td> Anders Burok <br/> </td> <td> Caio Cesar <br /> </td> </tr> <tr> <td> Camila Cirne <br /> </td> <td> Diogo Henrique <br /> </td> <td> Pedro Coelho <br/> </td> <td> Sivert Muren </td> <br/> </tr> </table>
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/108764670?v=4" width=115><br><sub>Adriana Lúcia</sub>](https://github.com/Dricalucia) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/106926790?v=4" width=115><br><sub>Caio Hiratelli</sub>](https://github.com/Kal-0)  |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/28824856?v=4" width=115><br><sub>Camila Cirne</sub>](https://github.com/camilacirne) |  
+| :---: | :---: | :---: |
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/116087739?v=4" width=115><br><sub>Diogo Henrique</sub>](https://github.com/DiogoHMC) | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/111138996?v=4" width=115><br><sub>Pedro Coelho</sub>](https://github.com/pedro-coelho-dr)  |   |  
 
 </br>
 </br>
@@ -64,7 +79,19 @@ O BLab é uma plataforma web para gereciamento de processos diarios de um labora
 ## Adotar os níveis preliminar, estratégico, tático e operacional do DDD, Arquitetura limpa, Camada de persistência em memória
 <p> Você pode ver na estrutura e no código deste projeto. </p>
 
+## Padrão de Projetos
+* Padrão Criacional <b>Singleton</b>
+* Padrão Estrutural: <b>Decorator</b>
+
+# Tecnologias usadas
+* Java
+* SQL
+* React
+* Spring Boot
+* Docker
+
 
 ## Equipe
-
-<table> <tr> <td> Adriana Lucia <br /> </td> <td> Albert Asmervik <br /> </td> <td> Anders Burok <br/> </td> <td> Caio Cesar <br /> </td> </tr> <tr> <td> Camila Cirne <br /> </td> <td> Diogo Henrique <br /> </td> <td> Pedro Coelho <br/> </td> <td> Sivert Muren </td> <br/> </tr> </table>
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/108764670?v=4" width=115><br><sub>Adriana Lúcia</sub>](https://github.com/Dricalucia) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/106926790?v=4" width=115><br><sub>Caio Hiratelli</sub>](https://github.com/Kal-0)  |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/28824856?v=4" width=115><br><sub>Camila Cirne</sub>](https://github.com/camilacirne) |  
+| :---: | :---: | :---: |
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/116087739?v=4" width=115><br><sub>Diogo Henrique</sub>](https://github.com/DiogoHMC) | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/111138996?v=4" width=115><br><sub>Pedro Coelho</sub>](https://github.com/pedro-coelho-dr)  |   |  
