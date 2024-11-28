@@ -63,16 +63,16 @@ const ExamsList: React.FC = () => {
         }
 
         try {
-            const examTestIds: number[] = [];
+            const examTestIds: string[] = []; // Array for storing created exam test IDs
 
             for (const examId of selectedExams) {
                 const examTestPayload = {
-                    id: 1,
                     examId,
                     testResultId: null,
                     status: 'Pending',
                 };
 
+                // POST request to create ExamTest
                 const response = await fetch('http://localhost:8080/exams-tests', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -84,13 +84,14 @@ const ExamsList: React.FC = () => {
                 }
 
                 const savedExamTest = await response.json();
-                examTestIds.push(savedExamTest.id);
+                examTestIds.push(savedExamTest.id); // Save created ExamTest ID
             }
 
+            // Creating the ExamRequest with examTestList
             const examRequestPayload = {
                 examRequestId: null,
                 clientId: client.id,
-                examTestList: examTestIds,
+                examTestList: examTestIds, // Array of created exam test IDs
                 requestDate: new Date().toISOString().split('T')[0],
                 totalPrice: 0.0,
                 paymentMethod: 'Not Paid',
@@ -111,7 +112,7 @@ const ExamsList: React.FC = () => {
             alert('Exam Request successfully created!');
             navigate('/examrequest', { state: { examRequest: savedExamRequest } });
         } catch (err: unknown) {
-            console.error('Error saving examrequest:', err);
+            console.error('Error saving ExamRequest:', err);
             if (err instanceof Error) {
                 alert(`An error occurred: ${err.message}`);
             } else {
@@ -123,7 +124,7 @@ const ExamsList: React.FC = () => {
     return (
         <div className="p-8 bg-gray-100 h-screen">
             <header className="mb-6 flex items-center justify-between">
-                <img src="/assets/blab.png" alt="Blab Logo" className="w-12 h-12 mr-4" />
+                <img src="/assets/blab.png" alt="Blab Logo" className="w-auto h-12 mr-4" />
                 <h1 className="text-2xl font-semibold text-left">Laboratory Exams</h1>
                 <button className="bg-orange-500 text-white p-0 w-8 h-8 rounded-full flex items-center justify-center">
                     A
@@ -136,6 +137,8 @@ const ExamsList: React.FC = () => {
                 </div>
 
                 <div className="flex flex-col w-full">
+
+                    {/* Search */}
                     <div className="mb-6 flex gap-4 items-center">
                         <input
                             type="text"
@@ -143,10 +146,10 @@ const ExamsList: React.FC = () => {
                             className="flex-1 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring focus:ring-orange-300"
                         />
                         <button className="bg-white-500 text-white px-4 py-2 rounded">
-                            <img src="/assets/loupe.png" alt="Search" className="w-5 h-5" />
+                            <img src="/assets/loupe.png" alt="Search" className="w-5 h-5"/>
+
                         </button>
                     </div>
-
                     {/* Filters */}
                     <div className="flex gap-4 mb-6">
                         <select
@@ -192,66 +195,69 @@ const ExamsList: React.FC = () => {
 
                     </div>
 
-                    <div className="flex flex-col w-full">
-                        <div className="bg-white rounded shadow-md overflow-auto">
-                            {loading ? (
-                                <p>Loading...</p>
-                            ) : error ? (
-                                <p className="text-red-500">{error}</p>
-                            ) : (
-                                <table className="w-full table-auto text-left">
-                                    <thead className="bg-gray-200 text-gray-700">
-                                    <tr>
-                                        <th className="px-4 py-2">
-                                            <input
-                                                type="checkbox"
-                                                checked={selectedAll}
-                                                onChange={handleSelectAll}
-                                            />
-                                        </th>
-                                        <th className="px-4 py-2">Code</th>
-                                        <th className="px-4 py-2">Exam Name</th>
-                                        <th className="px-4 py-2">Requirements</th>
-                                        <th className="px-4 py-2">Price</th>
-                                        <th className="px-4 py-2">Stipulated Time</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {exams.map((exam: Exam) => (
-                                        <tr key={exam.id!} className="hover:bg-gray-100">
-                                            <td className="px-4 py-2">
+                    <div className="bg-white rounded shadow-md overflow-auto">
+
+
+                        {loading ? (
+                            <p>Loading...</p>
+                        ) : error ? (
+                            <p className="text-red-500">{error}</p>
+                        ) : (
+                            <>
+                                <div className="mb-6">
+                                    <table className="w-full table-auto text-left">
+                                        <thead className="bg-gray-200 text-gray-700">
+                                        <tr>
+                                            <th className="px-4 py-2">
                                                 <input
                                                     type="checkbox"
-                                                    checked={selectedExams.includes(exam.id!)}
-                                                    onChange={() => handleSelectExam(exam.id!)}
+                                                    checked={selectedAll}
+                                                    onChange={handleSelectAll}
                                                 />
-                                            </td>
-                                            <td className="px-4 py-2">E{exam.id?.toString().padStart(3, '0')}</td>
-                                            <td className="px-4 py-2">{exam.name}</td>
-                                            <td className="px-4 py-2">{exam.requirements}</td>
-                                            <td className="px-4 py-2">${exam.price?.toFixed(2)}</td>
-                                            <td className="px-4 py-2">{exam.analysisTime} hours</td>
+                                            </th>
+                                            <th className="px-4 py-2">Code</th>
+                                            <th className="px-4 py-2">Exam Name</th>
+                                            <th className="px-4 py-2">Requirements</th>
+                                            <th className="px-4 py-2">Price</th>
+                                            <th className="px-4 py-2">Stipulated Time</th>
                                         </tr>
-                                    ))}
-                                    </tbody>
-                                </table>
-                            )}
-                        </div>
+                                        </thead>
+                                        <tbody>
+                                        {exams.map((exam: Exam) => (
+                                            <tr key={exam.id!} className="hover:bg-gray-100">
+                                                <td className="px-4 py-2">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={selectedExams.includes(exam.id!)}
+                                                        onChange={() => handleSelectExam(exam.id!)}
+                                                    />
+                                                </td>
+                                                <td className="px-4 py-2">E{exam.id?.toString().padStart(3, '0')}</td>
+                                                <td className="px-4 py-2">{exam.name}</td>
+                                                <td className="px-4 py-2">{exam.requirements}</td>
+                                                <td className="px-4 py-2">${exam.price?.toFixed(2)}</td>
+                                                <td className="px-4 py-2">{exam.analysisTime} hours</td>
+                                            </tr>
+                                        ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </>
+                        )}
 
-                        <div className="flex justify-end mt-8">
-                            <button
-                                type="button"
-                                onClick={handleFinalize}
-                                className="w-auto bg-orange-500 text-white px-4 py-2 rounded mt-6"
-                            >
-                                Done
-                            </button>
-                        </div>
+                    </div>
+                    <div className="flex justify-end mt-8">
+                        <button
+                            type="button"
+                            onClick={handleFinalize}
+                            className="w-auto bg-orange-500 text-white px-4 py-2 rounded mt-6"
+                        >
+                            Done
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     );
 };
-
 export default ExamsList;

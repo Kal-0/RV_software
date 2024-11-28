@@ -8,7 +8,7 @@ const ClientList: React.FC = () => {
         <div className="p-8 bg-gray-100 h-screen">
             {/* Header */}
             <header className="mb-6 flex items-center justify-between">
-                <img src="/assets/blab.png" alt="Blab Logo" className="w-12 h-12 mr-4" />
+                <img src="/assets/blab.png" alt="Blab Logo" className="w-auto h-12 mr-4" />
                 <h1 className="text-2xl font-semibold text-left">Numbers</h1>
                 <button className="bg-orange-500 text-white p-2 rounded-full">
                         A
