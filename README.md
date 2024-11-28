@@ -44,10 +44,14 @@ BLab is a web platform designed to manage the daily processes of a blood test la
 * Docker
 
 ## Running the Application
-1. Access the frontend directory: /ClinicalLab-Presentation/frontend
-2. Install dependencies: npm install
-3. Install Vite: npm install vite
-4. Run the application: npm run dev
+1. Install Node.jsand npm.
+2. Navigate to the directory where Spring Boot is located: ClinicalLab-Docker\src\main\java\cesar\rv\clinicallabdocker.
+3. Execute the Application.java file to start the application.
+4. Return to the root directory.
+5. Access the frontend directory: /ClinicalLab-Presentation/frontend.
+6. Install the project dependencies with the command: npm install.
+7. Install Vite with the command: npm install vite.
+8. Start the application with the command: npm run dev.
 
 ## Team
 | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/108764670?v=4" width=115><br><sub>Adriana Lúcia</sub>](https://github.com/Dricalucia) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/106926790?v=4" width=115><br><sub>Caio Hiratelli</sub>](https://github.com/Kal-0)  |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/28824856?v=4" width=115><br><sub>Camila Cirne</sub>](https://github.com/camilacirne) |  
@@ -92,17 +96,20 @@ O BLab é uma plataforma web para gereciamento de processos diarios de um labora
 ## Tecnologias usadas
 * Java
 * SQL
-* Docker
 * React
 * Spring Boot
 * Node.js
 * NPM (Node Package Manager)
 
 ## Executando a Aplicação
-1. Acessar o diretório do frontend: /ClinicalLab-Presentation/frontend
-2. Instale as dependências: npm install
-3. Instale o Vite: npm install vite
-4. Execute a aplicação: npm run dev
+1. Instale o Node.jse o npm.
+2. Navegue até o diretório onde o Spring Boot está localizado: ClinicalLab-Docker\src\main\java\cesar\rv\clinicallabdocker.
+3. Execute o arquivo Application.java para iniciar a aplicação.
+4. Retorne ao diretório raiz.
+5. Acesse o diretório do frontend: /ClinicalLab-Presentation/frontend.
+6. Instale as dependências do projeto com o comando: npm install.
+7. Instale o Vite com o comando: npm install vite.
+8. Inicie a aplicação com o comando: npm run dev.
 
 ## Equipe
 | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/108764670?v=4" width=115><br><sub>Adriana Lúcia</sub>](https://github.com/Dricalucia) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/106926790?v=4" width=115><br><sub>Caio Hiratelli</sub>](https://github.com/Kal-0)  |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/28824856?v=4" width=115><br><sub>Camila Cirne</sub>](https://github.com/camilacirne) |  
