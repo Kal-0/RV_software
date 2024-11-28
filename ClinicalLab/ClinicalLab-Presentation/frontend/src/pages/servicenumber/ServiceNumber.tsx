@@ -93,15 +93,51 @@ const ClientList: React.FC = () => {
                         <div>
                             <h2 className="text-lg font-semibold mb-4">STANDARD</h2>
                             <div className="grid grid-cols-3 gap-6">
-                                {[...Array(6)].map((_, index) => (
-                                    <div key={index} className="bg-white border border-gray-300 p-4 rounded-lg">
-                                        <p className="text-gray-700 font-medium">Number</p>
-                                        <p className="text-orange-500 font-bold text-lg">P0033</p>
-                                        <p className="text-gray-500 text-sm">Waiting</p>
-                                        <p className="text-gray-500 text-sm">06:44:12</p>
-                                    </div>
-                                ))}
+                                <div className="bg-orange-100 border-l-4 border-orange-500 p-4 rounded-lg">
+                                    <p className="text-gray-700 font-medium">Number</p>
+                                    <p className="text-orange-500 font-bold text-lg">P0024</p>
+                                    <p className="text-gray-500 text-sm">Next</p>
+                                    <p className="text-gray-500 text-sm">06:44:12</p>
+                                </div>
+                                <div className="bg-white border border-gray-300 p-4 rounded-lg">
+                                    <p className="text-gray-700 font-medium">Number</p>
+                                    <p className="text-orange-500 font-bold text-lg">P0020</p>
+                                    <p className="text-gray-500 text-sm">Waiting</p>
+                                    <p className="text-gray-500 text-sm">06:44:12</p>
+                                </div>
+                                <div className="bg-gray-200 border border-gray-300 p-4 rounded-lg">
+                                    <p className="text-gray-700 font-medium">Number</p>
+                                    <p className="text-orange-500 font-bold text-lg">P0019</p>
+                                    <p className="text-gray-500 text-sm">Done</p>
+                                    <p className="text-gray-500 text-sm">06:44:12</p>
+                                </div>
+
+
                             </div>
+                            <div className="h-12"></div>
+                            <div className="grid grid-cols-3 gap-6">
+                                <div className="bg-orange-100 border-l-4 border-orange-500 p-4 rounded-lg">
+                                    <p className="text-gray-700 font-medium">Number</p>
+                                    <p className="text-orange-500 font-bold text-lg">P0026</p>
+                                    <p className="text-gray-500 text-sm">Next</p>
+                                    <p className="text-gray-500 text-sm">06:44:12</p>
+                                </div>
+                                <div className="bg-white border border-gray-300 p-4 rounded-lg">
+                                    <p className="text-gray-700 font-medium">Number</p>
+                                    <p className="text-orange-500 font-bold text-lg">P0025</p>
+                                    <p className="text-gray-500 text-sm">Waiting</p>
+                                    <p className="text-gray-500 text-sm">06:44:12</p>
+                                </div>
+                                <div className="bg-gray-200 border border-gray-300 p-4 rounded-lg">
+                                    <p className="text-gray-700 font-medium">Number</p>
+                                    <p className="text-orange-500 font-bold text-lg">P0018</p>
+                                    <p className="text-gray-500 text-sm">Done</p>
+                                    <p className="text-gray-500 text-sm">06:44:12</p>
+                                </div>
+
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
