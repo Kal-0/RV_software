@@ -43,6 +43,12 @@ BLab is a web platform designed to manage the daily processes of a blood test la
 * Spring Boot
 * Docker
 
+## Running the Application
+1. Access the frontend directory: /ClinicalLab-Presentation/frontend
+2. Install dependencies: npm install
+3. Install Vite: npm install vite
+4. Run the application: npm run dev
+
 ## Team
 | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/108764670?v=4" width=115><br><sub>Adriana Lúcia</sub>](https://github.com/Dricalucia) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/106926790?v=4" width=115><br><sub>Caio Hiratelli</sub>](https://github.com/Kal-0)  |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/28824856?v=4" width=115><br><sub>Camila Cirne</sub>](https://github.com/camilacirne) |  
 | :---: | :---: | :---: |
@@ -83,13 +89,20 @@ O BLab é uma plataforma web para gereciamento de processos diarios de um labora
 * Padrão Criacional <b>Singleton</b>
 * Padrão Estrutural: <b>Decorator</b>
 
-# Tecnologias usadas
+## Tecnologias usadas
 * Java
 * SQL
+* Docker
 * React
 * Spring Boot
-* Docker
+* Node.js
+* NPM (Node Package Manager)
 
+## Executando a Aplicação
+1. Acessar o diretório do frontend: /ClinicalLab-Presentation/frontend
+2. Instale as dependências: npm install
+3. Instale o Vite: npm install vite
+4. Execute a aplicação: npm run dev
 
 ## Equipe
 | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/108764670?v=4" width=115><br><sub>Adriana Lúcia</sub>](https://github.com/Dricalucia) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/106926790?v=4" width=115><br><sub>Caio Hiratelli</sub>](https://github.com/Kal-0)  |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/28824856?v=4" width=115><br><sub>Camila Cirne</sub>](https://github.com/camilacirne) |  
