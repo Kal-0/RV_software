@@ -7,13 +7,12 @@ public class ClinicSystem {
     private QueueManager queueManager;
 
     public ClinicSystem() {
-        this.queueManager = new QueueManager();
+        this.queueManager = QueueManager.getInstance();
     }
 
     /*
-    public void handleClientArrival(ClientService clientService) {
-        queueManager.addClientToQueue(clientService);
+    public void handleClientArrival(ClientServices clientService) {
+        queueManager.addToQueue(clientService);
     }
     */
-
 }

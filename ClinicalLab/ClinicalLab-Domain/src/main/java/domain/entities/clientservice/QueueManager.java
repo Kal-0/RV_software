@@ -3,18 +3,27 @@ package domain.entities.clientservice;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class QueueManager {
+public class QueueManager implements QueueManagerInterface {
+
+    private static QueueManager instance; 
 
     private Queue<ClientServices> priorityQueue;
     private Queue<ClientServices> standardQueue;
     private int priorityCalls = 0;
 
-    public QueueManager() {
+    private QueueManager() {
         this.priorityQueue = new LinkedList<>();
         this.standardQueue = new LinkedList<>();
     }
 
-    // Adicionar cliente à fila, verificando prioridade
+    public static synchronized QueueManager getInstance() {
+        if (instance == null) {
+            instance = new QueueManager();
+        }
+        return instance;
+    }
+
+    @Override
     public void addToQueue(ClientServices clientService) {
         if (clientService.getServiceNumber().isPriority()) {
             priorityQueue.offer(clientService);
@@ -23,27 +32,27 @@ public class QueueManager {
         }
     }
 
-    // Chamar próximo número de acordo com as regras
+    @Override
     public ClientServices callNextNumber() {
         if (!priorityQueue.isEmpty() && (priorityCalls < 2 || standardQueue.isEmpty())) {
             priorityCalls++;
-            return priorityQueue.poll(); // Chama o próximo da fila prioritária
+            return priorityQueue.poll();
         } else if (!standardQueue.isEmpty()) {
-            priorityCalls = 0; // Reseta o contador de prioridade
-            return standardQueue.poll(); // Chama o próximo da fila padrão
+            priorityCalls = 0;
+            return standardQueue.poll();
         } else if (!priorityQueue.isEmpty()) {
-            return priorityQueue.poll(); // Chama o próximo da fila prioritária
+            return priorityQueue.poll();
         } else {
-            return null; // Fila vazia
+            return null;
         }
     }
 
-    // Verifica se há mais números na fila
+    @Override
     public boolean hasNext() {
         return !priorityQueue.isEmpty() || !standardQueue.isEmpty();
     }
 
-    // Retorna mensagem quando a fila está vazia
+    @Override
     public String getQueueStatus() {
         if (priorityQueue.isEmpty() && standardQueue.isEmpty()) {
             return "Nenhum número de atendimento disponível no momento.";
