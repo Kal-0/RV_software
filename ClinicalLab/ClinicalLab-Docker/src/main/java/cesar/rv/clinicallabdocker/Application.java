@@ -79,8 +79,8 @@ public class Application {
     }
     
     @Bean
-    public TotalPriceService totalPriceService(ExamTestRepository examTestRepository, ExamRepository examRepository) {
-        return new TotalPriceService(examTestRepository, examRepository);
+    public TotalPriceService totalPriceService(ExamRequestRepository examRequestRepository, ExamTestRepository examTestRepository, ExamRepository examRepository) {
+        return new TotalPriceService(examRequestRepository, examTestRepository, examRepository);
     }
 
 

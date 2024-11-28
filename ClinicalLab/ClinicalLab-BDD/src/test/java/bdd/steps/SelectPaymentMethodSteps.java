@@ -20,7 +20,7 @@ import java.util.List;
 public class SelectPaymentMethodSteps {
 
     private MemoryRepository memoryRepository = new MemoryRepository();
-    private ExamRequestService examRequestService = new ExamRequestService(memoryRepository, new TotalPriceService(memoryRepository, memoryRepository));
+    private ExamRequestService examRequestService = new ExamRequestService(memoryRepository, new TotalPriceService(memoryRepository, memoryRepository, memoryRepository));
     private ExamRequest examRequest;
     private String paymentMethod;
     private RuntimeException exception;

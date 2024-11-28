@@ -319,10 +319,19 @@ public class JPAMapper extends ModelMapper {
 	     addConverter(new AbstractConverter<ExamTestJPA, ExamTest>() {
 	         @Override
 	         protected ExamTest convert(ExamTestJPA source) {
+	        	 TestResultId testResultId;
+	        	 if(source.getTestResult() != null) {
+                	 testResultId = new TestResultId(source.getTestResult().getTestResultId());
+                 }
+                 else {
+                	 testResultId = null;
+                 }
+	        	 
+	        	 
 	             return new ExamTest(
 	                 new ExamTestId(source.getExamTestId()),
 	                 new ExamId(source.getExam().getId()),  // Obtém o ID do Exam
-	                 new TestResultId(source.getTestResult().getTestResultId()),
+	                 testResultId,
 	                 source.getStatus()
 	             );
 	         }
@@ -337,7 +346,13 @@ public class JPAMapper extends ModelMapper {
 	             
 	             // Mapeamento do objeto Exam e TestResult
 	             examTestJPA.setExam(map(source.getExamId(), ExamJPA.class));
-	             examTestJPA.setTestResult(map(source.getTestResultId(), TestResultJPA.class));
+	             if(source.getTestResultId() != null) {
+	            	 examTestJPA.setTestResult(map(source.getTestResultId(), TestResultJPA.class));
+	             }
+	             else {
+	            	 examTestJPA.setTestResult(null);
+	            	 
+	             }
 	             
              examTestJPA.setStatus(source.getStatus());
              return examTestJPA;

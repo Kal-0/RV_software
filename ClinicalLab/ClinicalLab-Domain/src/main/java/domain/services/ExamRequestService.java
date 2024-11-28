@@ -65,7 +65,7 @@ public class ExamRequestService {
             throw new IllegalArgumentException("ExamRequest not found");
         }
 
-        totalPriceService.calculateTotalPrice(examRequest);
+        totalPriceService.calculateTotalPrice(examRequest.getExamRequestId());
         
         examRequestRepository.update(examRequest);
     }

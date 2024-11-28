@@ -34,7 +34,7 @@ public class CreateExamRequestSteps {
         examTestRepository = new MemoryRepository(); 
         examRepository = new MemoryRepository(); 
         
-        TotalPriceService totalPriceService = new TotalPriceService(examTestRepository, examRepository);
+        TotalPriceService totalPriceService = new TotalPriceService(examRequestRepository, examTestRepository, examRepository);
         examRequestService = new ExamRequestService(examRequestRepository, totalPriceService);
     }
 
@@ -68,7 +68,7 @@ public class CreateExamRequestSteps {
         examRequestRepository = new MemoryRepository();
         examTestRepository = new MemoryRepository();
         examRepository = new MemoryRepository();
-        TotalPriceService totalPriceService = new TotalPriceService(examTestRepository, examRepository);
+        TotalPriceService totalPriceService = new TotalPriceService(examRequestRepository, examTestRepository, examRepository);
         examRequestService = new ExamRequestService(examRequestRepository, totalPriceService);
         examRequestService.saveExamRequest(examRequest); 
     }

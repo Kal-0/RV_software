@@ -31,9 +31,13 @@ import domain.entities.servicenumber.ServiceNumberRepository;
 import domain.entities.testresult.TestResult;
 import domain.entities.testresult.TestResultId;
 import domain.entities.testresult.TestResultRepository;
+import infrastructure.persistence.jpa.JPAMapper;
 
 @Component
 public class DecoyPersistence4 {
+	
+	@Autowired
+	JPAMapper jpaMapper;
 
 	@Autowired
 	private ExamRepository examRepository;
@@ -112,6 +116,20 @@ public class DecoyPersistence4 {
 //        // Teste de deleção do exame
 //        examRepository.delete(examId);
 //        System.out.println("Exame deletado: " + (examRepository.get(examId) == null ? "Sim" : "Não"));
+		
+		
+//      EXAM TEST
+
+		ExamTestId examTestId = new ExamTestId(1); // Criando um ID para o Teste de Exame
+		ExamId examIds = new ExamId(1);
+		TestResultId testResultIds = null;
+		String statusExamTest = "Ta testando ainda";
+
+		// Teste de criação e salvamento de um ExamTest
+		ExamTest newExamTest = new ExamTest(examTestId, examIds, testResultIds, statusExamTest);
+		examTestRepository.save(newExamTest); // Salvando o Exame no repositório
+		System.out.println("ExamTest salvo: " + newExamTest);
+		System.out.println("ExamTest salvo: " + examTestRepository.get(examTestId).getStatus());
 
 
 //        TEST RESULT
@@ -145,18 +163,6 @@ public class DecoyPersistence4 {
 
 
 
-
-//      EXAM TEST
-
-		ExamTestId examTestId = new ExamTestId(1); // Criando um ID para o Teste de Exame
-		ExamId examIds = new ExamId(1);
-		TestResultId testResultIds = new TestResultId(1);
-		String statusExamTest = "Ta testando ainda";
-
-		// Teste de criação e salvamento de um ExamTest
-		ExamTest newExamTest = new ExamTest(examTestId, examIds, testResultIds, statusExamTest);
-		examTestRepository.save(newExamTest); // Salvando o Exame no repositório
-		System.out.println("ExamTest salvo: " + newExamTest);
 
 
 //

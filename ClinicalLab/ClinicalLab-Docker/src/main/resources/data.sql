@@ -149,15 +149,18 @@ INSERT INTO TEST_RESULT (RESULT_CONTENT, RESULT_DATE) VALUES
 ('High Cholesterol', '2024-11-02'),
 ('Clear', '2024-11-03'),
 ('Anomaly Detected', '2024-11-04'),
-('Positive', '2024-11-05');
+('Positive', '2024-11-05'),
+('Normal Range', '2024-11-06'),
+('Borderline', '2024-11-07'),
+('Critical', '2024-11-08');
 
 -- Populando a tabela EXAM_REQUEST
 INSERT INTO EXAM_REQUEST (PAYMENT_METHOD, REQUEST_DATE, STATUS, TOTAL_PRICE, CLIENT_ID) VALUES
-('Credit Card', '2024-11-01', 'Completed', 80.00, 1),
-('Cash', '2024-11-02', 'Pending', 100.00, 2),
-('Debit Card', '2024-11-03', 'Completed', 50.00, 3),
-('Credit Card', '2024-11-04', 'In Progress', 200.00, 4),
-('Cash', '2024-11-05', 'Completed', 150.00, 5);
+('Credit Card', '2024-11-01', 'Completed', 230.00, 1), -- Blood Test + X-Ray + MRI
+('Cash', '2024-11-02', 'Pending', 180.00, 2),         -- Urine Test + MRI
+('Debit Card', '2024-11-03', 'Completed', 50.00, 3),  -- Blood Test
+('Credit Card', '2024-11-04', 'In Progress', 300.00, 4), -- MRI + COVID Test
+('Cash', '2024-11-05', 'Completed', 250.00, 5);       -- X-Ray + COVID Test
 
 -- Populando a tabela SERVICE_NUMBER
 INSERT INTO SERVICE_NUMBER (IS_PRIORITY, NUMBER, STATUS) VALUES
@@ -175,10 +178,29 @@ INSERT INTO CLIENTS_SERVICE (STATUS, EXAM_REQUEST_ID, SERVICE_NUMBER_ID) VALUES
 ('In Progress', 4, 4),
 ('Completed', 5, 5);
 
--- Populando a tabela EXAM_TEST
+-- Populando a tabela EXAM_TEST com testes divididos entre os clientes
 INSERT INTO EXAM_TEST (STATUS, EXAM_ID, TEST_RESULT_ID, EXAMS_LIST_ID) VALUES
+-- Cliente 1 (EXAM_REQUEST_ID = 1)
 ('Completed', 1, 1, 1),
-('Pending', 2, 2, 2),
-('In Progress', 3, 3, 3),
-('Completed', 4, 4, 4),
-('Completed', 5, 5, 5);
+('In Progress', 2, NULL, 1),
+('Pending', 3, NULL, 1),
+
+-- Cliente 2 (EXAM_REQUEST_ID = 2)
+('Pending', 4, 2, 2),
+('Completed', 5, NULL, 2),
+('In Progress', 1, NULL, 2),
+
+-- Cliente 3 (EXAM_REQUEST_ID = 3)
+('Completed', 2, 3, 3),
+('Pending', 3, NULL, 3),
+('In Progress', 4, NULL, 3),
+
+-- Cliente 4 (EXAM_REQUEST_ID = 4)
+('Completed', 5, 4, 4),
+('Pending', 1, NULL, 4),
+('In Progress', 2, NULL, 4),
+
+-- Cliente 5 (EXAM_REQUEST_ID = 5)
+('Completed', 3, 5, 5),
+('Pending', 4, NULL, 5),
+('In Progress', 5, NULL, 5);

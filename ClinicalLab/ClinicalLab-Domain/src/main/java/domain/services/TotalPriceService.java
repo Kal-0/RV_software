@@ -6,21 +6,26 @@ import domain.entities.exam.Exam;
 import domain.entities.exam.ExamId;
 import domain.entities.exam.ExamRepository;
 import domain.entities.examrequest.ExamRequest;
+import domain.entities.examrequest.ExamRequestId;
+import domain.entities.examrequest.ExamRequestRepository;
 import domain.entities.examtest.ExamTestId;
 import domain.entities.examtest.ExamTestRepository;
 
 
 public class TotalPriceService {
-
+	
+	private final ExamRequestRepository examRequestRepository;
     private final ExamTestRepository examTestRepository;
     private final ExamRepository examRepository;
 
-    public TotalPriceService(ExamTestRepository examTestRepository, ExamRepository examRepository) {
-        this.examTestRepository = examTestRepository;
+    public TotalPriceService(ExamRequestRepository examRequestRepository, ExamTestRepository examTestRepository, ExamRepository examRepository) {
+        this.examRequestRepository = examRequestRepository;
+    	this.examTestRepository = examTestRepository;
         this.examRepository = examRepository;
     }
 
-    public void calculateTotalPrice(ExamRequest examRequest) {
+    public Double calculateTotalPrice(ExamRequestId examRequestId) {
+    	ExamRequest examRequest = examRequestRepository.get(examRequestId);
         List<ExamTestId> examTestList = examRequest.getExamTestList();
         double totalPrice = 0.0;
 
@@ -34,5 +39,6 @@ public class TotalPriceService {
         }
         
         examRequest.setTotalPrice(totalPrice);
+        return totalPrice;
     }
 }

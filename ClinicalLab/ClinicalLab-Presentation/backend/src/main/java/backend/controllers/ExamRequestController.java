@@ -9,6 +9,7 @@ import domain.entities.examrequest.ExamRequest;
 import domain.entities.examrequest.ExamRequestId;
 import domain.entities.examtest.ExamTestId;
 import domain.services.ExamRequestService;
+import domain.services.TotalPriceService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,7 +22,19 @@ public class ExamRequestController {
 
     @Autowired
     private ExamRequestService examRequestService;
-
+    @Autowired
+    private TotalPriceService totalPriceService;
+    
+    @GetMapping("/{id}/calculate-price")
+    public ResponseEntity<Double> calculateTotalPrice(@PathVariable("id")int id) {
+        // Calcula o preço total
+        double totalPrice = totalPriceService.calculateTotalPrice(new ExamRequestId(id));
+//        totalPrice = examRequestService.getById(new ExamRequestId(id)).getTotalPrice();
+        // Retorna o resultado como resposta
+        return ResponseEntity.ok(totalPrice);
+    }
+    
+    
     @PostMapping
     public ResponseEntity<ExamRequestDTO> register(@RequestBody ExamRequestDTO examRequestDTO) {
         ExamRequest examRequest = ExamRequestMapper.toDomain(examRequestDTO);
