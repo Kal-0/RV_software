@@ -5,13 +5,24 @@ import java.util.Queue;
 
 public class QueueManager {
 
+    private static QueueManager instance; 
+
     private Queue<ClientServices> priorityQueue;
     private Queue<ClientServices> standardQueue;
     private int priorityCalls = 0;
 
-    public QueueManager() {
+    // Construtor privado para impedir criação direta de instâncias
+    private QueueManager() {
         this.priorityQueue = new LinkedList<>();
         this.standardQueue = new LinkedList<>();
+    }
+
+    // Método estático para obter a instância única
+    public static synchronized QueueManager getInstance() {
+        if (instance == null) {
+            instance = new QueueManager();
+        }
+        return instance;
     }
 
     // Adicionar cliente à fila, verificando prioridade
