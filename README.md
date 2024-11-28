@@ -21,7 +21,7 @@ BLab is a web platform designed to manage the daily processes of a blood test la
 <p>You can view our application prototype <a href="https://www.figma.com/proto/UtY0PrtheYUmGJx37DKvXu/Laborat%C3%B3rio-de-Exame-de-Sangue?node-id=4-191&starting-point-node-id=4%3A191&t=wqQetzHHhzoKLYZB-1">here</a>.</p>
 
 ## Project Presentation
-<p>You can view the presentation of the 1st part of the project <a href="https://www.canva.com/design/DAGSVXEyt9E/qjbEqTZ6oocjRa-9ym4Asg/edit?utm_content=DAGSVXEyt9E&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">here</a>.</p>
+<p>You can view the presentation of the 2st part of the project <a href="https://www.canva.com/design/DAGXnLntC_E/zFT_uWohregLcwQVeGqozw/edit?utm_content=DAGXnLntC_E&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">here</a>.</p>
 
 ## Context Mapper
 <p>You can see our context map developed with Context Mapper and the model(s) of the main subdomain(s) developed with Context Mapper <a href="https://www.canva.com/design/DAGR_ptML6s/mm5yrs5goD87oa71PJSgfQ/edit?utm_content=DAGR_ptML6s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">here</a>.</p>
@@ -33,8 +33,11 @@ BLab is a web platform designed to manage the daily processes of a blood test la
 <p>You can see this in the structure and code of this project.</p>
 
 ## Design Patterns
-* Creational pattern: <b>Singleton</b>
-* Structural pattern: <b>Decorator</b>
+ClinicalLab/ClinicalLab-Domain/src/main/java/domain/entities/clientservice
+* Creational pattern: <b>Singleton :</b>
+QueueManager
+* Structural pattern: <b>Decorator :</b>
+QueueManager / QueueManagerDecorator / QueueManagerInterface / LoggingQueueManagerDecorator
 
 ## Technologies used
 * Java
@@ -80,6 +83,9 @@ O BLab é uma plataforma web para gereciamento de processos diarios de um labora
 ## Aplicação  
 <p>Você pode ver por enquanto o protótipo da nossa aplicação <a href= "https://www.figma.com/proto/UtY0PrtheYUmGJx37DKvXu/Laborat%C3%B3rio-de-Exame-de-Sangue?node-id=4-191&starting-point-node-id=4%3A191&t=wqQetzHHhzoKLYZB-1">aqui</a>.</p>
 
+## Apresentação
+<p>Você pode visualizar a segunda parte da apresentação do projeto aqui<a href="https://www.canva.com/design/DAGXnLntC_E/zFT_uWohregLcwQVeGqozw/edit?utm_content=DAGXnLntC_E&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">here</a>.</p>
+
 ## Context Mapper 
 <p> Você pode ver o nosso mapa de contexto desenvolvido com o Context Mapper e o modelo(s) do(s) subdomínio(s) principal(is) desenvolvido com o Context Mapper <a href="https://www.canva.com/design/DAGR_ptML6s/mm5yrs5goD87oa71PJSgfQ/edit?utm_content=DAGR_ptML6s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" > aqui</a>. </p>
 
@@ -90,8 +96,11 @@ O BLab é uma plataforma web para gereciamento de processos diarios de um labora
 <p> Você pode ver na estrutura e no código deste projeto. </p>
 
 ## Padrão de Projetos
-* Padrão Criacional <b>Singleton</b>
-* Padrão Estrutural: <b>Decorator</b>
+ClinicalLab/ClinicalLab-Domain/src/main/java/domain/entities/clientservice
+* Creational pattern: <b>Singleton :</b>
+QueueManager
+* Structural pattern: <b>Decorator :</b>
+QueueManager / QueueManagerDecorator / QueueManagerInterface / LoggingQueueManagerDecorator
 
 ## Tecnologias usadas
 * Java
