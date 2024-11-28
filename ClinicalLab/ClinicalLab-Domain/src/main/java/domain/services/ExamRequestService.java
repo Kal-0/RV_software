@@ -31,8 +31,8 @@ public class ExamRequestService {
 	        throw new IllegalArgumentException("Exam Test List must not be empty");
 	    }
 	
-	    examRequestRepository.save(examRequest);
-	    return examRequestRepository.get(examRequest.getExamRequestId());
+	    examRequest = examRequestRepository.save(examRequest);
+	    return examRequest;
 	}
 	
 	public ExamRequest getById (ExamRequestId examResquestId) {

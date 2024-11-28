@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import domain.entities.client.ClientId;
 import domain.entities.examrequest.ExamRequest;
 import domain.entities.examrequest.ExamRequestId;
 import domain.entities.examrequest.ExamRequestRepository;
@@ -55,7 +56,7 @@ public class ExamRequestJPA {
 		return examRequestId;
 	}
 
-	public void setExamRequestId(int id) {
+	public void setExamRequestId(Integer id) {
 		this.examRequestId = id;
 	}
 
@@ -119,9 +120,11 @@ class ExamRequestRepositoryImpl implements ExamRequestRepository {
     private JPAMapper mapper;
 
     @Override
-    public void save(ExamRequest examRequest) {
+    public ExamRequest save(ExamRequest examRequest) {
         ExamRequestJPA examRequestJPA = mapper.map(examRequest, ExamRequestJPA.class);
-        examRequestJPARepository.save(examRequestJPA);
+        examRequestJPA = examRequestJPARepository.save(examRequestJPA);
+        examRequest.setExamRequestId(new ExamRequestId(examRequestJPA.getExamRequestId()));
+        return examRequest;
     }
 
     @Override

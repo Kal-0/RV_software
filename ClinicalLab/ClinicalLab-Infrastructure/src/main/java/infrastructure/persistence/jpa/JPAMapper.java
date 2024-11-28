@@ -280,8 +280,13 @@ public class JPAMapper extends ModelMapper {
                 if (source == null) return null;
 
                 ExamRequestJPA examRequestJPA = new ExamRequestJPA();
-                examRequestJPA.setExamRequestId(source.getExamRequestId().getId());
-
+                if(source.getExamRequestId() != null) {
+                	examRequestJPA.setExamRequestId(source.getExamRequestId().getId());
+                }
+                else {
+                	examRequestJPA.setExamRequestId(null);
+                }
+                
                 // Mapear client com validação
                 ClientJPA client = source.getClientId() != null ? map(source.getClientId(), ClientJPA.class) : null;
                 examRequestJPA.setClient(client);

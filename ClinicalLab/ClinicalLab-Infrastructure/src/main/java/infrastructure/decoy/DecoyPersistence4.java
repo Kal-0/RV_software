@@ -171,48 +171,48 @@ public class DecoyPersistence4 {
 
 //    TESTE DO EXAM REQUEST
 
-//      // Criando instâncias para o ExamRequest
-//      ExamRequestId examRequestId = new ExamRequestId(1);
-//      ClientId clientId = new ClientId(1);
-//      LocalDate requestDate = LocalDate.of(2024, 1, 15);
-//      Double totalPrice = 500.0;
-//      String paymentMethod = "Cartão de Crédito";
-//      String statUus = "Pendente";
-//
-//      List<ExamTestId> examTestList = java.util.stream.Stream.of(1)
-//      	    .map(ExamTestId::new) // Cria uma instância de ExamTestId para cada número
-//      	    .collect(Collectors.toList());
-//
-//      // Teste de criação e salvamento de um ExamRequest
-//      ExamRequest newExamRequest = new ExamRequest(
-//          examRequestId,
-//          clientId,
-//          examTestList,
-//          requestDate,
-//          totalPrice,
-//          paymentMethod,
-//          statUus
-//      );
-//      examRequestRepository.save(newExamRequest);
-//      System.out.println("ExamRequest salvo: " + newExamRequest);
-//
-//      // Teste de recuperação do ExamRequest
-//      ExamRequest retrievedExamRequest = examRequestRepository.get(examRequestId);
-//      if (retrievedExamRequest != null) {
-//          System.out.println("ExamRequest recuperado: " + retrievedExamRequest);
-//      } else {
-//          System.err.println("Erro: ExamRequest não encontrado.");
-//      }
-//
-//      // Teste de atualização do ExamRequest
-//      newExamRequest.setStatus("Finalizado");
-//      examRequestRepository.update(newExamRequest);
-//      ExamRequest updatedExamRequest = examRequestRepository.get(examRequestId);
-//      System.out.println("ExamRequest atualizado: " + (updatedExamRequest != null ? updatedExamRequest : "Erro na atualização"));
-//
-//      // Teste de deleção do ExamRequest (opcional)
-//      // examRequestRepository.delete(examRequestId);
-//      // System.out.println("ExamRequest deletado: " + (examRequestRepository.get(examRequestId) == null ? "Sim" : "Não"));
+      // Criando instâncias para o ExamRequest
+      ExamRequestId examRequestId = null;
+      ClientId clientId = new ClientId(1);
+      LocalDate requestDate = LocalDate.of(2024, 1, 15);
+      Double totalPrice = 500.0;
+      String paymentMethod = "Cartão de Crédito";
+      String statUus = "Pendente";
+
+      List<ExamTestId> examTestList = java.util.stream.Stream.of(1)
+      	    .map(ExamTestId::new) // Cria uma instância de ExamTestId para cada número
+      	    .collect(Collectors.toList());
+
+      // Teste de criação e salvamento de um ExamRequest
+      ExamRequest newExamRequest = new ExamRequest(
+          examRequestId,
+          clientId,
+          examTestList,
+          requestDate,
+          totalPrice,
+          paymentMethod,
+          statUus
+      );
+      examRequestId = examRequestRepository.save(newExamRequest).getExamRequestId();
+      System.out.println("ExamRequest salvo: " + newExamRequest);
+
+      // Teste de recuperação do ExamRequest
+      ExamRequest retrievedExamRequest = examRequestRepository.get(examRequestId);
+      if (retrievedExamRequest != null) {
+          System.out.println("ExamRequest recuperado: " + retrievedExamRequest);
+      } else {
+          System.err.println("Erro: ExamRequest não encontrado.");
+      }
+
+      // Teste de atualização do ExamRequest
+      newExamRequest.setStatus("Finalizado");
+      examRequestRepository.update(newExamRequest);
+      ExamRequest updatedExamRequest = examRequestRepository.get(examRequestId);
+      System.out.println("ExamRequest atualizado: " + (updatedExamRequest != null ? updatedExamRequest.getStatus() : "Erro na atualização"));
+
+      // Teste de deleção do ExamRequest (opcional)
+      // examRequestRepository.delete(examRequestId);
+      // System.out.println("ExamRequest deletado: " + (examRequestRepository.get(examRequestId) == null ? "Sim" : "Não"));
 
 
 

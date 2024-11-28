@@ -40,7 +40,7 @@ public class ExamRequestController {
         ExamRequest examRequest = ExamRequestMapper.toDomain(examRequestDTO);
         examRequest = examRequestService.saveExamRequest(examRequest);
         ExamRequestDTO response = ExamRequestMapper.toDTO(examRequest);
-        return ResponseEntity.status(201).body(response);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")

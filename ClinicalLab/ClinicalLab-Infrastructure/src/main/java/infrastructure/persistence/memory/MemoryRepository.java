@@ -202,12 +202,15 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
 	
     
     @Override
-    public void save(ExamRequest examRequest) {
+    public ExamRequest save(ExamRequest examRequest) {
     	if (examRequest == null) {
             throw new IllegalArgumentException("The Exam Request can not be null");
         }
         examRequests.put(examRequest.getExamRequestId(), examRequest);
+        return examRequest;
     }
+    
+    
     @Override
     public void delete(ExamRequestId examRequestId) {
     	if (examRequestId == null) {

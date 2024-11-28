@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ExamRequestRepository {
 
-	public void save(ExamRequest examRequest);
+	public ExamRequest save(ExamRequest examRequest);
 	
 	public void delete(ExamRequestId id);
 	
