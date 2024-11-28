@@ -30,7 +30,7 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
     
     
     @Override
-    public void save(Client client) {
+    public Client save(Client client) {
         if (client == null) {
             throw new IllegalArgumentException("The client can not be null");
         }
@@ -41,6 +41,7 @@ public class MemoryRepository implements ClientRepository, AttendantRepository, 
         }
         
     	clients.put(client.getClientId(), client);
+    	return client;
     }
 
     @Override

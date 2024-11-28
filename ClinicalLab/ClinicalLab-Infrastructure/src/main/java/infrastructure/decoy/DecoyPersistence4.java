@@ -68,11 +68,14 @@ public class DecoyPersistence4 {
 //       CLIENT
 
 		// criacao de cliente
-		Client c1 = new Client(1, "123.456.789-00", "email@email.com", "cao", "2004-06-14", 1);
-		clientRepository.save(c1);
+		Client c1 = new Client(0, "123.456.789-00", "email@email.com", "cao", "2004-06-14", 0);
+		c1.setId(null);
+		c1.setClientId(null);
+		c1 = clientRepository.save(c1);
+		System.out.println("===================="+c1.getClientId().getId());
 
 		Client c1Copy = clientRepository.get(c1.getClientId());
-		System.out.println(c1Copy.getCpf().getCpf());
+//		System.out.println(c1Copy.getCpf().getCpf());
 
 
 

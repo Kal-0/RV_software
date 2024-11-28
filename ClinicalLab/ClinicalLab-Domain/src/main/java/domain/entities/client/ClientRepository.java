@@ -6,7 +6,7 @@ import domain.entities.person.Cpf;
 
 public interface ClientRepository {
 	
-	public void save(Client client);
+	public Client save(Client client);
 	
 	public void delete(ClientId clientId);
 	

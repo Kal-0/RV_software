@@ -16,7 +16,7 @@ public class Client extends Person {
 		this.clientId = clientId;
 	}
 
-	public Client(int id, String cpf, String contactEmail, String name, String birthDate, int clientId) {
+	public Client(Integer id, String cpf, String contactEmail, String name, String birthDate, Integer clientId) {
 		super(id, cpf, contactEmail, name, birthDate);
 		this.clientId = new ClientId(clientId);
 	}

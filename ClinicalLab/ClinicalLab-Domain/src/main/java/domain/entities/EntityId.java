@@ -5,7 +5,7 @@ import java.util.Objects;
 public abstract class EntityId {
 	protected int id;
 	
-	public EntityId(int id) {
+	public EntityId(Integer id) {
 		super();
 		this.id = id;
 	}

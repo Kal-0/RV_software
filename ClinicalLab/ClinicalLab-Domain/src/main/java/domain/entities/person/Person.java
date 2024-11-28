@@ -31,6 +31,10 @@ public class Person {
 	}
 	
 	
+	public void setId(PersonId id) {
+		this.id = id;
+	}
+
 	public PersonId getId() {
 		return id;
 	}

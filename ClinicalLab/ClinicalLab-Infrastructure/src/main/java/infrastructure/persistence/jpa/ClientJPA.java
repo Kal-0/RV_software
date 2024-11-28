@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import domain.entities.client.Client;
@@ -14,6 +13,11 @@ import domain.entities.person.Cpf;
 import infrastructure.persistence.jpa.repository.ClientJPARepository;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PostPersist;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
@@ -21,13 +25,24 @@ import jakarta.persistence.Table;
 @Table(name = "Clients")
 @PrimaryKeyJoinColumn(name = "id") // Define que 'id' é a chave estrangeira que referencia 'People'
 public class ClientJPA extends PersonJPA {
+	
 	@Column(unique = true)
 	private Integer clientId;
 	
+	
+	
+	
+	@PostPersist
+	private void generateClientId() {
+	    if (this.clientId == null && this.getId() != null) {
+	        this.clientId = this.getId(); // Use a lógica que faz sentido no seu caso
+	    
+	    }
+	}
+	
+	
 	public void setClientId(Integer id) {
 		clientId = id;
-		
-		this.setId(clientId);
 	}
 	
 	public Integer getClientId() {
@@ -49,9 +64,12 @@ class ClientRepositoryImpl implements ClientRepository {
     private JPAMapper mapper; // Usar o ExamMapper
 
     @Override
-    public void save(Client client) {
+    public Client save(Client client) {
         ClientJPA clientJPA = mapper.map(client, ClientJPA.class);
-        clientJPARepository.save(clientJPA);
+        clientJPA = clientJPARepository.save(clientJPA);
+        clientJPA = clientJPARepository.save(clientJPA);
+        client.setClientId(new ClientId(clientJPA.getClientId()));
+        return client;
     }
     
     @Override

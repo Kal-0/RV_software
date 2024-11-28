@@ -5,6 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import domain.entities.client.Client;
 import domain.entities.client.ClientId;
+import domain.entities.person.Cpf;
+import domain.entities.person.Email;
+import domain.entities.person.PersonId;
 import domain.services.ClientService;
 
 import java.time.LocalDate;
@@ -22,8 +25,9 @@ public class ClientController {
     public ResponseEntity<ClientDTO> save(@RequestBody ClientDTO clientDTO) {
         Client client = ClientMapper.toDomain(clientDTO);
         client = clientService.save(client);
+        System.out.println(client.getName());
         ClientDTO response = ClientMapper.toDTO(client);
-        return ResponseEntity.status(201).body(response); // Retorna 201 Created
+        return ResponseEntity.ok(response); // Retorna 201 Created
     }
 
     @GetMapping("/{id}")
@@ -68,16 +72,16 @@ public class ClientController {
      * Classe DTO para representar Client
      */
     public static class ClientDTO {
-        public int id;
+        public Integer id;
         public String cpf;
         public String contactEmail;
         public String name;
-        public LocalDate birthDate;
-        public int clientId;
+        public String birthDate;
+        public Integer clientId;
 
         public ClientDTO() {}
 
-        public ClientDTO(int id, String cpf, String contactEmail, String name, LocalDate birthDate, int clientId) {
+        public ClientDTO(int id, String cpf, String contactEmail, String name, String birthDate, int clientId) {
             this.id = id;
             this.cpf = cpf;
             this.contactEmail = contactEmail;
@@ -93,23 +97,39 @@ public class ClientController {
     public static class ClientMapper {
 
         public static Client toDomain(ClientDTO dto) {
-            return new Client(
-                dto.id,                         // Acessa diretamente o campo público
-                dto.cpf,                        // Acessa diretamente o campo público
-                dto.contactEmail,               // Acessa diretamente o campo público
-                dto.name,                       // Acessa diretamente o campo público
-                dto.birthDate.toString(),       // Converte LocalDate para String
-                dto.clientId                    // Acessa diretamente o campo público
-            );
+        	PersonId personId;  
+        	ClientId clientId;
+            Cpf cpf = new Cpf(dto.cpf);
+            Email contactEmail = new Email(dto.contactEmail);
+            String name = dto.name;     
+            LocalDate birthDate = LocalDate.parse(dto.birthDate);
+        	
+        	if(dto.id != null) {
+            	personId = new PersonId(dto.id);
+            }
+            else {
+            	personId = null;
+            }
+            
+            if(dto.clientId != null) {
+            	clientId = new ClientId(dto.clientId);
+            }
+            else {
+            	clientId = null;
+            }
+ 
+        	
+        	
+            return new Client(personId, cpf, contactEmail, name, birthDate, clientId);
+            
         }
-
         public static ClientDTO toDTO(Client domain) {
             return new ClientDTO(
                 domain.getId().getId(),          // Extrai o ID do domínio
                 domain.getCpf().getCpf(),        // Extrai o CPF do domínio
                 domain.getContactEmail().getEmailText(), // Extrai o Email do domínio
                 domain.getName(),                // Extrai o nome do domínio
-                domain.getBirthDate(),           // Passa o LocalDate diretamente
+                domain.getBirthDate().toString(),           // Passa o LocalDate diretamente
                 domain.getClientId().getId()     // Extrai o ID do Client
             );
         }

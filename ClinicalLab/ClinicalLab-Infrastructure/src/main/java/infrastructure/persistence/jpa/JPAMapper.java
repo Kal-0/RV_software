@@ -101,12 +101,27 @@ public class JPAMapper extends ModelMapper {
             @Override
             protected ClientJPA convert(Client source) {
                 ClientJPA clientJPA = new ClientJPA();
-                clientJPA.setId(source.getId().getId());
+   
                 clientJPA.setCpf(source.getCpf().getCpf());
                 clientJPA.setContactEmail(source.getContactEmail().getEmailText());
                 clientJPA.setName(source.getName());
                 clientJPA.setBirthDate(source.getBirthDate());
-                clientJPA.setClientId(source.getClientId().getId());
+                
+                if(source.getId() != null) {
+                	clientJPA.setId(source.getId().getId());
+                }
+                else {
+                	clientJPA.setId(null);
+                }
+                
+                if(source.getClientId() != null) {
+                	clientJPA.setClientId(source.getClientId().getId());
+                }
+                else {
+                	clientJPA.setClientId(null);
+                }
+                
+                
                 return clientJPA;
             }
         });
