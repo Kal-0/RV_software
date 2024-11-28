@@ -42,7 +42,8 @@ const ClientList: React.FC = () => {
                 cpf: unmaskCPF(formData.cpf), // Remove a máscara do CPF
                 contactEmail: formData.email,
                 name: formData.name,
-                birthDate: formatDate(formData.birthdate), // Converte a data para o formato americano
+                birthDate: formatDate(formData.birthdate),
+                clientId: null// Converte a data para o formato americano
             };
             console.log('Sending data:', formattedData);
 
@@ -86,7 +87,9 @@ const ClientList: React.FC = () => {
             <header className="mb-6 flex items-center justify-between">
                 <img src="/assets/blab.png" alt="Blab Logo" className="w-12 h-12 mr-4" />
                 <h1 className="text-2xl font-semibold text-left">Client</h1>
-                <button className="bg-orange-500 text-white p-2 rounded-full">A</button>
+                <button className="bg-orange-500 text-white p-0 w-8 h-8 rounded-full flex items-center justify-center">
+                    A
+                </button>
             </header>
 
             <div className="flex">
