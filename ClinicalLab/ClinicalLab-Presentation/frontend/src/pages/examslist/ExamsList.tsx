@@ -3,15 +3,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import SideBar from '../../components/SideBar';
 
 const ExamsList: React.FC = () => {
-    const [exams, setExams] = useState([]); // Armazena os exames disponíveis
-    const [selectedAll, setSelectedAll] = useState(false); // Controle do checkbox principal
+    const [exams, setExams] = useState([]); // Lista de exames disponíveis
+    const [selectedAll, setSelectedAll] = useState(false); // Controle do checkbox "Selecionar Todos"
     const [selectedExams, setSelectedExams] = useState<number[]>([]); // IDs dos exames selecionados
-    const [loading, setLoading] = useState(true); // Indica carregamento
-    const [error, setError] = useState<string | null>(null); // Erros durante a execução
+    const [loading, setLoading] = useState(true); // Indicador de carregamento
+    const [error, setError] = useState<string | null>(null); // Mensagens de erro
 
     const navigate = useNavigate();
     const location = useLocation();
-    const client = location.state?.client; // Dados do cliente passados pela navegação
+    const client = location.state?.client; // Cliente passado pela navegação
 
     // Função para buscar os exames da API
     useEffect(() => {
@@ -22,29 +22,29 @@ const ExamsList: React.FC = () => {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                setExams(data); // Atualiza o estado com os exames
-            } catch (err: any) {
+                setExams(data);
+            } catch (err: unknown) {
                 console.error('Error fetching exams:', err);
                 setError('Failed to fetch exams.');
             } finally {
-                setLoading(false); // Conclui o carregamento
+                setLoading(false);
             }
         };
 
         fetchExams();
     }, []);
 
-    // Lógica para selecionar todos os checkboxes
+    // Lógica para selecionar ou desmarcar todos os exames
     const handleSelectAll = () => {
         setSelectedAll(!selectedAll);
         if (!selectedAll) {
-            setSelectedExams(exams.map((exam: any) => exam.id));
+            setSelectedExams(exams.map((exam: unknown) => exam.id));
         } else {
             setSelectedExams([]);
         }
     };
 
-    // Lógica para selecionar/desselecionar um exame individualmente
+    // Lógica para selecionar ou desmarcar um exame individualmente
     const handleSelectExam = (id: number) => {
         setSelectedExams((prevSelected) =>
             prevSelected.includes(id)
@@ -53,7 +53,7 @@ const ExamsList: React.FC = () => {
         );
     };
 
-    // Função para registrar os `ExamTest` e o `ExamRequest`
+    // Função para criar os `ExamTest` e o `ExamRequest`
     const handleFinalize = async () => {
         if (!client || selectedExams.length === 0) {
             alert('Please select at least one exam and ensure client information is provided.');
@@ -61,67 +61,77 @@ const ExamsList: React.FC = () => {
         }
 
         try {
-            // Lista para armazenar os `ExamTest` criados
-            const examTestList = [];
+            const examTestIds: number[] = [];
 
+            // Criando os ExamTest
             for (const examId of selectedExams) {
-                const exam = exams.find((e: any) => e.id === examId);
                 const examTestPayload = {
-                    examTestId: null,
-                    exam,
-                    testResult: null,
+                    id: 1,
+                    examId,
+                    testResultId: null,
                     status: 'Pending',
                 };
 
-                const response = await fetch('http://localhost:8080/exam-tests', {
+                console.log('Sending ExamTest payload:', examTestPayload);
+
+                const response = await fetch('http://localhost:8080/exams-tests', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(examTestPayload),
                 });
 
                 if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Error creating ExamTest:', errorText);
                     throw new Error(`Failed to create ExamTest for exam ID: ${examId}`);
                 }
 
                 const savedExamTest = await response.json();
-                examTestList.push(savedExamTest); // Adiciona o `ExamTest` à lista
+                console.log('Created ExamTest:', savedExamTest);
+                examTestIds.push(savedExamTest.id); // Adiciona o ID criado
             }
 
-            // Calcular o preço total dos exames
-            const totalPrice = examTestList.reduce(
-                (total, examTest) => total + (examTest.exam?.price || 0),
-                0
-            );
+            console.log('All ExamTest IDs:', examTestIds);
 
-            // Criar o `ExamRequest` com o cliente e a lista de `ExamTest`
-            const examRequest = {
+            // Calcula o preço total dos exames selecionados
+            const totalPrice = selectedExams.reduce((total, examId) => {
+                const exam = exams.find((e: unknown) => e.id === examId);
+                return total + (exam?.price || 0);
+            }, 0);
+
+            // Cria o ExamRequest
+            const examRequestPayload = {
                 examRequestId: null,
-                client,
-                examTestList,
+                clientId: client.id,
+                examTestList: examTestIds,
                 requestDate: new Date().toISOString().split('T')[0], // Data atual no formato YYYY-MM-DD
                 totalPrice,
-                paymentMethod: 'Not Paid',
-                status: 'Pending',
+                paymentMethod: 'Not Paid', // Método de pagamento padrão
+                status: 'Pending', // Status inicial
             };
 
-            const response = await fetch('http://localhost:8080/exam-request', {
+            console.log('Sending ExamRequest payload:', examRequestPayload);
+
+            const response = await fetch('http://localhost:8080/exam-requests', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(examRequest),
+                body: JSON.stringify(examRequestPayload),
             });
 
             if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Error creating ExamRequest:', errorText);
                 throw new Error('Failed to create ExamRequest.');
             }
 
             const savedExamRequest = await response.json();
-            console.log('ExamRequest created:', savedExamRequest);
+            console.log('Created ExamRequest:', savedExamRequest);
 
             alert('Exam Request successfully created!');
             navigate('/summary', { state: { examRequest: savedExamRequest } }); // Navega para a próxima página
-        } catch (err: any) {
-            console.error('Error:', err);
-            alert('An error occurred while finalizing the Exam Request.');
+        } catch (err: unknown) {
+            console.error('Error in handleFinalize:', err.message);
+            alert(`An error occurred: ${err.message}`);
         }
     };
 

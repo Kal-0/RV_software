@@ -46,7 +46,7 @@ const ClientList: React.FC = () => {
             };
             console.log('Sending data:', formattedData);
 
-            const response = await fetch('http://localhost:8080/client', {
+            const response = await fetch('http://localhost:8080/clients', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
